@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package elcorona;
+package com.mycompany.el.corona;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class ActivityLog {
         PlaceLog logp = new PlaceLog();
         logp.initialise();
         
-        Logger log = Logger.getLogger("MyLog");
+        Logger log = Logger.getLogger("ALog");
         FileHandler fh;
         
         try{

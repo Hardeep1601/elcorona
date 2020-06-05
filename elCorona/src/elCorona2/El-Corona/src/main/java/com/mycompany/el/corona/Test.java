@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package elcorona;
+package com.mycompany.el.corona;
 
 /**
  *
@@ -11,9 +11,7 @@ package elcorona;
  */
 public class Test {
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) {
         
         Household h = new Household();
@@ -21,7 +19,9 @@ public class Test {
         ActivityLog loga = new ActivityLog();
         h.generate(5);
         logh.logHouseHold(h.showAll());
-        loga.activityLog(h.getHouse());
+        for(int i=0;i<7;i++){
+            loga.activityLog(h.getHouse());
+        }
         
         //System.out.println(h.showAll());
         //h.showId(4);
