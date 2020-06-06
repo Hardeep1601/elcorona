@@ -76,7 +76,7 @@ public class PlaceLog {
     
     public void activatePlaceLog(){
         try{
-            fh = new FileHandler("C:\\Users\\pavin\\OneDrive\\Desktop\\DS\\Place.log");
+            fh = new FileHandler("Place.log");
             log.addHandler(fh);
             SimpleFormatter format = new SimpleFormatter();
             fh.setFormatter(format);

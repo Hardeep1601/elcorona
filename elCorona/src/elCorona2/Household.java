@@ -51,15 +51,15 @@ public class Household {
     }
     
     public String showAll(){
-        int count = 1;
+        int count = 0;
         String s="";
+        s+= "\n";
         for(int i=0;i<house.size();i++){
-            s+= "\n";
             //System.out.println("");
-            s+="HOUSE "+count+"\n";
             //System.out.println("HOUSE "+count);
             count++;
             for(int j=0;j<house.get(i).size();j++){
+                s+="HOUSE "+count+"\n";
                 Person temp = (Person)house.get(i).get(j);
                 //System.out.println("----------------------------------------");
                 //System.out.println(temp.toString());

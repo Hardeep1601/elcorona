@@ -30,7 +30,7 @@ public class ActivityLog {
         FileHandler fh;
         
         try{
-                fh = new FileHandler("C:\\Users\\pavin\\OneDrive\\Desktop\\DS\\Activity.log");
+                fh = new FileHandler("Activity.log");
                 log.addHandler(fh);
                 SimpleFormatter format = new SimpleFormatter();
                 fh.setFormatter(format);

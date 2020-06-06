@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class graphMain {
+    static Graph<String, Integer> graph = new Graph<>();
 
     public static void main(String[] args) {
         // Example 1
         graphMain m=new graphMain();
-        Graph<String, Integer> graph = new Graph<>();
         Graph<String, String> location = new Graph<>();
         
         Random rand=new Random();
@@ -47,14 +47,10 @@ public class graphMain {
         
         for (int i = 0; i < verticeNum; i++) {
             arr[i]=Integer.toString(i);
-            graph.addVertice(arr[i] + "");
+//            graph.addVertice(arr[i] + "");
 //            location.addVertice(arr[i] + "");
         }
 //        location.showGraph();
-
-
-
-
 
 
 
@@ -86,8 +82,10 @@ public class graphMain {
                 
               }
         }
-        System.out.println("Creating a graph with "+verticeNum+" vertices");
-        graph.showGraph();
+        
+        // To print out the graph of Human ID formed
+//        System.out.println("Creating a graph with "+verticeNum+" vertices");
+//        graph.showGraph();
 
         
         
@@ -107,15 +105,223 @@ public class graphMain {
             
 
 
-        // Calling log file 
+        // Reading log file based on human ID
+            readLogOut();
             readLog();
-            findLog(15);
+            readActivityLog(2);
+            findLog(1);
+            sameHouse();
     }
     
+    static ArrayList<String> houseNum=new ArrayList<>();
+    static ArrayList<String> ID=new ArrayList<>();
+    static ArrayList<String> age=new ArrayList<>();
+    static ArrayList<String> role=new ArrayList<>();
+    static ArrayList<String> occ=new ArrayList<>();
+    static ArrayList<String> gender=new ArrayList<>();
+    static ArrayList<String> slot1=new ArrayList<>();
+    static ArrayList<String> slot2=new ArrayList<>();
+    static ArrayList<String> slot3=new ArrayList<>();
+    static ArrayList<String> slot4=new ArrayList<>();
+    static ArrayList<String> slot5=new ArrayList<>();
+    static ArrayList<String> slot6=new ArrayList<>();
+    static ArrayList<String> slot7=new ArrayList<>();
+    static ArrayList<String> slot8=new ArrayList<>();
+    static ArrayList<String> slot9=new ArrayList<>();
+    static ArrayList<String> slot10=new ArrayList<>();
+    public static int humanCount=0;
+
     
-    //Contact Tracing Method
+
+    
+    public static void readLog(){
+        try{
+           FileInputStream fstream = new FileInputStream("Household.log");
+           BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+           
+           //Initialise arrays to temporary hold the values
+           String strLine;
+           String house[];
+           String id[];
+           String Age[];
+           String Role[];
+           String Occ[];
+           String Gender[];
+           String temp[];
+           /* read log line by line */
+           
+           // Reads the first 2 line
+           strLine = br.readLine();         // Reads the info of the log, datem timem etc
+           strLine = br.readLine();         // Reads the "INFO:" line
+           
+           while ((strLine = br.readLine()) != null)   {        //reads the first line
+             /* Read house number, ID, age, role, occupation, gender */
+//                temp=strLine.split(" ");
+//                if(!temp[0].equals("HOUSE")){
+//                    strLine = br.readLine();
+//                }
+                house=strLine.split(" ");
+                houseNum.add(house[1]);
+//                if(house)
+                humanCount++;
+                strLine = br.readLine();
+                id=strLine.split(" ");
+                ID.add(id[1]);
+                graph.addVertice(id[1]);
+                
+                strLine = br.readLine();
+                Age=strLine.split(" ");
+                age.add(Age[1]);
+                
+                strLine = br.readLine();
+                Role=strLine.split(" ");
+                role.add(Role[1]);
+                
+                strLine = br.readLine();
+                Occ=strLine.split(": ");
+                occ.add(Occ[1]);
+                
+                strLine = br.readLine();
+                Gender=strLine.split(" ");
+                gender.add(Gender[1]);
+                
+                //reads the line -----------
+                strLine = br.readLine();        
+                
+           }
+           fstream.close();
+        } catch (Exception e) {
+             System.err.println("Error: " + e.getMessage());
+        }
+    }
+    
+    public static void findLog(int id){
+        System.out.println("-------Information from the log file-------\n");
+        System.out.println("Human ID : "+ID.get(id-1));
+        System.out.println("House : "+houseNum.get(id-1));
+        System.out.println("Age: "+age.get(id-1));
+        System.out.println("Role: "+role.get(id-1));
+        System.out.println("Occupation: "+occ.get(id-1));
+        System.out.println("Gender: "+gender.get(id-1));
+        System.out.println("\n-------The activities done along the day-------");
+        System.out.println("Slot 1 = "+slot1.get(id-1));
+        System.out.println("Slot 2 = "+slot2.get(id-1));
+        System.out.println("Slot 3 = "+slot3.get(id-1));
+        System.out.println("Slot 4 = "+slot4.get(id-1));
+        System.out.println("Slot 5 = "+slot5.get(id-1));
+        System.out.println("Slot 6 = "+slot6.get(id-1));
+        System.out.println("Slot 7 = "+slot7.get(id-1));
+        System.out.println("Slot 8 = "+slot8.get(id-1));
+        System.out.println("Slot 9 = "+slot9.get(id-1));
+        System.out.println("Slot 10 = "+slot10.get(id-1));
+    }
+    
+    public static void readActivityLog(int dayCount){
+        try{
+            System.out.println("-------Reading the activity Log File-------");
+           FileInputStream fstream = new FileInputStream("Activity.log");
+           BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+           String strLine;
+           String id[];
+           String slot[];
+           int lineCount=0;
+           /* read log line by line */
+           
+            for (int i = 0; i < dayCount; i++) {
+                
+               while ((strLine = br.readLine()) != null)   {        //reads the first line
+
+                   // Reads the first 2 line
+    //               strLine = br.readLine();         // Reads the info of the log, datem timem etc
+                   strLine = br.readLine();         // Reads the "INFO:" line
+                   strLine = br.readLine();         // Reads the Human ID
+
+
+                   // Adds each of the slot and put it into its respective arrayList
+
+                   slot1.add(br.readLine().split("=")[1]);
+                   slot2.add(br.readLine().split("=")[1]);
+                   slot3.add(br.readLine().split("=")[1]);
+                   slot4.add(br.readLine().split("=")[1]);
+                   slot5.add(br.readLine().split("=")[1]);
+                   slot6.add(br.readLine().split("=")[1]);
+                   slot7.add(br.readLine().split("=")[1]);
+                   slot8.add(br.readLine().split("=")[1]);
+                   slot9.add(br.readLine().split("=")[1]);
+                   slot10.add(br.readLine().split("=")[1]);
+
+
+                    //reads the empty line 
+                    strLine = br.readLine();        
+                    lineCount++;
+               }
+                
+            }
+            System.out.println("Total human count: "+humanCount);
+            System.out.println("Line Count: "+lineCount);
+            System.out.println("Day Count: "+(lineCount/humanCount)+"\n");
+           fstream.close();
+        } catch (Exception e) {
+             System.err.println("Error: " + e.getMessage());
+        }
+    }
+    
+    public static void readLogOut(){
+        try{
+           FileInputStream fstream = new FileInputStream("Household.log");
+           BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+           String strLine;
+           /* read log line by line */
+           while ((strLine = br.readLine()) != null)   {
+             /* parse strLine to obtain what you want */
+             System.out.println (strLine);
+           }
+           fstream.close();
+        } catch (Exception e) {
+             System.err.println("Error: " + e.getMessage());
+        }
+    }
+     //Contact Tracing Method
     
     //NEED TO INSERT TIME FACTOR 
+    
+    
+    public static void sameHouse(){
+        System.out.println("\n-------People of the same family-------");
+        for (int i = 0; i < humanCount; i++) {
+            for (int j = 0; j !=i; j++) {
+                if(houseNum.get(i).equals(houseNum.get(j))){
+                    
+                // ADD TO THE OTHER EDGE ALSO 
+                    graph.addEge( Integer.toString( i+1 ), Integer.toString( j+1 ));
+                // GENERATE NUMBER, STORE IT IN A ARRAY AND CHECK FOR REPEATING NUMBER
+                    graph.addEge( Integer.toString( j+1 ), Integer.toString( i+1 ));
+                    
+                }
+                
+            }
+            
+        }
+        graph.showGraph();
+    }
+    
+    public static void samePlace(){
+        
+    }
+        
+    public static boolean startLocation(int slot, int day){
+        //base case of the recursive method
+        if(day==4){
+            System.out.println("End of tracking");  
+            return false;
+        }
+        int setSlot;
+        switch(slot){
+            case 1:
+                
+        }
+        return true;
+    }
 
     public boolean contactTracer2(Graph graph,Integer humanID,Integer depth,Integer count, ArrayList prev){
             if(count>depth){
@@ -153,83 +359,6 @@ public class graphMain {
    
             return true;
         
-    }
-    
-
-    static ArrayList<String> houseNum=new ArrayList<>();
-    static ArrayList<String> ID=new ArrayList<>();
-    static ArrayList<String> age=new ArrayList<>();
-    static ArrayList<String> role=new ArrayList<>();
-    static ArrayList<String> occ=new ArrayList<>();
-    static ArrayList<String> gender=new ArrayList<>();
-
-    
-    public static void findLog(int id){
-        System.out.println("Human ID : "+ID.get(id-1));
-        System.out.println("House : "+houseNum.get(id-1));
-        System.out.println("Age: "+age.get(id-1));
-        System.out.println("Role: "+role.get(id-1));
-        System.out.println("Occupation: "+occ.get(id-1));
-        System.out.println("Gender: "+gender.get(id-1));
-        
-    }
-
-    
-    public static void readLog(){
-        try{
-           FileInputStream fstream = new FileInputStream("Household.log");
-           BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
-           String strLine;
-           String house[];
-           String id[];
-           String Age[];
-           String Role[];
-           String Occ[];
-           String Gender[];
-           String temp[];
-           /* read log line by line */
-           
-           // Reads the first 2 line
-           strLine = br.readLine();         // Reads the info of the log, datem timem etc
-           strLine = br.readLine();         // Reads the "INFO:" line
-           
-           while ((strLine = br.readLine()) != null)   {        //reads the first line
-             /* Read house number, ID, age, role, occupation, gender */
-//                temp=strLine.split(" ");
-//                if(!temp[0].equals("HOUSE")){
-//                    strLine = br.readLine();
-//                }
-                house=strLine.split(" ");
-                houseNum.add(house[1]);
-                
-                strLine = br.readLine();
-                id=strLine.split(" ");
-                ID.add(id[1]);
-                
-                strLine = br.readLine();
-                Age=strLine.split(" ");
-                age.add(Age[1]);
-                
-                strLine = br.readLine();
-                Role=strLine.split(" ");
-                role.add(Role[1]);
-                
-                strLine = br.readLine();
-                Occ=strLine.split(" ");
-                occ.add(Occ[1]);
-                
-                strLine = br.readLine();
-                Gender=strLine.split(" ");
-                gender.add(Gender[1]);
-                
-                //reads the line -----------
-                strLine = br.readLine();        
-                
-           }
-           fstream.close();
-        } catch (Exception e) {
-             System.err.println("Error: " + e.getMessage());
-        }
     }
     
 }

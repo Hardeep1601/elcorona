@@ -797,7 +797,7 @@ public class Log {
             
 
             // This block configure the logger with handler and formatter  
-            fh = new FileHandler("C:\\Users\\pavin\\OneDrive\\Desktop\\DS\\HumanActivity.log");
+            fh = new FileHandler("HumanActivity.log");
             logger.addHandler(fh);
             SimpleFormatter formatter = new SimpleFormatter();
             fh.setFormatter(formatter);
