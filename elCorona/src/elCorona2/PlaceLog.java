@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package elcorona;
+package elCorona2;
 
 import java.io.IOException;
 import java.util.logging.FileHandler;
@@ -18,7 +18,7 @@ public class PlaceLog {
     
     private String [] slot = new String[10];
     
-    Logger log = Logger.getLogger("MyLog");
+    Logger log = Logger.getLogger("PLog");
     FileHandler fh;
     
     public void initialise(){

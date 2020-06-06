@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package elcorona;
+package elCorona2;
 
 import java.io.IOException;
 import java.util.logging.FileHandler;
@@ -22,7 +22,7 @@ public class LogHousehold {
         FileHandler fh;
         
         try{
-            fh = new FileHandler("C:\\Users\\pavin\\OneDrive\\Desktop\\DS\\Household.log");
+            fh = new FileHandler("Household.log");
             log.addHandler(fh);
             SimpleFormatter format = new SimpleFormatter();
             fh.setFormatter(format);
