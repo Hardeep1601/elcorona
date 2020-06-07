@@ -17,7 +17,7 @@ public class graphMain {
         
         Random rand=new Random();
 //        int verticeNum=rand.nextInt(7);
-        int verticeNum=100;
+        int verticeNum=500;
         
         
 //        ArrayList<Integer> age=new ArrayList<>();
@@ -47,7 +47,7 @@ public class graphMain {
         
         for (int i = 0; i < verticeNum; i++) {
             arr[i]=Integer.toString(i);
-//            graph.addVertice(arr[i] + "");
+            graph.addVertice((Integer.parseInt(arr[i])+1) + "");
 //            location.addVertice(arr[i] + "");
         }
 //        location.showGraph();
@@ -56,61 +56,69 @@ public class graphMain {
 
         //GENERATE AND ADD THE RANDOM EDGES/HUMAN CONTACT 
         
-        int IDrange=0;          // TO GENERATE BETWEEN A SPECIFIC RANGE OF HUMAN ID'S
-        int maxFriend=10;       // The max number of friends a person can have // The max number of friends a person can have
-        for (int i = 0; i < verticeNum; i++) {
-            int maxFamily=rand.nextInt(12);
-            int randNum=rand.nextInt(maxFriend);        //num of friends
-            int []num=new int[randNum];
-            int check[]=new int[randNum];
-            //GENERATE RANDOM NUMBER AND ADD THEM TO EDGE
-            
-            for (int j = 0; j < randNum; j++) {
-                int randEdg=rand.nextInt(verticeNum)+IDrange;
-                for (int k = 0; k < j; k++) {
-                    int l = check[k];
-                    
-                }
-                while(randEdg==i){  //prevent adding the same number again
-                    randEdg=rand.nextInt(verticeNum)+IDrange;
-                }
-                
-                // ADD TO THE OTHER EDGE ALSO 
-                    graph.addEge( Integer.toString( i ), Integer.toString( randEdg ));
-                // GENERATE NUMBER, STORE IT IN A ARRAY AND CHECK FOR REPEATING NUMBER
-                    graph.addEge( Integer.toString( randEdg ), Integer.toString( i ));
-                
-              }
-        }
+//        int IDrange=0;          // TO GENERATE BETWEEN A SPECIFIC RANGE OF HUMAN ID'S
+//        int maxFriend=10;       // The max number of friends a person can have // The max number of friends a person can have
+//        for (int i = 0; i < verticeNum; i++) {
+//            int maxFamily=rand.nextInt(12);
+//            int randNum=rand.nextInt(maxFriend);        //num of friends
+//            int []num=new int[randNum];
+//            int check[]=new int[randNum];
+//            //GENERATE RANDOM NUMBER AND ADD THEM TO EDGE
+//            
+//            for (int j = 0; j < randNum; j++) {
+//                int randEdg=rand.nextInt(verticeNum)+IDrange;
+//                for (int k = 0; k < j; k++) {
+//                    int l = check[k];
+//                    
+//                }
+//                while(randEdg==i){  //prevent adding the same number again
+//                    randEdg=rand.nextInt(verticeNum)+IDrange;
+//                }
+//                
+//                // ADD TO THE OTHER EDGE ALSO 
+//                    graph.addEge( Integer.toString( i ), Integer.toString( randEdg ));
+//                // GENERATE NUMBER, STORE IT IN A ARRAY AND CHECK FOR REPEATING NUMBER
+//                    graph.addEge( Integer.toString( randEdg ), Integer.toString( i ));
+//                
+//              }
+//        }
         
         // To print out the graph of Human ID formed
-//        System.out.println("Creating a graph with "+verticeNum+" vertices");
 //        graph.showGraph();
 
         
         
         
-        // COntact Tracing 
-        // Define the depth and human ID to be searched
-        
-        int find=99;
-        int depth=3;
-        
-        // Contact tracer is called
-//        System.out.println("\nContact tracer");
-//        System.out.println("Trace the contact for HumanID "+find+" with depth of "+depth+": ");
-//        System.out.println(find + "  "+Math.pow(0.9, 0));  
-//        ArrayList<String> prev=new ArrayList<>();
-//        m.contactTracer2(graph,find,depth-1,1,prev);
             
 
 
         // Reading log file based on human ID
-            readLogOut();
+//            readLogOut();
             readLog();
             readActivityLog(2);
             findLog(1);
-            sameHouse();
+            
+            // Starts reading from slot 2 of day 1 for human id 1
+            startLocation(1,2,1);
+//            graph.showGraph();
+//            sameHouse();
+
+
+            // COntact Tracing 
+            // Define the depth and human ID to be searched
+
+            int find=1;
+            int depth=2;
+
+            // Contact tracer is called
+            System.out.println("Creating a graph with "+verticeNum+" vertices");
+            System.out.println("\nContact tracer");
+            System.out.println("Trace the contact for HumanID "+find+" with depth of "+depth+": ");
+            System.out.println(find + "  "+Math.pow(0.9, 0));  
+            ArrayList<String> prev=new ArrayList<>();
+            m.contactTracer2(graph,find,depth-1,1,prev);
+    
+    
     }
     
     static ArrayList<String> houseNum=new ArrayList<>();
@@ -268,7 +276,7 @@ public class graphMain {
     
     public static void readLogOut(){
         try{
-           FileInputStream fstream = new FileInputStream("Household.log");
+           FileInputStream fstream = new FileInputStream("Place.log");
            BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
            String strLine;
            /* read log line by line */
@@ -305,21 +313,98 @@ public class graphMain {
         graph.showGraph();
     }
     
-    public static void samePlace(){
-        
+    public static void readPlace(String search,int slot){
+        try{
+           FileInputStream fstream = new FileInputStream("Place.log");
+           BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+           String strLine;
+           /* read log line by line */
+           String temp[];
+           strLine = br.readLine();
+           strLine = br.readLine();
+           while ((strLine = br.readLine()) != null)   {
+             if(strLine.equals(search)){
+                 for (int i = 0; i < 10; i++) {
+                     strLine = br.readLine();
+                     temp=br.readLine().split("\\|");
+                     
+                     if(i+1>=slot){
+                         for (int j = 0; j < temp.length; j++) {
+                             for (int k = 0; k !=j ; k++) {
+                                 graph.addEge(temp[j], temp[k]);
+                                 graph.addEge(temp[k], temp[j]);
+                                 
+                             }
+                             
+                         }
+                     }
+                 }
+             }
+//             System.out.println (strLine);
+           }
+           fstream.close();
+        } catch (Exception e) {
+             System.err.println("Error: " + e.getMessage());
+        }
     }
         
-    public static boolean startLocation(int slot, int day){
+    
+  //insert the person according to the slot, ex 10 and day, ex day 2  
+    public static boolean startLocation(int id, int slot, int day){
+        //add from the day the person is infected to the last day of simulation
+        
         //base case of the recursive method
-        if(day==4){
+        String temp;
+        int setSlot=(day-1)*10+slot;        //ex, day 2 slot 3 is 13%10=slot 3
+        //run the reading at the max of 4 days
+        if(setSlot>10){
             System.out.println("End of tracking");  
             return false;
         }
-        int setSlot;
-        switch(slot){
+        switch(setSlot){
             case 1:
-                
+                temp=slot1.get(id-1);
+                readPlace(temp,1);
+                break;
+            case 2:
+                temp=slot2.get(id-1);
+                readPlace(temp,2);
+                break;
+            case 3:
+                temp=slot3.get(id-1);
+                readPlace(temp,3);
+                break;
+            case 4:
+                temp=slot4.get(id-1);
+                readPlace(temp,4);
+                break;
+            case 5:
+                temp=slot5.get(id-1);
+                readPlace(temp,5);
+                break;
+            case 6:
+                temp=slot6.get(id-1);
+                readPlace(temp,6);
+                break;
+            case 7:
+                temp=slot7.get(id-1);
+                readPlace(temp,7);
+                break;
+            case 8:
+                temp=slot8.get(id-1);
+                readPlace(temp,8);
+                break;
+            case 9:
+                temp=slot9.get(id-1);
+                readPlace(temp,9);
+                break;
+            case 0:
+                temp=slot10.get(id-1);
+                readPlace(temp,10);
+                break;
         }
+        System.out.println("Slot : "+slot+",day : "+day);
+        startLocation(id,slot+1,day);
         return true;
     }
 
@@ -328,6 +413,7 @@ public class graphMain {
                 return false;
             } 
             prev.add(Integer.toString(humanID));
+            //Gets all the edges of the graph and display them in the contact tracer
             ArrayList<String> a=graph.getAdjacent(Integer.toString(humanID));
             a.remove(humanID);
             

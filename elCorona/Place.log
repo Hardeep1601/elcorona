@@ -1,1001 +1,423 @@
-Jun 06, 2020 4:59:14 PM elCorona2.PlaceLog activatePlaceLog
-INFO: -------------------
-Slot 1: 
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Slot 2: 
-Food Court
-Food Court
-Home
-Home
-Shop Lot
-Shop Lot
-Shop Lot
-Food Court
-Shop Lot
-Shop Lot
-Home
-Shop Lot
-Shop Lot
-Slot 3: 
-School
-Retired
-Kindergarten
-School
-Bus Stop
-Kindergarten
-Police Station
-Retired
-Kindergarten
-Bank
-Bus Stop
-Mosque
-School
-Slot 4: 
-School
-Retired
-Kindergarten
-School
-Bus Stop
-Kindergarten
-Police Station
-Retired
-Kindergarten
-Bank
-Bus Stop
-Mosque
-School
-Slot 5: 
-Mall
-Mall
-Shop Lot
-Mall
-Mall
-Food Court
-Mall
-Shop Lot
-Home
-Home
-Mall
-Food Court
-Mall
-Slot 6: 
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Slot 7: 
-Playground
-Petrol Station
-Petrol Station
-Mall
-Playground
-Petrol Station
-Home
-Home
-Petrol Station
-Home
-Petrol Station
-Playground
-Home
-Slot 8: 
-Playground
-Home
-Home
-Mall
-Playground
-Home
-Home
-Home
-Home
-Home
-Home
-Playground
-Train
-Slot 9: 
-Shop Lot
-Food Court
-Food Court
-Food Court
-Home
-Shop Lot
-Home
-Shop Lot
-Shop Lot
-Shop Lot
-Home
-Home
-Shop Lot
-Slot 10: 
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
+Jun 06, 2020 10:51:07 PM com.mycompany.el.corona.PlaceLog activatePlaceLog
+INFO: 
+Flat
+Slot 1:
+1|2|3|3|4|5|6|7|8|9|10|11|
+Slot 2:
+42|63|65|66|91|107|108|117|119|134|135|140|141|143|144|145|156|158|167|168|169|175|176|177|183|213|215|217|228|233|242|263|277|296|301|302|303|304|306|307|319|343|344|346|350|354|
+Slot 3:
+224|
+Slot 4:
 
-Jun 06, 2020 4:59:14 PM elCorona2.PlaceLog activatePlaceLog
-INFO: -------------------
-Slot 1: 
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Slot 2: 
-Shop Lot
-Food Court
-Food Court
-Shop Lot
-Shop Lot
-Shop Lot
-Food Court
-Shop Lot
-Food Court
-Home
-Shop Lot
-Shop Lot
-Shop Lot
-Slot 3: 
-School
-Retired
-Kindergarten
-School
-Bus Stop
-Kindergarten
-Police Station
-Retired
-Kindergarten
-Bank
-Bus Stop
-Mosque
-School
-Slot 4: 
-School
-Retired
-Kindergarten
-School
-Bus Stop
-Kindergarten
-Police Station
-Retired
-Kindergarten
-Bank
-Bus Stop
-Mosque
-School
-Slot 5: 
-Shop Lot
-Food Court
-Shop Lot
-Shop Lot
-Shop Lot
-Home
-Home
-Home
-Home
-Mall
-Food Court
-Shop Lot
-Home
-Slot 6: 
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Slot 7: 
-Home
-Mall
-Home
-Mall
-Home
-Playground
-Playground
-Home
-Home
-Home
-Mall
-Playground
-Mall
-Slot 8: 
-Train
-Mall
-Train
-Mall
-Train
-Playground
-Playground
-Home
-Home
-Home
-Mall
-Playground
-Mall
-Slot 9: 
-Shop Lot
-Shop Lot
-Home
-Food Court
-Food Court
-Shop Lot
-Shop Lot
-Food Court
-Shop Lot
-Food Court
-Shop Lot
-Shop Lot
-Shop Lot
-Slot 10: 
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
+Slot 5:
+42|43|86|106|118|120|133|140|144|145|147|156|158|167|168|175|196|212|214|215|217|218|229|230|231|232|259|264|267|268|275|295|307|308|318|347|351|352|
+Slot 6:
+63|135|147|168|179|194|209|215|230|267|269|297|302|347|
+Slot 7:
+43|58|64|66|67|68|69|70|108|132|142|144|145|156|158|166|170|175|183|184|191|192|195|209|210|211|218|219|240|241|259|262|267|268|269|275|278|296|300|306|308|320|345|351|352|368|
+Slot 8:
+43|63|64|69|70|105|106|117|118|132|139|143|156|158|169|175|180|183|184|185|188|192|195|208|212|214|216|218|219|229|230|240|241|259|260|269|278|295|296|308|319|320|352|
+Slot 9:
+67|68|119|121|132|133|134|141|142|143|158|167|168|169|193|194|195|212|213|216|228|231|232|233|242|266|267|268|274|277|278|296|300|306|307|308|320|344|346|350|351|368|371|
+Slot 10:
+41|42|43|63|64|65|66|67|68|69|70|91|105|106|107|108|117|118|119|120|121|122|132|133|134|135|139|140|141|142|143|144|145|146|147|156|157|158|166|167|168|169|170|175|176|177|178|179|180|183|184|185|188|189|190|191|192|193|194|195|196|208|209|210|211|212|213|214|215|216|217|218|219|228|229|230|231|232|233|240|241|242|259|260|261|262|263|264|266|267|268|269|270|274|275|277|278|295|296|297|298|299|300|301|302|304|306|307|308|318|319|320|343|344|345|346|347|350|351|352|353|354|355|368|369|370|371|
+House A
+Slot 1:
+6|7|8|9|10|11|12|14|15|16|17|22|23|24|25|26|27|55|56|57|71|72|73|74|75|81|82|88|89|90|94|95|96|97|98|111|112|113|114|115|116|123|124|125|126|127|128|129|130|131|181|182|220|221|222|223|238|239|243|244|245|246|265|271|272|273|279|280|281|282|289|290|291|292|293|294|305|321|322|323|324|333|334|335|336|337|338|356|357|358|359|360|361|372|373|374|375|376|377|378|379|380|
+Slot 2:
+8|10|11|12|16|24|26|55|56|71|73|74|75|94|97|98|128|129|130|223|238|243|244|245|246|273|290|291|305|323|335|356|358|359|380|
+Slot 3:
 
-Jun 06, 2020 4:59:14 PM elCorona2.PlaceLog activatePlaceLog
-INFO: -------------------
-Slot 1: 
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Slot 2: 
-Home
-Food Court
-Home
-Home
-Shop Lot
-Shop Lot
-Food Court
-Food Court
-Food Court
-Food Court
-Home
-Food Court
-Home
-Slot 3: 
-School
-Retired
-Kindergarten
-School
-Bus Stop
-Kindergarten
-Police Station
-Retired
-Kindergarten
-Bank
-Bus Stop
-Mosque
-School
-Slot 4: 
-School
-Retired
-Kindergarten
-School
-Bus Stop
-Kindergarten
-Police Station
-Retired
-Kindergarten
-Bank
-Bus Stop
-Mosque
-School
-Slot 5: 
-Home
-Mall
-Shop Lot
-Home
-Mall
-Home
-Mall
-Mall
-Mall
-Mall
-Shop Lot
-Mall
-Home
-Slot 6: 
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Slot 7: 
-Petrol Station
-Petrol Station
-Petrol Station
-Playground
-Mall
-Mall
-Mall
-Home
-Home
-Home
-Home
-Mall
-Petrol Station
-Slot 8: 
-Home
-Home
-Home
-Playground
-Mall
-Mall
-Mall
-Home
-Home
-Train
-Train
-Mall
-Home
-Slot 9: 
-Home
-Food Court
-Food Court
-Shop Lot
-Shop Lot
-Food Court
-Food Court
-Food Court
-Shop Lot
-Home
-Shop Lot
-Shop Lot
-Food Court
-Slot 10: 
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
+Slot 4:
+258|
+Slot 5:
+11|12|22|56|81|90|115|116|238|245|246|281|282|292|357|358|360|361|379|
+Slot 6:
+6|15|125|182|290|294|
+Slot 7:
+6|8|10|12|24|25|26|27|55|81|82|90|96|111|112|123|128|220|221|223|244|279|289|291|321|323|333|338|357|358|361|372|373|374|380|
+Slot 8:
+11|12|17|24|26|55|57|73|81|94|96|112|127|128|181|221|223|238|265|279|321|322|335|338|357|358|361|375|376|
+Slot 9:
+10|12|22|23|71|90|113|114|127|128|129|239|243|245|246|279|280|281|282|289|290|321|323|324|333|336|337|357|361|372|373|374|377|378|
+Slot 10:
+6|7|8|9|10|11|12|14|15|16|17|22|23|24|25|26|27|55|56|57|71|72|73|74|75|81|82|88|89|90|94|95|96|97|98|111|112|113|114|115|116|123|124|125|126|127|128|129|130|131|181|182|220|221|222|223|238|239|243|244|245|246|265|271|272|273|279|280|281|282|289|290|291|292|293|294|305|321|322|323|324|333|334|335|336|337|338|356|357|358|359|360|361|372|373|374|375|376|377|378|379|380|
+House B
+Slot 1:
+1|2|3|4|5|13|18|19|20|21|28|29|30|31|32|33|34|35|36|37|50|51|52|53|83|84|85|86|87|102|103|104|136|137|138|159|186|187|197|198|199|200|201|202|203|204|205|206|207|234|235|236|237|247|248|249|250|251|252|309|310|311|312|313|314|315|316|317|325|326|327|328|329|339|340|341|342|348|349|362|363|364|365|366|367|
+Slot 2:
+1|13|21|30|33|34|53|84|86|87|102|136|197|202|203|204|206|207|249|310|312|314|316|326|327|328|339|342|349|365|366|367|
+Slot 3:
 
-Jun 06, 2020 4:59:14 PM elCorona2.PlaceLog activatePlaceLog
-INFO: -------------------
-Slot 1: 
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Slot 2: 
-Shop Lot
-Home
-Home
-Food Court
-Shop Lot
-Food Court
-Shop Lot
-Home
-Food Court
-Shop Lot
-Home
-Food Court
-Shop Lot
-Slot 3: 
-School
-Retired
-Kindergarten
-School
-Bus Stop
-Kindergarten
-Police Station
-Retired
-Kindergarten
-Bank
-Bus Stop
-Mosque
-School
-Slot 4: 
-School
-Retired
-Kindergarten
-School
-Bus Stop
-Kindergarten
-Police Station
-Retired
-Kindergarten
-Bank
-Bus Stop
-Mosque
-School
-Slot 5: 
-Home
-Food Court
-Shop Lot
-Home
-Food Court
-Food Court
-Home
-Shop Lot
-Shop Lot
-Shop Lot
-Mall
-Home
-Food Court
-Slot 6: 
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Slot 7: 
-Mall
-Playground
-Petrol Station
-Home
-Home
-Petrol Station
-Home
-Home
-Home
-Playground
-Petrol Station
-Home
-Mall
-Slot 8: 
-Mall
-Playground
-Home
-Home
-Train
-Home
-Home
-Train
-Train
-Playground
-Home
-Home
-Mall
-Slot 9: 
-Shop Lot
-Shop Lot
-Food Court
-Shop Lot
-Home
-Shop Lot
-Food Court
-Home
-Home
-Shop Lot
-Food Court
-Food Court
-Shop Lot
-Slot 10: 
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
+Slot 4:
 
-Jun 06, 2020 4:59:14 PM elCorona2.PlaceLog activatePlaceLog
-INFO: -------------------
-Slot 1: 
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Slot 2: 
-Food Court
-Food Court
-Food Court
-Food Court
-Food Court
-Shop Lot
-Food Court
-Shop Lot
-Home
-Food Court
-Home
-Home
-Shop Lot
-Slot 3: 
-School
-Retired
-Kindergarten
-School
-Bus Stop
-Kindergarten
-Police Station
-Retired
-Kindergarten
-Bank
-Bus Stop
-Mosque
-School
-Slot 4: 
-School
-Retired
-Kindergarten
-School
-Bus Stop
-Kindergarten
-Police Station
-Retired
-Kindergarten
-Bank
-Bus Stop
-Mosque
-School
-Slot 5: 
-Food Court
-Mall
-Home
-Food Court
-Food Court
-Food Court
-Food Court
-Shop Lot
-Shop Lot
-Shop Lot
-Home
-Food Court
-Shop Lot
-Slot 6: 
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Slot 7: 
-Petrol Station
-Mall
-Mall
-Mall
-Home
-Mall
-Home
-Mall
-Playground
-Playground
-Home
-Petrol Station
-Playground
-Slot 8: 
-Home
-Mall
-Mall
-Mall
-Home
-Mall
-Train
-Mall
-Playground
-Playground
-Train
-Home
-Playground
-Slot 9: 
-Food Court
-Home
-Home
-Shop Lot
-Shop Lot
-Food Court
-Home
-Food Court
-Shop Lot
-Food Court
-Food Court
-Food Court
-Shop Lot
-Slot 10: 
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
+Slot 5:
+1|20|32|34|35|36|37|50|51|52|53|102|159|187|199|200|205|206|244|309|311|317|339|340|341|
+Slot 6:
+136|138|187|188|314|317|349|362|
+Slot 7:
+20|31|34|35|52|137|197|199|200|201|207|239|250|309|316|340|342|362|365|366|
+Slot 8:
+1|5|18|20|21|31|33|34|35|52|138|159|186|198|199|200|201|205|206|236|250|311|316|329|339|340|342|362|363|364|365|366|
+Slot 9:
+4|18|19|28|29|30|34|50|83|85|86|204|206|207|310|316|325|340|341|362|363|364|365|366|
+Slot 10:
+1|2|3|4|5|13|18|19|20|21|28|29|30|31|32|33|34|35|36|37|50|51|52|53|83|84|85|86|87|102|104|136|137|138|159|186|187|197|198|199|200|201|202|203|204|205|206|207|234|235|236|237|247|248|249|250|251|252|303|309|310|311|312|313|314|315|316|317|325|326|327|328|329|339|340|341|342|348|349|362|363|364|365|366|367|
+House C
+Slot 1:
+38|39|40|44|45|46|47|48|49|54|58|59|60|61|62|76|77|78|79|80|92|93|99|100|101|109|110|148|149|150|151|152|153|154|155|160|161|162|163|164|165|171|172|173|174|224|225|226|227|253|254|255|256|257|258|276|283|284|285|286|287|288|330|331|332|
+Slot 2:
+38|39|47|48|58|62|76|78|79|80|92|93|99|101|110|148|155|160|162|258|276|331|332|
+Slot 3:
 
-Jun 06, 2020 4:59:14 PM elCorona2.PlaceLog activatePlaceLog
-INFO: -------------------
-Slot 1: 
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Slot 2: 
-Home
-Shop Lot
-Shop Lot
-Food Court
-Home
-Home
-Food Court
-Home
-Home
-Shop Lot
-Food Court
-Food Court
-Shop Lot
-Slot 3: 
-School
-Retired
-Kindergarten
-School
-Bus Stop
-Kindergarten
-Police Station
-Retired
-Kindergarten
-Bank
-Bus Stop
-Mosque
-School
-Slot 4: 
-School
-Retired
-Kindergarten
-School
-Bus Stop
-Kindergarten
-Police Station
-Retired
-Kindergarten
-Bank
-Bus Stop
-Mosque
-School
-Slot 5: 
-Shop Lot
-Food Court
-Shop Lot
-Food Court
-Home
-Mall
-Food Court
-Shop Lot
-Food Court
-Home
-Mall
-Mall
-Mall
-Slot 6: 
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Slot 7: 
+Slot 4:
+92|
+Slot 5:
+38|82|92|101|148|150|151|154|155|160|161|163|256|283|284|285|330|
+Slot 6:
+92|100|101|149|161|285|
+Slot 7:
+38|46|49|60|78|79|80|92|99|100|150|151|153|154|162|164|171|173|174|224|225|226|288|
+Slot 8:
+13|49|54|58|62|93|99|109|150|151|160|161|162|173|174|189|190|224|225|226|284|285|286|287|330|331|332|
+Slot 9:
+39|40|54|154|174|224|254|257|276|284|285|288|330|
+Slot 10:
+38|39|40|44|45|46|47|48|49|54|58|59|60|61|62|76|77|78|79|80|92|93|99|100|101|103|109|110|148|149|150|151|152|153|154|155|160|161|162|163|164|165|171|172|173|174|224|225|226|227|253|254|255|256|257|258|276|283|284|285|286|287|288|330|331|332|
 Playground
-Home
-Playground
-Mall
-Home
-Home
-Home
-Mall
-Petrol Station
-Petrol Station
-Playground
-Home
-Mall
-Slot 8: 
-Playground
-Home
-Playground
-Mall
-Home
-Train
-Train
-Mall
-Home
-Home
-Playground
-Home
-Mall
-Slot 9: 
-Food Court
-Food Court
-Food Court
-Shop Lot
-Food Court
-Home
-Food Court
-Home
-Home
-Shop Lot
-Food Court
-Shop Lot
-Shop Lot
-Slot 10: 
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
+Slot 1:
 
-Jun 06, 2020 4:59:14 PM elCorona2.PlaceLog activatePlaceLog
-INFO: -------------------
-Slot 1: 
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Slot 2: 
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Food Court
-Shop Lot
-Shop Lot
-Shop Lot
-Home
-Slot 3: 
-School
-Retired
-Kindergarten
-School
+Slot 2:
+
+Slot 3:
+
+Slot 4:
+103|104|259|
+Slot 5:
+
+Slot 6:
+8|23|29|41|42|47|62|93|94|124|126|127|129|145|195|201|235|242|260|279|304|327|344|
+Slot 7:
+9|16|22|23|28|30|36|37|40|42|44|47|48|50|56|59|61|71|72|74|75|76|83|84|87|88|101|102|107|110|115|116|119|122|130|134|157|165|172|176|213|227|228|234|237|242|243|247|248|251|253|255|256|257|263|266|270|271|273|274|290|293|294|301|303|304|305|317|324|325|326|327|328|334|336|341|347|348|350|355|356|379|
+Slot 8:
+9|16|22|23|28|30|36|37|40|42|44|47|48|50|56|59|61|71|72|74|75|76|83|84|87|88|101|102|107|110|115|116|119|122|130|134|157|165|172|176|213|227|228|234|237|242|243|247|248|251|253|255|256|257|263|266|270|271|273|274|290|293|294|301|303|304|305|317|324|325|326|327|328|334|336|341|347|348|350|355|356|379|
+Slot 9:
+
+Slot 10:
+
 Bus Stop
-Kindergarten
-Police Station
-Retired
-Kindergarten
-Bank
-Bus Stop
-Mosque
-School
-Slot 4: 
-School
-Retired
-Kindergarten
-School
-Bus Stop
-Kindergarten
-Police Station
-Retired
-Kindergarten
-Bank
-Bus Stop
-Mosque
-School
-Slot 5: 
-Shop Lot
-Home
-Food Court
-Food Court
-Home
-Home
-Shop Lot
-Food Court
-Food Court
-Mall
-Home
-Shop Lot
-Home
-Slot 6: 
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Random Place
-Slot 7: 
-Home
-Home
-Home
-Mall
-Home
-Playground
-Home
+Slot 1:
+
+Slot 2:
+
+Slot 3:
+8|16|27|62|63|64|84|92|101|102|105|139|144|192|219|223|228|240|241|244|284|285|350|361|373|
+Slot 4:
+8|16|27|62|63|64|84|101|102|105|109|139|144|145|205|219|223|228|240|241|284|285|350|361|374|
+Slot 5:
+
+Slot 6:
+9|12|45|76|108|112|114|140|152|170|175|189|221|232|249|282|284|305|315|318|336|342|364|367|
+Slot 7:
+
+Slot 8:
+
+Slot 9:
+
+Slot 10:
+
+Train Station
+Slot 1:
+
+Slot 2:
+
+Slot 3:
+13|17|40|41|44|69|70|82|83|85|109|117|127|145|148|160|180|181|182|188|206|239|251|265|286|287|290|293|294|345|349|362|372|374|
+Slot 4:
+17|40|41|44|69|70|82|83|85|117|127|148|160|180|181|182|192|206|244|251|265|286|287|290|293|294|345|349|362|372|373|
+Slot 5:
+
+Slot 6:
+1|31|70|75|91|106|116|165|178|186|222|227|231|233|239|277|293|333|350|355|361|369|371|373|
+Slot 7:
+
+Slot 8:
+6|8|10|25|27|38|46|60|66|67|68|78|79|80|82|90|92|100|108|111|123|137|142|144|145|153|154|164|166|170|171|191|197|207|209|210|211|220|239|244|262|267|268|275|288|289|291|300|306|309|323|333|345|351|368|372|373|374|380|
+Slot 9:
+
+Slot 10:
+
 Petrol Station
-Home
-Mall
-Home
-Home
-Mall
-Slot 8: 
-Home
-Home
-Home
-Mall
-Home
-Playground
-Home
-Home
-Train
-Mall
-Home
-Home
-Mall
-Slot 9: 
+Slot 1:
+
+Slot 2:
+
+Slot 3:
+9|20|22|38|56|81|93|94|104|113|114|118|128|132|155|156|208|231|232|247|248|267|268|309|330|341|343|356|368|
+Slot 4:
+9|20|22|38|56|81|86|93|94|113|114|118|128|132|155|156|208|231|232|247|248|267|268|309|330|341|343|356|368|
+Slot 5:
+
+Slot 6:
+27|32|59|61|77|141|146|148|151|173|174|200|213|219|223|238|264|274|307|323|325|341|352|357|
+Slot 7:
+1|5|11|13|14|17|18|21|33|54|57|62|63|73|93|94|105|106|109|117|118|127|138|139|143|159|160|161|169|180|181|185|186|188|189|190|198|205|206|208|212|214|216|229|230|236|238|260|265|284|285|286|287|295|311|319|322|329|330|331|332|335|339|363|364|375|376|
+Slot 8:
+
+Slot 9:
+
+Slot 10:
+
+Primary School
+Slot 1:
+380|
+Slot 2:
+380|
+Slot 3:
+367|
+Slot 4:
+367|379|
+Slot 5:
+358|
+Slot 6:
+347|
+Slot 7:
+380|
+Slot 8:
+375|
+Slot 9:
+357|
+Slot 10:
+380|
+Secondary School
+Slot 1:
+379|
+Slot 2:
+366|
+Slot 3:
+371|379|
+Slot 4:
+371|
+Slot 5:
+379|
+Slot 6:
+362|
+Slot 7:
+374|
+Slot 8:
+376|
+Slot 9:
+378|
+Slot 10:
+379|
+Kindergarten
+Slot 1:
+
+Slot 2:
+
+Slot 3:
+2|3|15|25|36|37|42|46|47|48|52|60|66|67|68|78|79|86|87|98|100|106|108|110|112|120|121|137|143|147|149|164|165|167|168|169|170|171|174|190|191|196|198|204|207|209|210|211|213|221|225|226|229|230|235|242|243|245|246|249|260|261|262|264|272|275|278|279|280|297|298|299|300|301|308|311|317|320|321|323|324|325|329|340|346|347|358|359|375|376|380|
+Slot 4:
+2|3|15|25|36|37|42|46|47|48|52|60|66|67|68|78|79|87|98|100|106|108|110|112|120|121|137|143|147|149|164|165|167|168|169|170|171|174|191|196|198|204|207|209|210|211|213|221|225|226|229|230|235|242|243|245|246|249|260|261|262|264|272|275|278|279|280|297|298|299|300|301|308|311|317|320|321|323|324|325|329|340|346|347|358|359|375|376|380|
+Slot 5:
+
+Slot 6:
+4|16|68|78|87|102|105|137|156|158|169|208|210|225|251|278|283|312|330|368|
+Slot 7:
+
+Slot 8:
+
+Slot 9:
+
+Slot 10:
+
 Food Court
+Slot 1:
+
+Slot 2:
+4|5|7|14|15|17|18|19|20|23|25|29|32|43|44|45|51|52|54|57|59|60|61|64|67|68|72|81|82|85|89|90|96|113|114|118|121|122|123|127|131|137|139|142|146|154|161|163|164|165|170|171|172|173|174|182|185|186|187|188|189|190|191|193|194|195|201|205|209|210|211|212|219|224|229|230|237|239|240|241|247|248|253|254|255|256|259|261|262|265|269|270|271|278|279|281|283|284|285|286|287|295|297|298|299|309|311|313|320|321|324|325|330|334|336|337|341|345|351|352|357|360|361|362|368|369|370|371|375|376|377|378|
+Slot 3:
+364|
+Slot 4:
+291|
+Slot 5:
+4|13|14|15|16|23|25|26|27|31|49|58|60|61|62|63|66|69|70|73|74|75|76|83|91|98|103|104|107|108|111|119|121|122|132|136|137|142|152|164|176|180|181|185|186|188|189|190|192|193|194|197|221|224|233|239|242|243|247|248|250|254|255|257|258|260|265|269|286|287|313|320|321|324|325|326|327|332|333|335|336|337|338|344|345|346|349|350|355|356|371|
+Slot 6:
+24|28|40|46|74|81|83|97|103|119|128|154|167|172|218|236|245|255|265|321|324|326|346|374|377|
+Slot 7:
+
+Slot 8:
+
+Slot 9:
+1|2|3|5|6|7|8|9|14|15|16|17|20|21|24|25|27|31|32|33|36|37|43|45|49|51|52|53|56|59|61|64|65|66|69|70|73|77|80|81|82|84|89|92|93|94|96|97|99|100|101|102|103|104|105|107|108|110|112|118|131|135|137|139|147|148|150|151|152|153|155|156|157|159|160|162|164|165|166|172|175|176|177|178|179|180|181|182|184|185|186|187|191|196|201|202|203|208|209|210|211|214|219|225|226|227|234|236|237|240|241|244|249|250|256|258|259|261|265|269|283|286|287|295|301|302|303|304|305|313|314|315|322|326|327|328|329|334|335|339|345|347|348|352|355|358|359|360|369|370|375|376|
+Slot 10:
+
+Mall
+Slot 1:
+
+Slot 2:
+
+Slot 3:
+363|
+Slot 4:
+331|
+Slot 5:
+2|3|6|9|10|17|24|29|39|40|45|54|57|64|67|68|71|72|80|84|85|88|89|93|94|96|105|117|123|127|129|131|134|138|139|143|153|162|165|166|170|171|174|177|178|182|198|204|208|213|216|219|220|222|236|237|240|241|251|252|253|261|262|263|270|271|272|276|277|288|289|291|296|300|303|304|305|306|312|314|328|331|334|343|348|354|359|362|363|364|368|372|373|374|375|376|380|
+Slot 6:
+25|51|53|88|95|99|110|133|139|183|196|198|214|216|234|243|256|263|311|319|337|354|378|
+Slot 7:
+2|3|4|7|15|19|32|41|51|53|65|85|86|89|91|95|97|98|103|104|113|114|120|121|129|133|135|136|140|146|147|148|149|152|155|163|167|168|177|178|182|187|193|194|196|202|203|204|222|231|232|233|235|245|246|249|252|258|261|264|272|276|277|280|281|283|297|298|299|302|307|310|313|314|318|343|346|349|353|359|369|370|371|377|378|
+Slot 8:
+2|3|4|7|15|19|32|41|51|53|65|85|86|89|91|95|97|98|103|104|113|114|120|121|129|133|135|136|140|146|147|148|149|152|155|163|167|168|177|178|182|187|193|194|196|202|203|204|222|231|232|233|235|245|246|249|252|258|261|264|272|276|277|280|281|283|297|298|299|302|307|310|313|314|318|343|346|349|353|359|369|370|371|377|378|
+Slot 9:
+
+Slot 10:
+
 Shop Lot
-Home
-Shop Lot
-Shop Lot
-Shop Lot
-Food Court
-Shop Lot
-Food Court
-Home
-Food Court
-Shop Lot
-Food Court
-Slot 10: 
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
-Home
+Slot 1:
+
+Slot 2:
+2|3|6|9|22|27|28|31|35|36|37|40|41|46|49|50|69|70|77|83|88|95|100|103|104|105|106|109|111|112|115|116|120|124|125|126|132|133|138|147|149|150|151|152|153|157|159|166|178|179|180|181|184|192|196|198|199|200|208|214|216|218|220|221|222|225|226|227|231|232|234|235|236|250|251|252|257|260|264|266|267|268|272|274|275|280|282|288|289|292|293|294|300|308|315|317|318|322|329|333|338|340|347|348|353|355|363|364|372|373|374|379|
+Slot 3:
+339|
+Slot 4:
+364|
+Slot 5:
+5|7|18|19|21|28|30|33|41|44|46|47|48|55|59|65|77|78|79|87|95|97|99|100|109|110|112|113|114|124|125|126|128|130|135|141|146|149|157|169|172|173|179|183|184|191|195|201|202|203|207|209|210|211|223|225|226|227|228|234|235|249|266|273|274|278|279|280|290|293|294|297|298|299|301|302|310|315|316|319|322|323|329|342|353|365|366|367|369|370|377|378|
+Slot 6:
+7|18|26|43|48|50|82|86|98|109|121|150|163|177|181|185|191|202|220|257|258|276|286|287|296|320|351|358|365|370|376|379|
+Slot 7:
+
+Slot 8:
+
+Slot 9:
+11|13|26|35|38|41|42|44|46|47|48|55|57|58|60|62|63|72|74|75|76|78|79|87|88|91|95|98|106|109|111|115|116|117|120|122|123|124|125|126|130|136|138|140|144|145|146|149|161|163|170|171|173|183|188|189|190|192|197|198|199|200|205|215|217|218|220|221|222|223|229|230|235|238|247|248|251|252|253|255|260|262|263|264|270|271|272|273|275|291|292|293|294|297|298|299|309|311|312|317|318|319|331|332|338|342|343|349|353|354|356|367|379|380|
+Slot 10:
+
+Field
+Slot 1:
+
+Slot 2:
+
+Slot 3:
+259|
+Slot 4:
+14|
+Slot 5:
+
+Slot 6:
+19|20|21|57|60|89|96|107|111|113|122|130|155|164|197|199|217|246|268|288|299|301|310|363|366|
+Slot 7:
+29|39|45|77|124|125|126|131|141|179|215|217|254|282|292|312|315|337|344|354|360|367|
+Slot 8:
+29|39|45|77|124|125|126|131|141|179|215|217|254|282|292|312|315|337|344|354|360|367|
+Slot 9:
+
+Slot 10:
+
+Police Station
+Slot 1:
+
+Slot 2:
+
+Slot 3:
+12|50|57|91|123|140|201|256|283|333|334|365|366|
+Slot 4:
+12|50|57|91|123|140|190|201|256|283|305|333|334|365|366|
+Slot 5:
+
+Slot 6:
+5|11|34|39|71|80|123|159|162|211|224|229|240|247|250|254|261|273|281|295|300|322|329|334|338|340|356|359|
+Slot 7:
+
+Slot 8:
+
+Slot 9:
+
+Slot 10:
+
+Mosque
+Slot 1:
+
+Slot 2:
+
+Slot 3:
+1|33|99|103|161|177|237|269|310|319|332|338|377|378|
+Slot 4:
+1|33|99|161|177|237|269|310|319|332|338|377|378|
+Slot 5:
+
+Slot 6:
+2|65|69|142|166|176|193|248|253|259|272|298|380|
+Slot 7:
+
+Slot 8:
+
+Slot 9:
+
+Slot 10:
+
+Healthcare Centre
+Slot 1:
+
+Slot 2:
+
+Slot 3:
+53|74|75|76|88|197|238|252|257|295|296|302|303|351|
+Slot 4:
+53|74|75|76|88|189|197|238|252|257|295|296|302|351|
+Slot 5:
+
+Slot 6:
+14|55|56|67|115|117|118|134|190|206|244|271|292|306|308|339|375|
+Slot 7:
+
+Slot 8:
+
+Slot 9:
+
+Slot 10:
+
+Bank
+Slot 1:
+
+Slot 2:
+
+Slot 3:
+6|14|49|95|133|138|153|158|185|186|199|200|214|227|233|288|289|335|348|353|
+Slot 4:
+6|49|95|138|153|158|185|186|199|200|214|227|233|288|289|304|335|348|353|
+Slot 5:
+
+Slot 6:
+3|13|17|30|33|35|36|37|38|49|54|72|79|85|90|132|144|226|228|266|275|291|313|331|335|372|
+Slot 7:
+
+Slot 8:
+
+Slot 9:
+
+Slot 10:
+
+Market
+Slot 1:
+
+Slot 2:
+
+Slot 3:
+304|305|
+Slot 4:
+
+Slot 5:
+
+Slot 6:
+52|66|160|171|180|203|204|212|237|241|252|262|280|289|332|343|345|360|
+Slot 7:
+
+Slot 8:
+
+Slot 9:
+
+Slot 10:
+
 
