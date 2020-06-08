@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package elCorona2;
+package corona;
 
 /**
  *
@@ -19,10 +19,19 @@ public class Test {
         ActivityLog loga = new ActivityLog();
         h.generate(100);
         logh.logHouseHold(h.showAll());
-        for(int i=0;i<7;i++){
-            loga.activityLog(h.getHouse());
-        }
         
+        int count=0;
+        int days=7; // how many days you want
+        for(int i=0;i<days;i++){
+            count++;
+            if(count==6 || count==7){
+                loga.setDay("Weekend");
+            }
+            loga.activityLog(h.getHouse());
+            if(count==7){
+                loga.setDay("Weekday");
+            }
+        }
         //System.out.println(h.showAll());
         //h.showId(4);
         

@@ -318,6 +318,8 @@ public class graphMain {
     
     
     //used to add people who has visited the same place, ex flat
+    static ArrayList<String> addedPeople=new ArrayList<>();
+    
     public static ArrayList<String> readPlace(String search,int slot){
        ArrayList<String> holdPeople=new ArrayList<>();
         try{
@@ -337,9 +339,13 @@ public class graphMain {
                      if(strLine.equals("Slot "+Integer.toString(slot)+":") || test==true){
                          test=true;
 //                         System.out.println(search+",Slot "+ (i+1));
-
+                            
+                        //Adds the people to the array to check if they have been listed before 
                          for (int j = 0; j < temp.length; j++) {
-                             holdPeople.add(temp[j]);
+                             if(!addedPeople.contains(temp[j])){
+                                 holdPeople.add(temp[j]);
+                                 addedPeople.add(temp[j]);
+                             }
 
                          }
                      }
@@ -368,11 +374,12 @@ public class graphMain {
     }
         
     
+    
   //insert the person according to the slot, ex 10 and day, ex day 2  
     //starts the recursive metod which will add the other people to the similar place a person went
     public static ArrayList<String> startLocation(int id, int slot, int day,ArrayList<String> holdPerson){
         //add from the day the person is infected to the last day of simulation
-        
+        addedPeople.add(Integer.toString(id));
         //base case of the recursive method
         //used to store the places in the slot
         ArrayList<String> hold=new ArrayList<>();
@@ -438,6 +445,7 @@ public class graphMain {
             for (int i = 0; i < hold.size() && checkPlace(temp); i++) {
                 if(!hold.get(i).equals("")&&!holdPerson.contains(hold.get(i))){
                     holdPerson.add(hold.get(i));
+//                    addedPeople.add(hold.get(i));
 //                    System.out.println("Added : "+hold.get(i)+" ,Place :" +temp+" ,Slot "+ slot);
                 }
             

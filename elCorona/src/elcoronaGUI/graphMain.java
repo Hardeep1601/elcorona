@@ -318,7 +318,8 @@ public class graphMain {
     }
     
     
-    //used to add people who has visited the same place, ex flat
+    static ArrayList<String> addedPeople=new ArrayList<>();
+    
     public static ArrayList<String> readPlace(String search,int slot){
        ArrayList<String> holdPeople=new ArrayList<>();
         try{
@@ -340,7 +341,10 @@ public class graphMain {
 //                         System.out.println(search+",Slot "+ (i+1));
 
                          for (int j = 0; j < temp.length; j++) {
-                             holdPeople.add(temp[j]);
+                             if(!addedPeople.contains(temp[j])){
+                                 holdPeople.add(temp[j]);
+                                 addedPeople.add(temp[j]);
+                             }
 
                          }
                      }
