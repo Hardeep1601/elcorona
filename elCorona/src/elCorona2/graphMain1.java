@@ -7,31 +7,12 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class graphMain {
+public class graphMain1 {
     static Graph<String, Integer> graph = new Graph<>();
 
-    static ArrayList<String> houseNum=new ArrayList<>();
-    static ArrayList<String> ID=new ArrayList<>();
-    static ArrayList<String> age=new ArrayList<>();
-    static ArrayList<String> role=new ArrayList<>();
-    static ArrayList<String> occ=new ArrayList<>();
-    static ArrayList<String> gender=new ArrayList<>();
-    static ArrayList<String> slot1=new ArrayList<>();
-    static ArrayList<String> slot2=new ArrayList<>();
-    static ArrayList<String> slot3=new ArrayList<>();
-    static ArrayList<String> slot4=new ArrayList<>();
-    static ArrayList<String> slot5=new ArrayList<>();
-    static ArrayList<String> slot6=new ArrayList<>();
-    static ArrayList<String> slot7=new ArrayList<>();
-    static ArrayList<String> slot8=new ArrayList<>();
-    static ArrayList<String> slot9=new ArrayList<>();
-    static ArrayList<String> slot10=new ArrayList<>();
-    public static int humanCount=0;
-    
-    
     public static void main(String[] args) {
         // Example 1
-        graphMain m=new graphMain();
+        graphMain1 m=new graphMain1();
         Graph<String, String> location = new Graph<>();
         
         Random rand=new Random();
@@ -118,20 +99,17 @@ public class graphMain {
             findLog(1);
             int slot=2;
             int day=1;
-            // Define the depth and human ID to be searched
-
-            int find=1;
-            int depth=4;
-            
-
-
             // Starts reading from slot 2 of day 1 for human id 1
-//            startLocation(1,slot,day);
+            startLocation(1,slot,day);
 //            graph.showGraph();
 //            sameHouse();
 
 
             // COntact Tracing 
+            // Define the depth and human ID to be searched
+
+            int find=1;
+            int depth=3;
 
             // Contact tracer is called
             System.out.println("Creating a graph with "+verticeNum+" vertices");
@@ -139,11 +117,31 @@ public class graphMain {
             System.out.println("Trace the contact for HumanID "+find+" with depth of "+depth+": ");
             System.out.println(find + "  "+Math.pow(0.9, 0));  
             ArrayList<String> prev=new ArrayList<>();
-            m.contactTracer(graph,find,depth-1,1,prev,slot,day);
+            m.contactTracer2(graph,find,depth-1,1,prev,slot,day);
     
     
     }
-  
+    
+    static ArrayList<String> houseNum=new ArrayList<>();
+    static ArrayList<String> ID=new ArrayList<>();
+    static ArrayList<String> age=new ArrayList<>();
+    static ArrayList<String> role=new ArrayList<>();
+    static ArrayList<String> occ=new ArrayList<>();
+    static ArrayList<String> gender=new ArrayList<>();
+    static ArrayList<String> slot1=new ArrayList<>();
+    static ArrayList<String> slot2=new ArrayList<>();
+    static ArrayList<String> slot3=new ArrayList<>();
+    static ArrayList<String> slot4=new ArrayList<>();
+    static ArrayList<String> slot5=new ArrayList<>();
+    static ArrayList<String> slot6=new ArrayList<>();
+    static ArrayList<String> slot7=new ArrayList<>();
+    static ArrayList<String> slot8=new ArrayList<>();
+    static ArrayList<String> slot9=new ArrayList<>();
+    static ArrayList<String> slot10=new ArrayList<>();
+    public static int humanCount=0;
+
+    
+
     
     public static void readLog(){
         try{
@@ -318,8 +316,7 @@ public class graphMain {
     
     
     //used to add people who has visited the same place, ex flat
-    public static ArrayList<String> readPlace(String search,int slot){
-       ArrayList<String> holdPeople=new ArrayList<>();
+    public static void readPlace(String search,int slot){
         try{
            FileInputStream fstream = new FileInputStream("Place.log");
            BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
@@ -328,197 +325,95 @@ public class graphMain {
            String temp[];
            strLine = br.readLine();
            strLine = br.readLine();
-           boolean test=false;
            while ((strLine = br.readLine()) != null)   {
-             if(strLine.equals(search)){            //reads the places from the log file,ex petrol station
+             if(strLine.equals(search)){
                  for (int i = 0; i < 10; i++) {
                      strLine = br.readLine();
                      temp=br.readLine().split("\\|");
-                     if(strLine.equals("Slot "+Integer.toString(slot)+":") || test==true){
-                         test=true;
-//                         System.out.println(search+",Slot "+ (i+1));
 
+                     if(i+1>=slot){
                          for (int j = 0; j < temp.length; j++) {
-                             holdPeople.add(temp[j]);
+                             for (int k = 0; k !=j ; k++) {
+//                                 graph.addEge(temp[j], temp[k]);
+                                 graph.addEge(temp[k], temp[j]);
+
+                             }
 
                          }
                      }
-                     
-//                     if(i+1>=slot){
-//                         for (int j = 0; j < temp.length; j++) {
-//                             for (int k = 0; k !=j ; k++) {
-////                                 graph.addEge(temp[j], temp[k]);
-////                                 graph.addEge(temp[k], temp[j]);
-//                                 holdPeople.add(temp[k]);
-//                                 System.out.println("Hold ; "+holdPeople.get(k));
-//                             }
-//
-//                         }
-//                     }
                  }
              }
 //             System.out.println (strLine);
            }
            fstream.close();
-           return holdPeople;
         } catch (Exception e) {
              System.err.println("Error: " + e.getMessage());
         }
-        return null;
     }
         
     
   //insert the person according to the slot, ex 10 and day, ex day 2  
     //starts the recursive metod which will add the other people to the similar place a person went
-    public static ArrayList<String> startLocation(int id, int slot, int day,ArrayList<String> holdPerson){
+    public static boolean startLocation(int id, int slot, int day){
         //add from the day the person is infected to the last day of simulation
         
         //base case of the recursive method
         //used to store the places in the slot
-        ArrayList<String> hold=new ArrayList<>();
-//        ArrayList<String> holdPerson=new ArrayList<>();
-        String temp="";
+        String temp;
         int setSlot=(day-1)*10+slot;        
         //ex, day 2 slot 3 is 13%10=slot 3
         //run the reading at the max of 4 days
         if(setSlot>10){
-            return holdPerson;
-//            return false;
-        } 
-      
-//        System.out.println("test");
+//            System.out.println("End of tracking");  
+            return false;
+        }
         switch(setSlot){
             case 1:
                 temp=slot1.get(id-1);
-//                hold=readPlace(temp,1);
+                readPlace(temp,1);
                 break;
             case 2:
                 temp=slot2.get(id-1);
-//                hold=readPlace(temp,2);
+                readPlace(temp,2);
                 break;
             case 3:
                 temp=slot3.get(id-1);
-//                hold=readPlace(temp,3);
+                readPlace(temp,3);
                 break;
             case 4:
                 temp=slot4.get(id-1);
-//                hold=readPlace(temp,4);
+                readPlace(temp,4);
                 break;
             case 5:
                 temp=slot5.get(id-1);
-//                hold=readPlace(temp,5);
+                readPlace(temp,5);
                 break;
             case 6:
                 temp=slot6.get(id-1);
-//                hold=readPlace(temp,6);
+                readPlace(temp,6);
                 break;
             case 7:
                 temp=slot7.get(id-1);
-//                hold=readPlace(temp,7);
+                readPlace(temp,7);
                 break;
             case 8:
                 temp=slot8.get(id-1);
-//                hold=readPlace(temp,8);
+                readPlace(temp,8);
                 break;
             case 9:
                 temp=slot9.get(id-1);
-//                hold=readPlace(temp,9);
+                readPlace(temp,9);
                 break;
             case 0:
                 temp=slot10.get(id-1);
-//                hold=readPlace(temp,10);
+                readPlace(temp,10);
                 break;
-            
         }
-
-            if(checkPlace(temp)){
-//                System.out.println("Temp: "+temp);
-                hold=readPlace(temp,slot);
-            }
-            for (int i = 0; i < hold.size() && checkPlace(temp); i++) {
-                if(!hold.get(i).equals("")&&!holdPerson.contains(hold.get(i))){
-                    holdPerson.add(hold.get(i));
-//                    System.out.println("Added : "+hold.get(i)+" ,Place :" +temp+" ,Slot "+ slot);
-                }
-            
-        }
-//        System.out.println(holdPerson);
 //        System.out.println("Slot : "+slot+",day : "+day);
-        startLocation(id,slot+1,day,holdPerson);
-//        return true;
-        return holdPerson;
+        startLocation(id,slot+1,day);
+        return true;
     }
-    
-    public static boolean checkPlace(String place){
-        ArrayList<String> places=new ArrayList<>();
-        places.add("Flat");
-        places.add("House A");
-        places.add("House B");
-        places.add("House C");
-        places.add("Playground");
-        places.add("Bus Stop");
-        places.add("Train Station");
-        places.add("Petrol Station");
-        places.add("Primary School");
-        places.add("Secondary School");
-        places.add("Kindergarten");
-        places.add("Food Court");
-        places.add("Mall");
-        places.add("Shop Lot");
-        places.add("Field");
-        places.add("Police Station");
-        places.add("Mosque");
-        places.add("Healthcare Centre");
-        places.add("Bank");
-        places.add("Market");
-//        boolean test=false;
-        for (int i = 0; i < places.size(); i++) {
-            if(place.equals(places.get(i))){
-//                System.out.println("True");
-                return true;
-            }
-            
-        }
-        return false;
-    }
-    
-    public boolean contactTracer(Graph graph,Integer humanID,Integer depth,Integer count, ArrayList prev,int slot, int day){
-            if(count>depth){
-                return false;
-            } 
-            prev.add(Integer.toString(humanID));
-//            ArrayList<String> a=graph.getAdjacent(Integer.toString(humanID));
-            ArrayList<String> a=new ArrayList<>();
-            ArrayList<String> holdPerson=new ArrayList<>();
-//            System.out.println("Size : "+a.size());
-            a=startLocation(humanID, slot, day,holdPerson);
-//            System.out.println("Size : "+a.size());
-             
-            a.remove(humanID);
-            //remove the find node from the get adjcent list 
-            for (int i = 0; i < prev.size(); i++) {
-                for (int j = 0; j < a.size(); j++) {
-                    if(a.get(j).equals(prev.get(i))){
-                        a.remove(prev.get(i));
-                    }
-                }
-            }
-            
-            // add tab to the start of the string to show the depth of graph
-            String s="";
-            for (int j = 0; j < count; j++) {
-                s+="\t";
-            }
-            DecimalFormat df=new DecimalFormat("#.###");
-            for (int i = 0; i < a.size(); i++) {
-                 System.out.println(s+a.get(i) + "  "+df.format(Math.pow(0.9, count)));
-                 contactTracer(graph, Integer.parseInt(a.get(i)),depth,count+1,prev,slot,day);
-            }
-            
-            
-            return true;
-        
-    }
+
     public boolean contactTracer2(Graph graph,Integer humanID,Integer depth,Integer count, ArrayList prev,int slot, int day){
             if(count>depth){
                 return false;
@@ -526,12 +421,12 @@ public class graphMain {
             prev.add(Integer.toString(humanID));
             //Gets all the edges of the graph and display them in the contact tracer
             // Try to get the id and check location from the activity file, list out the people who had been at the same place at the same time/slot
-//            startLocation(humanID, slot, day);
+            startLocation(humanID, slot, day);
             
             ArrayList<String> a=graph.getAdjacent(Integer.toString(humanID));
             
             
-            
+            ArrayList<String> temp=new ArrayList<>();
             a.remove(humanID);
             
          
@@ -551,18 +446,17 @@ public class graphMain {
             for (int j = 0; j < count; j++) {
                 s+="\t";
             }
-            ArrayList<String> temp=new ArrayList<>();
+
             int j=0;
-            
-            
-            
-            
             while(count<=depth && j<a.size() ){
                 if(count>depth){
                     return false;
                 } 
                 DecimalFormat df=new DecimalFormat("#.###");
                 //start file read here for the respective slot and day
+                
+                
+                
                 
 //                a=null;
                 System.out.println(s+a.get(j) + "  "+df.format(Math.pow(0.9, count)));

@@ -1,150 +1,101 @@
-Jun 07, 2020 11:53:08 AM elCorona2.LogHousehold logHouseHold
+Jun 07, 2020 9:20:49 PM elCorona2.LogHousehold logHouseHold
 INFO: 
 HOUSE 1
 ID: 1
-Age: 20
+Age: 34
 Role: Adult
-Occupation: Taxi Driver
+Occupation: Restaurant Worker
 Gender: Female
 ----------------------------------------
 HOUSE 1
 ID: 2
-Age: 61
+Age: 54
 Role: Elderly
-Occupation: Retired
-Gender: Female
+Occupation: Health Instructor
+Gender: Male
 ----------------------------------------
 HOUSE 1
 ID: 3
-Age: 1
-Role: Toddler
-Occupation: Kindergarten
-Gender: Male
-----------------------------------------
-HOUSE 1
-ID: 4
-Age: 69
-Role: Elderly
-Occupation: Retired
-Gender: Male
-----------------------------------------
-HOUSE 1
-ID: 5
-Age: 68
-Role: Elderly
-Occupation: Retired
-Gender: Female
-----------------------------------------
-HOUSE 2
-ID: 6
-Age: 58
-Role: Elderly
-Occupation: Priest
-Gender: Male
-----------------------------------------
-HOUSE 2
-ID: 7
-Age: 10
-Role: Student
-Occupation: School
-Gender: Female
-----------------------------------------
-HOUSE 2
-ID: 8
-Age: 51
-Role: Elderly
-Occupation: Bus Driver
-Gender: Male
-----------------------------------------
-HOUSE 2
-ID: 9
-Age: 12
-Role: Student
-Occupation: School
-Gender: Male
-----------------------------------------
-HOUSE 3
-ID: 10
-Age: 22
-Role: Adult
-Occupation: Restaurant Worker
-Gender: Male
-----------------------------------------
-HOUSE 3
-ID: 11
 Age: 14
 Role: Student
 Occupation: School
+Gender: Female
+----------------------------------------
+HOUSE 2
+ID: 4
+Age: 22
+Role: Adult
+Occupation: Bank Officer
+Gender: Male
+----------------------------------------
+HOUSE 2
+ID: 5
+Age: 4
+Role: Toddler
+Occupation: Kindergarten
+Gender: Female
+----------------------------------------
+HOUSE 3
+ID: 6
+Age: 32
+Role: Adult
+Occupation: Priest
+Gender: Male
+----------------------------------------
+HOUSE 3
+ID: 7
+Age: 33
+Role: Adult
+Occupation: School Janitor
+Gender: Male
+----------------------------------------
+HOUSE 3
+ID: 8
+Age: 37
+Role: Adult
+Occupation: School Janitor
+Gender: Male
+----------------------------------------
+HOUSE 3
+ID: 9
+Age: 21
+Role: Adult
+Occupation: Mall Worker
 Gender: Male
 ----------------------------------------
 HOUSE 4
-ID: 12
-Age: 66
+ID: 10
+Age: 47
 Role: Elderly
-Occupation: Retired
-Gender: Male
+Occupation: Taxi Driver
+Gender: Female
 ----------------------------------------
 HOUSE 4
-ID: 13
-Age: 69
-Role: Elderly
-Occupation: Retired
-Gender: Male
-----------------------------------------
-HOUSE 4
-ID: 14
-Age: 65
-Role: Elderly
-Occupation: Retired
-Gender: Male
-----------------------------------------
-HOUSE 4
-ID: 15
-Age: 70
-Role: Elderly
-Occupation: Retired
-Gender: Male
-----------------------------------------
-HOUSE 4
-ID: 16
-Age: 38
+ID: 11
+Age: 25
 Role: Adult
 Occupation: Teacher
 Gender: Male
 ----------------------------------------
 HOUSE 4
-ID: 17
+ID: 12
+Age: 35
+Role: Adult
+Occupation: Railway Worker
+Gender: Female
+----------------------------------------
+HOUSE 4
+ID: 13
 Age: 9
 Role: Student
 Occupation: School
-Gender: Female
-----------------------------------------
-HOUSE 5
-ID: 18
-Age: 37
-Role: Adult
-Occupation: Mall Worker
 Gender: Male
 ----------------------------------------
 HOUSE 5
-ID: 19
-Age: 39
+ID: 14
+Age: 31
 Role: Adult
-Occupation: Police
+Occupation: Priest
 Gender: Female
-----------------------------------------
-HOUSE 5
-ID: 20
-Age: 11
-Role: Student
-Occupation: School
-Gender: Female
-----------------------------------------
-HOUSE 5
-ID: 21
-Age: 12
-Role: Student
-Occupation: School
-Gender: Male
 ----------------------------------------
 
