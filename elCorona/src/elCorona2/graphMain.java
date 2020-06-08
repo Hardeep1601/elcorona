@@ -121,7 +121,7 @@ public class graphMain {
             // Define the depth and human ID to be searched
 
             int find=1;
-            int depth=4;
+            int depth=10;
             
 
 
@@ -344,7 +344,7 @@ public class graphMain {
                          for (int j = 0; j < temp.length; j++) {
                              if(!addedPeople.contains(temp[j])){
                                  holdPeople.add(temp[j]);
-                                 addedPeople.add(temp[j]);
+//                                 addedPeople.add(temp[j]);
                              }
 
                          }
@@ -520,6 +520,7 @@ public class graphMain {
             DecimalFormat df=new DecimalFormat("#.###");
             for (int i = 0; i < a.size(); i++) {
                  System.out.println(s+a.get(i) + "  "+df.format(Math.pow(0.9, count)));
+                 addedPeople.add(a.get(i));
                  contactTracer(graph, Integer.parseInt(a.get(i)),depth,count+1,prev,slot,day);
             }
             
