@@ -251,6 +251,7 @@ public class graphMain {
     public static void readActivityLog(int dayCount){
         try{
 //            System.out.println("-------Reading the activity Log File-------");
+//            String file="Activity.log."+Integer.toString(dayCount); 
             String file="Activity."+Integer.toString(dayCount)+".log"; 
 //            String file="Activity.log.1"; 
            FileInputStream fstream = new FileInputStream(file);
@@ -342,6 +343,7 @@ public class graphMain {
        ArrayList<String> holdPeople=new ArrayList<>();
         try{
            String file="Place."+Integer.toString(day)+".log";
+//           String file="Place.log."+Integer.toString(day);
 //           String file="Place.log.1";
            FileInputStream fstream = new FileInputStream(file);
            BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
