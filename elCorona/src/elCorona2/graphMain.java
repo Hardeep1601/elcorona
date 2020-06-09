@@ -113,13 +113,14 @@ public class graphMain {
 
         // Reading log file based on human ID
 //            readLogOut();
-            readLog();
-            readActivityLog(2);
-            findLog(1);
-            int slot=2;
-            int day=1;
+//            readLog();
+//            readActivityLog(2);
+//            findLog(1);
             // Define the depth and human ID to be searched
 
+            int slot=2;
+            int startDay=1;
+            int endDay=2;
             int find=1;
             int depth=5;
             
@@ -134,24 +135,33 @@ public class graphMain {
             // COntact Tracing 
 
             // Contact tracer is called
-            System.out.println("Creating a graph with "+verticeNum+" vertices");
-            System.out.println("\nContact tracer");
-            System.out.println("Trace the contact for HumanID "+find+" with depth of "+depth+": ");
-            System.out.println(find + "  "+Math.pow(0.9, 0));  
-            ArrayList<String> prev=new ArrayList<>();
-            m.contactTracer(graph,find,depth-1,1,prev,slot,day);
-    
+//            System.out.println("Creating a graph with "+verticeNum+" vertices");
+            runTracer(find,depth,slot,startDay,endDay);
+//            System.out.println("\nContact tracer");
+//            System.out.println("Trace the contact for HumanID "+find+" with depth of "+depth+": ");
+//            System.out.println(find + "  "+Math.pow(0.9, 0));  
+//            ArrayList<String> prev=new ArrayList<>();
+//            m.contactTracer(graph,find,depth-1,1,prev,slot,day);
+//    
     
     }
     
     public static void runTracer(int find, int depth,int startSlot, int startDay, int endDay){
+        System.out.println("\nRun Contact tracer...");
+        System.out.println("Trace the contact for HumanID "+find+" with depth of "+depth+": ");
+        System.out.println(find + "  "+Math.pow(0.9, 0));  
+        readLog();      //read the general human info
         
         for (int i = startDay; i <= endDay; i++) {
-            System.out.println("\nContact tracer");
-            System.out.println("Trace the contact for HumanID "+find+" with depth of "+depth+": ");
-            System.out.println(find + "  "+Math.pow(0.9, 0));  
+            if(i!=startDay){
+                startSlot=1;
+            }
+            readActivityLog(i);
+//            findLog(find);
+            
             ArrayList<String> prev=new ArrayList<>();
             m.contactTracer(graph,find,depth-1,1,prev,startSlot,i);
+            System.out.println("Day : "+ i);
         }
         
     }
@@ -240,8 +250,10 @@ public class graphMain {
     
     public static void readActivityLog(int dayCount){
         try{
-            System.out.println("-------Reading the activity Log File-------");
-           FileInputStream fstream = new FileInputStream("Activity.log");
+//            System.out.println("-------Reading the activity Log File-------");
+            String file="Activity."+Integer.toString(dayCount)+".log"; 
+//            String file="Activity.log.1"; 
+           FileInputStream fstream = new FileInputStream(file);
            BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
            String strLine;
            String id[];
@@ -249,7 +261,7 @@ public class graphMain {
            int lineCount=0;
            /* read log line by line */
            
-            for (int i = 0; i < dayCount; i++) {
+//            for (int i = 0; i < dayCount; i++) {
                 
                while ((strLine = br.readLine()) != null)   {        //reads the first line
 
@@ -278,10 +290,10 @@ public class graphMain {
                     lineCount++;
                }
                 
-            }
-            System.out.println("Total human count: "+humanCount);
-            System.out.println("Line Count: "+lineCount);
-            System.out.println("Day Count: "+(lineCount/humanCount)+"\n");
+//            }
+//            System.out.println("Total human count: "+humanCount);
+//            System.out.println("Line Count: "+lineCount);
+//            System.out.println("Day Count: "+(lineCount/humanCount)+"\n");
            fstream.close();
         } catch (Exception e) {
              System.err.println("Error: " + e.getMessage());
@@ -303,10 +315,6 @@ public class graphMain {
              System.err.println("Error: " + e.getMessage());
         }
     }
-     //Contact Tracing Method
-    
-    //NEED TO INSERT TIME FACTOR 
-    
     
     public static void sameHouse(){
         System.out.println("\n-------People of the same family-------");
@@ -327,14 +335,15 @@ public class graphMain {
         graph.showGraph();
     }
     
-    
     //used to add people who has visited the same place, ex flat
     static ArrayList<String> addedPeople=new ArrayList<>();
     
-    public static ArrayList<String> readPlace(String search,int slot){
+    public static ArrayList<String> readPlace(String search,int slot,int day){
        ArrayList<String> holdPeople=new ArrayList<>();
         try{
-           FileInputStream fstream = new FileInputStream("Place.log");
+           String file="Place."+Integer.toString(day)+".log";
+//           String file="Place.log.1";
+           FileInputStream fstream = new FileInputStream(file);
            BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
            String strLine;
            /* read log line by line */
@@ -361,7 +370,7 @@ public class graphMain {
                          }
                      }
                  } 
-//                 break;
+                 break;
              }
 //             System.out.println (strLine);
            }
@@ -423,14 +432,14 @@ public class graphMain {
                 break;
             case 0:
                 temp=slot10.get(id-1);
-                day++;
+//                day++;
                 break;
             
         }
 
             if(checkPlace(temp)){
 //                System.out.println("Temp: "+temp);
-                hold=readPlace(temp,slot);
+                hold=readPlace(temp,slot,day);
             }
             for (int i = 0; i < hold.size() && checkPlace(temp); i++) {
                 if(!hold.get(i).equals("")&&!holdPerson.contains(hold.get(i))){
@@ -509,7 +518,7 @@ public class graphMain {
             }
             DecimalFormat df=new DecimalFormat("#.###");
             for (int i = 0; i < a.size(); i++) {
-                 System.out.println(s+a.get(i) + "  "+df.format(Math.pow(0.9, count))+", Day: "+count);
+                 System.out.println(s+a.get(i) + "  "+df.format(Math.pow(0.9, count))+"  Day "+day);
 //                 if(!addedPeople.contains(a.get(i))){
 //                 }
                  
