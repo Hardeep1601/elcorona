@@ -121,7 +121,7 @@ public class graphMain {
             // Define the depth and human ID to be searched
 
             int find=1;
-            int depth=10;
+            int depth=5;
             
 
 
@@ -349,19 +349,8 @@ public class graphMain {
 
                          }
                      }
-                     
-//                     if(i+1>=slot){
-//                         for (int j = 0; j < temp.length; j++) {
-//                             for (int k = 0; k !=j ; k++) {
-////                                 graph.addEge(temp[j], temp[k]);
-////                                 graph.addEge(temp[k], temp[j]);
-//                                 holdPeople.add(temp[k]);
-//                                 System.out.println("Hold ; "+holdPeople.get(k));
-//                             }
-//
-//                         }
-//                     }
-                 }
+                 } 
+                 break;
              }
 //             System.out.println (strLine);
            }
@@ -383,7 +372,6 @@ public class graphMain {
         //base case of the recursive method
         //used to store the places in the slot
         ArrayList<String> hold=new ArrayList<>();
-//        ArrayList<String> holdPerson=new ArrayList<>();
         String temp="";
         int setSlot=(day-1)*10+slot;        
         //ex, day 2 slot 3 is 13%10=slot 3
@@ -392,48 +380,38 @@ public class graphMain {
             return holdPerson;
 //            return false;
         } 
-      
+      //Get the places the person goes to during the slot and check if its listed in the placesLog, if yes, get all the human id for places log for 7 days
 //        System.out.println("test");
         switch(setSlot){
             case 1:
                 temp=slot1.get(id-1);
-//                hold=readPlace(temp,1);
                 break;
             case 2:
                 temp=slot2.get(id-1);
-//                hold=readPlace(temp,2);
                 break;
             case 3:
                 temp=slot3.get(id-1);
-//                hold=readPlace(temp,3);
                 break;
             case 4:
                 temp=slot4.get(id-1);
-//                hold=readPlace(temp,4);
                 break;
             case 5:
                 temp=slot5.get(id-1);
-//                hold=readPlace(temp,5);
                 break;
             case 6:
                 temp=slot6.get(id-1);
-//                hold=readPlace(temp,6);
                 break;
             case 7:
                 temp=slot7.get(id-1);
-//                hold=readPlace(temp,7);
                 break;
             case 8:
                 temp=slot8.get(id-1);
-//                hold=readPlace(temp,8);
                 break;
             case 9:
                 temp=slot9.get(id-1);
-//                hold=readPlace(temp,9);
                 break;
             case 0:
                 temp=slot10.get(id-1);
-//                hold=readPlace(temp,10);
                 break;
             
         }
@@ -445,7 +423,7 @@ public class graphMain {
             for (int i = 0; i < hold.size() && checkPlace(temp); i++) {
                 if(!hold.get(i).equals("")&&!holdPerson.contains(hold.get(i))){
                     holdPerson.add(hold.get(i));
-//                    addedPeople.add(hold.get(i));
+                    addedPeople.add(hold.get(i));
 //                    System.out.println("Added : "+hold.get(i)+" ,Place :" +temp+" ,Slot "+ slot);
                 }
             
@@ -453,7 +431,7 @@ public class graphMain {
 //        System.out.println(holdPerson);
 //        System.out.println("Slot : "+slot+",day : "+day);
         startLocation(id,slot+1,day,holdPerson);
-//        return true;
+
         return holdPerson;
     }
     
@@ -520,7 +498,11 @@ public class graphMain {
             DecimalFormat df=new DecimalFormat("#.###");
             for (int i = 0; i < a.size(); i++) {
                  System.out.println(s+a.get(i) + "  "+df.format(Math.pow(0.9, count)));
-                 addedPeople.add(a.get(i));
+//                 if(!addedPeople.contains(a.get(i))){
+//                 }
+                 
+                 // Shows the risk of infecting another person THE FIRST TIME when they visited the same the same place
+//                 addedPeople.add(a.get(i));
                  contactTracer(graph, Integer.parseInt(a.get(i)),depth,count+1,prev,slot,day);
             }
             
@@ -528,6 +510,8 @@ public class graphMain {
             return true;
         
     }
+    
+    
     public boolean contactTracer2(Graph graph,Integer humanID,Integer depth,Integer count, ArrayList prev,int slot, int day){
             if(count>depth){
                 return false;
