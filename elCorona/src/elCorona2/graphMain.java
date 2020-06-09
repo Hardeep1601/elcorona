@@ -28,10 +28,10 @@ public class graphMain {
     static ArrayList<String> slot10=new ArrayList<>();
     public static int humanCount=0;
     
+    static graphMain m=new graphMain();
     
     public static void main(String[] args) {
         // Example 1
-        graphMain m=new graphMain();
         Graph<String, String> location = new Graph<>();
         
         Random rand=new Random();
@@ -143,7 +143,18 @@ public class graphMain {
     
     
     }
-  
+    
+    public static void runTracer(int find, int depth,int startSlot, int startDay, int endDay){
+        
+        for (int i = startDay; i <= endDay; i++) {
+            System.out.println("\nContact tracer");
+            System.out.println("Trace the contact for HumanID "+find+" with depth of "+depth+": ");
+            System.out.println(find + "  "+Math.pow(0.9, 0));  
+            ArrayList<String> prev=new ArrayList<>();
+            m.contactTracer(graph,find,depth-1,1,prev,startSlot,i);
+        }
+        
+    }
     
     public static void readLog(){
         try{
@@ -350,7 +361,7 @@ public class graphMain {
                          }
                      }
                  } 
-                 break;
+//                 break;
              }
 //             System.out.println (strLine);
            }
@@ -375,7 +386,7 @@ public class graphMain {
         String temp="";
         int setSlot=(day-1)*10+slot;        
         //ex, day 2 slot 3 is 13%10=slot 3
-        //run the reading at the max of 4 days
+        //run the reading at the max of 1 days
         if(setSlot>10){
             return holdPerson;
 //            return false;
@@ -412,6 +423,7 @@ public class graphMain {
                 break;
             case 0:
                 temp=slot10.get(id-1);
+                day++;
                 break;
             
         }
@@ -434,7 +446,7 @@ public class graphMain {
 
         return holdPerson;
     }
-    
+    static int day=1;
     public static boolean checkPlace(String place){
         ArrayList<String> places=new ArrayList<>();
         places.add("Flat");
@@ -497,7 +509,7 @@ public class graphMain {
             }
             DecimalFormat df=new DecimalFormat("#.###");
             for (int i = 0; i < a.size(); i++) {
-                 System.out.println(s+a.get(i) + "  "+df.format(Math.pow(0.9, count)));
+                 System.out.println(s+a.get(i) + "  "+df.format(Math.pow(0.9, count))+", Day: "+count);
 //                 if(!addedPeople.contains(a.get(i))){
 //                 }
                  
