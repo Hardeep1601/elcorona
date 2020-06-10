@@ -120,7 +120,7 @@ public class graphMain {
 
             int slot=2;
             int startDay=1;
-            int endDay=2;
+            int endDay=3;
             int find=1;
             int depth=5;
             
@@ -130,7 +130,7 @@ public class graphMain {
 //            startLocation(1,slot,day);
 //            graph.showGraph();
 //            sameHouse();
-
+//        readLogOut();
 
             // COntact Tracing 
 
@@ -150,8 +150,8 @@ public class graphMain {
         System.out.println("\nRun Contact tracer...");
         System.out.println("Trace the contact for HumanID "+find+" with depth of "+depth+": ");
         System.out.println(find + "  "+Math.pow(0.9, 0));  
-        readLog();      //read the general human info
         
+        readLog();      //read the general human info - has an error(not yet identified)
         for (int i = startDay; i <= endDay; i++) {
             if(i!=startDay){
                 startSlot=1;
@@ -162,6 +162,7 @@ public class graphMain {
             ArrayList<String> prev=new ArrayList<>();
             m.contactTracer(graph,find,depth-1,1,prev,startSlot,i);
             System.out.println("Day : "+ i);
+            
         }
         
     }
@@ -252,7 +253,9 @@ public class graphMain {
         try{
 //            System.out.println("-------Reading the activity Log File-------");
 //            String file="Activity.log."+Integer.toString(dayCount); 
+//            String file="Activity.log.2"; 
             String file="Activity."+Integer.toString(dayCount)+".log"; 
+//            System.out.println("File : " +file);
 //            String file="Activity.log.1"; 
            FileInputStream fstream = new FileInputStream(file);
            BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
@@ -303,7 +306,7 @@ public class graphMain {
     
     public static void readLogOut(){
         try{
-           FileInputStream fstream = new FileInputStream("Place.log");
+           FileInputStream fstream = new FileInputStream("Activity.1.log");
            BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
            String strLine;
            /* read log line by line */
@@ -342,7 +345,9 @@ public class graphMain {
     public static ArrayList<String> readPlace(String search,int slot,int day){
        ArrayList<String> holdPeople=new ArrayList<>();
         try{
+//            System.out.println("test");
            String file="Place."+Integer.toString(day)+".log";
+//            System.out.println("File : "+file);
 //           String file="Place.log."+Integer.toString(day);
 //           String file="Place.log.1";
            FileInputStream fstream = new FileInputStream(file);
