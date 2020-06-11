@@ -17,6 +17,7 @@ public class graphMain {
     static ArrayList<String> role=new ArrayList<>();
     static ArrayList<String> occ=new ArrayList<>();
     static ArrayList<String> gender=new ArrayList<>();
+    static ArrayList<String> family=new ArrayList<>();
     static ArrayList<String> slot1=new ArrayList<>();
     static ArrayList<String> slot2=new ArrayList<>();
     static ArrayList<String> slot3=new ArrayList<>();
@@ -27,91 +28,15 @@ public class graphMain {
     static ArrayList<String> slot8=new ArrayList<>();
     static ArrayList<String> slot9=new ArrayList<>();
     static ArrayList<String> slot10=new ArrayList<>();
+    //used to add people who has visited the same place, ex flat
+    static ArrayList<String> addedPeople=new ArrayList<>();
     public static int humanCount=0;
     
     static graphMain m=new graphMain();
-    
-    
     public static int find=0;
+    
+    
     public static void main(String[] args) {
-        // Example 1
-        Graph<String, String> location = new Graph<>();
-        
-        Random rand=new Random();
-//        int verticeNum=rand.nextInt(7);
-        int verticeNum=5;
-        
-        
-//        ArrayList<Integer> age=new ArrayList<>();
-//        for (int i = 0; i < verticeNum; i++) {
-            Integer []age=new Integer[verticeNum];
-//            age[i]=rand.nextInt(100)+1;
-//            System.out.println("Human ID: "+i+" Age: "+ age[i]);
-//        }
-            
-            
-        
-        
-        //CREATE AND ADD THE VERTICES TO THE GRAPH
-        String arr[]=new String[verticeNum];
-        
-        
-        // add the places that the person can go
-        location.addVertice("home");
-        location.addVertice("office");
-        location.addVertice("market");
-        location.addVertice("tuition");
-        location.addVertice("home");
-        
-        
-                
-        
-        
-        for (int i = 0; i < verticeNum; i++) {
-            arr[i]=Integer.toString(i);
-            graph.addVertice((Integer.parseInt(arr[i])+1) + "");
-//            location.addVertice(arr[i] + "");
-        }
-//        location.showGraph();
-
-
-
-        //GENERATE AND ADD THE RANDOM EDGES/HUMAN CONTACT 
-        
-//        int IDrange=0;          // TO GENERATE BETWEEN A SPECIFIC RANGE OF HUMAN ID'S
-//        int maxFriend=10;       // The max number of friends a person can have // The max number of friends a person can have
-//        for (int i = 0; i < verticeNum; i++) {
-//            int maxFamily=rand.nextInt(12);
-//            int randNum=rand.nextInt(maxFriend);        //num of friends
-//            int []num=new int[randNum];
-//            int check[]=new int[randNum];
-//            //GENERATE RANDOM NUMBER AND ADD THEM TO EDGE
-//            
-//            for (int j = 0; j < randNum; j++) {
-//                int randEdg=rand.nextInt(verticeNum)+IDrange;
-//                for (int k = 0; k < j; k++) {
-//                    int l = check[k];
-//                    
-//                }
-//                while(randEdg==i){  //prevent adding the same number again
-//                    randEdg=rand.nextInt(verticeNum)+IDrange;
-//                }
-//                
-//                // ADD TO THE OTHER EDGE ALSO 
-//                    graph.addEge( Integer.toString( i ), Integer.toString( randEdg ));
-//                // GENERATE NUMBER, STORE IT IN A ARRAY AND CHECK FOR REPEATING NUMBER
-//                    graph.addEge( Integer.toString( randEdg ), Integer.toString( i ));
-//                
-//              }
-//        }
-        
-        // To print out the graph of Human ID formed
-//        graph.showGraph();
-
-        
-        
-        
-            
 
 
         // Reading log file based on human ID
@@ -123,31 +48,22 @@ public class graphMain {
 
             int slot=1;
             int startDay=1;
-            int endDay=2;
+            int endDay=5;
             find=7;
-            int depth=5;
+            int depth=8;
             
             // Used to run the contact tracer
             runTracer(find,depth,slot,startDay,endDay);
             Collections.sort(addedPeople);
-        System.out.println("List contains \n"+addedPeople);
+//        System.out.println("List contains \n"+addedPeople);
+        System.out.println("Family : "+family);
             // Starts reading from slot 2 of day 1 for human id 1
 //            startLocation(1,slot,day);
 //            graph.showGraph();
 //            sameHouse();
 //        readLogOut("Activity.log.6");
 
-            // COntact Tracing 
 
-            // Contact tracer is called
-//            System.out.println("Creating a graph with "+verticeNum+" vertices");
-//            System.out.println("\nContact tracer");
-//            System.out.println("Trace the contact for HumanID "+find+" with depth of "+depth+": ");
-//            System.out.println(find + "  "+Math.pow(0.9, 0));  
-//            ArrayList<String> prev=new ArrayList<>();
-//            m.contactTracer(graph,find,depth-1,1,prev,slot,day);
-//    
-    
     }
     
     
@@ -157,15 +73,8 @@ public class graphMain {
         System.out.println("Trace the contact for HumanID "+find+" with depth of "+depth+": ");
         System.out.println(find + "  "+Math.pow(0.9, 0));  
         readLog();      //read the general human info - has an error(not yet identified)
-        
-//        String sameHouse=houseNum.get(find-1);
-//        System.out.println("same house "+sameHouse);
-//        for (int i = 0; i < houseNum.size(); i++) {
-//            if(sameHouse.equals(houseNum.get(i)) ){
-//                System.out.println("Same house : "+(i+1));
-//            }
-//            
-//        }
+        sameHome();     // adds the people from the same home to an ArrayList
+
         
         
         for (int i = startDay; i <= endDay; i++) {
@@ -207,17 +116,27 @@ public class graphMain {
            // Reads the first 2 line
            strLine = br.readLine();         // Reads the info of the log, datem timem etc
            strLine = br.readLine();         // Reads the "INFO:" line
-           
+           String setHouse="";
+           int count=0;
            while ((strLine = br.readLine()) != null)   {        //reads the first line
              /* Read house number, ID, age, role, occupation, gender */
 //                temp=strLine.split(" ");
 //                if(!temp[0].equals("HOUSE")){
 //                    strLine = br.readLine();
 //                }
+//System.out.println("test");
                 house=strLine.split(" ");
                 houseNum.add(house[1]);
-//                if(house)
                 humanCount++;
+//                if(count+1==find){
+//                    setHouse=house[1];
+//                }
+//                if(house.equals(setHouse)){     // Adds the family
+//                    family.add(Integer.toString(count+1));
+////                    System.out.println("Family : "+family);
+//                }
+//                    
+                    
                 strLine = br.readLine();
                 id=strLine.split(" ");
                 ID.add(id[1]);
@@ -240,6 +159,7 @@ public class graphMain {
                 gender.add(Gender[1]);
                 
                 //reads the line -----------
+                count++;
                 strLine = br.readLine();        
                 
            }
@@ -342,28 +262,10 @@ public class graphMain {
         }
     }
     
-    public static void sameHouse(){
-        System.out.println("\n-------People of the same family-------");
-        for (int i = 0; i < humanCount; i++) {
-            for (int j = 0; j !=i; j++) {
-                if(houseNum.get(i).equals(houseNum.get(j))){
-                    
-                // ADD TO THE OTHER EDGE ALSO 
-                    graph.addEge( Integer.toString( i+1 ), Integer.toString( j+1 ));
-                // GENERATE NUMBER, STORE IT IN A ARRAY AND CHECK FOR REPEATING NUMBER
-                    graph.addEge( Integer.toString( j+1 ), Integer.toString( i+1 ));
-                    
-                }
-                
-            }
-            
-        }
-        graph.showGraph();
-    }
+
     
-    //used to add people who has visited the same place, ex flat
-    static ArrayList<String> addedPeople=new ArrayList<>();
     
+    static boolean firstRun=true;
     public static ArrayList<String> readPlace(String search,int slot,int day){
        ArrayList<String> holdPeople=new ArrayList<>();
         try{
@@ -474,26 +376,19 @@ public class graphMain {
             
         }
 
+            if(temp.equals("Home")&& firstRun){
+                for (int i = 0; i < family.size() ; i++) {
+                    holdPerson.add(family.get(i));
+                    
+                }
+                firstRun=false;
+            }
             if(checkPlace(temp)){
 //                System.out.println("Temp: "+temp);
                 hold=readPlace(temp,slot,day);
             }
             //Adds their family members 
-            if(temp.equals("Home")){
-                String sameHouse=houseNum.get(find-1);
-//                System.out.println("same house "+sameHouse);
-                int index=sameHouse.indexOf(sameHouse);
-//                System.out.println("Index : "+index);
-                for (int i = 0; i < houseNum.size() && i+1!=find && !addedPeople.contains(Integer.toString(i+1)); i++) {
-                    if(sameHouse.equals(houseNum.get(i)) ){
-                        System.out.println("Same house : "+(i+1));
-                        holdPerson.add(Integer.toString(i+1));
-                        addedPeople.add(Integer.toString(i+1));
-                    }
-
-                }
-            }
-            
+//            sameHome();
             for (int i = 0; i < hold.size() && checkPlace(temp); i++) {
                 if(!hold.get(i).equals("")&&!holdPerson.contains(hold.get(i))){
                     holdPerson.add(hold.get(i));
@@ -511,7 +406,24 @@ public class graphMain {
 
         return holdPerson;
     }
-    static int day=1;
+    
+    public static ArrayList sameHome(){
+        String sameHouse=houseNum.get(find-1);
+//        System.out.println("same house "+sameHouse);
+        int index=sameHouse.indexOf(sameHouse);
+//        System.out.println("Index : "+index);
+        for (int i = 0; i < houseNum.size(); i++) {
+            if(sameHouse.equals(houseNum.get(i)) ){
+//                System.out.println("Same house : "+(i+1));
+                family.add(Integer.toString(i+1));
+//                holdPerson.add(Integer.toString(i+1));
+                addedPeople.add(Integer.toString(i+1));
+            }
+
+        }
+            return family;
+    }
+    
     public static boolean checkPlace(String place){
         ArrayList<String> places=new ArrayList<>();
         places.add("Flat");
@@ -586,60 +498,5 @@ public class graphMain {
         
     }
     
-    
-    public boolean contactTracer2(Graph graph,Integer humanID,Integer depth,Integer count, ArrayList prev,int slot, int day){
-            if(count>depth){
-                return false;
-            } 
-            prev.add(Integer.toString(humanID));
-            //Gets all the edges of the graph and display them in the contact tracer
-            // Try to get the id and check location from the activity file, list out the people who had been at the same place at the same time/slot
-//            startLocation(humanID, slot, day);
-            
-            ArrayList<String> a=graph.getAdjacent(Integer.toString(humanID));
-            
-            
-            
-            a.remove(humanID);
-            
-         
-            
-            
-            //remove the find node from the get adjcent list 
-            for (int i = 0; i < prev.size(); i++) {
-                for (int j = 0; j < a.size(); j++) {
-                    if(a.get(j).equals(prev.get(i))){
-                        a.remove(prev.get(i));
-                    }
-                }
-            }
-            
-            // add tab to the start of the string to show the depth of graph
-            String s="";
-            for (int j = 0; j < count; j++) {
-                s+="\t";
-            }
-            ArrayList<String> temp=new ArrayList<>();
-            int j=0;
-            
-            
-            
-            
-            while(count<=depth && j<a.size() ){
-                if(count>depth){
-                    return false;
-                } 
-                DecimalFormat df=new DecimalFormat("#.###");
-                //start file read here for the respective slot and day
-                
-//                a=null;
-                System.out.println(s+a.get(j) + "  "+df.format(Math.pow(0.9, count)));
-                contactTracer2(graph, Integer.parseInt(a.get(j)),depth,count+1,prev,slot,day);
-                j++;
-            }
-   
-            return true;
-        
-    }
-    
+       
 }
