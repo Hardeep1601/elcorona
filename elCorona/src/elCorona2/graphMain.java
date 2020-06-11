@@ -120,7 +120,7 @@ public class graphMain {
             // Define the depth and human ID to be searched
 
             int slot=1;
-            int startDay=1;
+            int startDay=3;
             int endDay=6;
             int find=1;
             int depth=5;
@@ -152,6 +152,16 @@ public class graphMain {
         System.out.println("\nRun Contact tracer...");
         System.out.println("Trace the contact for HumanID "+find+" with depth of "+depth+": ");
         System.out.println(find + "  "+Math.pow(0.9, 0));  
+        
+        
+//        String sameHouse=houseNum.get(find-1);
+//        for (int i = 0; i < houseNum.size(); i++) {
+//            if(sameHouse.equals(houseNum.get(i)) ){
+////                System.out.println("Same house : "+(i+1));
+//            }
+//            
+//        }
+//        
         
         readLog();      //read the general human info - has an error(not yet identified)
         for (int i = startDay; i <= endDay; i++) {
