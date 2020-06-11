@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class graphMain {
+public class graphMain_1 {
     static Graph<String, Integer> graph = new Graph<>();
 
     static ArrayList<String> houseNum=new ArrayList<>();
@@ -29,10 +29,8 @@ public class graphMain {
     static ArrayList<String> slot10=new ArrayList<>();
     public static int humanCount=0;
     
-    static graphMain m=new graphMain();
+    static graphMain_1 m=new graphMain_1();
     
-    
-    public static int find=0;
     public static void main(String[] args) {
         // Example 1
         Graph<String, String> location = new Graph<>();
@@ -122,9 +120,9 @@ public class graphMain {
             // Define the depth and human ID to be searched
 
             int slot=1;
-            int startDay=1;
-            int endDay=2;
-            find=7;
+            int startDay=3;
+            int endDay=6;
+            int find=1;
             int depth=5;
             
             // Used to run the contact tracer
@@ -150,24 +148,22 @@ public class graphMain {
     
     }
     
-    
-    
     public static void runTracer(int find, int depth,int startSlot, int startDay, int endDay){
         System.out.println("\nRun Contact tracer...");
         System.out.println("Trace the contact for HumanID "+find+" with depth of "+depth+": ");
         System.out.println(find + "  "+Math.pow(0.9, 0));  
-        readLog();      //read the general human info - has an error(not yet identified)
+        
         
 //        String sameHouse=houseNum.get(find-1);
-//        System.out.println("same house "+sameHouse);
 //        for (int i = 0; i < houseNum.size(); i++) {
 //            if(sameHouse.equals(houseNum.get(i)) ){
-//                System.out.println("Same house : "+(i+1));
+////                System.out.println("Same house : "+(i+1));
 //            }
 //            
 //        }
+//        
         
-        
+        readLog();      //read the general human info - has an error(not yet identified)
         for (int i = startDay; i <= endDay; i++) {
             if(i!=startDay){
                 startSlot=1;
@@ -186,7 +182,6 @@ public class graphMain {
         
         
     }
-    
     
     public static void readLog(){
         try{
@@ -478,22 +473,6 @@ public class graphMain {
 //                System.out.println("Temp: "+temp);
                 hold=readPlace(temp,slot,day);
             }
-            //Adds their family members 
-            if(temp.equals("Home")){
-                String sameHouse=houseNum.get(find-1);
-//                System.out.println("same house "+sameHouse);
-                int index=sameHouse.indexOf(sameHouse);
-//                System.out.println("Index : "+index);
-                for (int i = 0; i < houseNum.size() && i+1!=find && !addedPeople.contains(Integer.toString(i+1)); i++) {
-                    if(sameHouse.equals(houseNum.get(i)) ){
-                        System.out.println("Same house : "+(i+1));
-                        holdPerson.add(Integer.toString(i+1));
-                        addedPeople.add(Integer.toString(i+1));
-                    }
-
-                }
-            }
-            
             for (int i = 0; i < hold.size() && checkPlace(temp); i++) {
                 if(!hold.get(i).equals("")&&!holdPerson.contains(hold.get(i))){
                     holdPerson.add(hold.get(i));
@@ -504,7 +483,7 @@ public class graphMain {
 //                    System.out.println("Added : "+hold.get(i)+" ,Place :" +temp+" ,Slot "+ slot);
                 }
             
-            }
+        }
 //        System.out.println(holdPerson);
 //        System.out.println("Slot : "+slot+",day : "+day);
         startLocation(id,slot+1,day,holdPerson);
