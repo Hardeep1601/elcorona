@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class graphMain {
@@ -36,7 +37,7 @@ public class graphMain {
         
         Random rand=new Random();
 //        int verticeNum=rand.nextInt(7);
-        int verticeNum=500;
+        int verticeNum=5;
         
         
 //        ArrayList<Integer> age=new ArrayList<>();
@@ -118,25 +119,26 @@ public class graphMain {
 //            findLog(1);
             // Define the depth and human ID to be searched
 
-            int slot=2;
+            int slot=1;
             int startDay=1;
-            int endDay=3;
+            int endDay=6;
             int find=1;
             int depth=5;
             
-
-
+            // Used to run the contact tracer
+            runTracer(find,depth,slot,startDay,endDay);
+            Collections.sort(addedPeople);
+        System.out.println("List contains \n"+addedPeople);
             // Starts reading from slot 2 of day 1 for human id 1
 //            startLocation(1,slot,day);
 //            graph.showGraph();
 //            sameHouse();
-//        readLogOut();
+//        readLogOut("Activity.log.6");
 
             // COntact Tracing 
 
             // Contact tracer is called
 //            System.out.println("Creating a graph with "+verticeNum+" vertices");
-            runTracer(find,depth,slot,startDay,endDay);
 //            System.out.println("\nContact tracer");
 //            System.out.println("Trace the contact for HumanID "+find+" with depth of "+depth+": ");
 //            System.out.println(find + "  "+Math.pow(0.9, 0));  
@@ -164,6 +166,10 @@ public class graphMain {
             System.out.println("Day : "+ i);
             
         }
+        System.out.println("The size of added people : "+addedPeople.size());
+//        addedPeople.sort(c);
+        
+        
         
     }
     
@@ -252,9 +258,9 @@ public class graphMain {
     public static void readActivityLog(int dayCount){
         try{
 //            System.out.println("-------Reading the activity Log File-------");
-//            String file="Activity.log."+Integer.toString(dayCount); 
+            String file="Activity.log."+Integer.toString(dayCount); 
 //            String file="Activity.log.2"; 
-            String file="Activity."+Integer.toString(dayCount)+".log"; 
+//            String file="Activity."+Integer.toString(dayCount)+".log"; 
 //            System.out.println("File : " +file);
 //            String file="Activity.log.1"; 
            FileInputStream fstream = new FileInputStream(file);
@@ -304,9 +310,10 @@ public class graphMain {
         }
     }
     
-    public static void readLogOut(){
+    public static void readLogOut(String file){
         try{
-           FileInputStream fstream = new FileInputStream("Activity.1.log");
+//           FileInputStream fstream = new FileInputStream("Activity.1.log");
+           FileInputStream fstream = new FileInputStream(file);
            BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
            String strLine;
            /* read log line by line */
@@ -346,9 +353,10 @@ public class graphMain {
        ArrayList<String> holdPeople=new ArrayList<>();
         try{
 //            System.out.println("test");
-           String file="Place."+Integer.toString(day)+".log";
+//           String file="Place."+Integer.toString(day)+".log";
 //            System.out.println("File : "+file);
-//           String file="Place.log."+Integer.toString(day);
+           String file="Place.log."+Integer.toString(day);
+//           readLogOut(file);
 //           String file="Place.log.1";
            FileInputStream fstream = new FileInputStream(file);
            BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
@@ -395,15 +403,22 @@ public class graphMain {
     //starts the recursive metod which will add the other people to the similar place a person went
     public static ArrayList<String> startLocation(int id, int slot, int day,ArrayList<String> holdPerson){
         //add from the day the person is infected to the last day of simulation
-        addedPeople.add(Integer.toString(id));
+        if(!addedPeople.contains(Integer.toString(id))){
+            addedPeople.add(Integer.toString(id));
+        }
         //base case of the recursive method
         //used to store the places in the slot
         ArrayList<String> hold=new ArrayList<>();
         String temp="";
-        int setSlot=(day-1)*10+slot;        
+        int setSlot=((day-1)*10+slot)%10;        
         //ex, day 2 slot 3 is 13%10=slot 3
-        //run the reading at the max of 1 days
-        if(setSlot>10){
+        //run the reading at the max of 1 daysif
+        int defDay=day;
+        if(slot==10){
+            day=day+1;
+//            System.out.println("Next day");
+        }
+        if(defDay!=day){
             return holdPerson;
 //            return false;
         } 
@@ -451,7 +466,10 @@ public class graphMain {
             for (int i = 0; i < hold.size() && checkPlace(temp); i++) {
                 if(!hold.get(i).equals("")&&!holdPerson.contains(hold.get(i))){
                     holdPerson.add(hold.get(i));
-                    addedPeople.add(hold.get(i));
+                    if(!addedPeople.contains(hold.get(i))){
+                        addedPeople.add(hold.get(i));
+                    }
+                        
 //                    System.out.println("Added : "+hold.get(i)+" ,Place :" +temp+" ,Slot "+ slot);
                 }
             
@@ -507,7 +525,7 @@ public class graphMain {
 //            System.out.println("Size : "+a.size());
             a=startLocation(humanID, slot, day,holdPerson);
 //            System.out.println("Size : "+a.size());
-             
+//             System.out.println("HOLDPERSON"+holdPerson);
             a.remove(humanID);
             //remove the find node from the get adjcent list 
             for (int i = 0; i < prev.size(); i++) {
@@ -526,9 +544,7 @@ public class graphMain {
             DecimalFormat df=new DecimalFormat("#.###");
             for (int i = 0; i < a.size(); i++) {
                  System.out.println(s+a.get(i) + "  "+df.format(Math.pow(0.9, count))+"  Day "+day);
-//                 if(!addedPeople.contains(a.get(i))){
-//                 }
-                 
+
                  // Shows the risk of infecting another person THE FIRST TIME when they visited the same the same place
 //                 addedPeople.add(a.get(i));
                  contactTracer(graph, Integer.parseInt(a.get(i)),depth,count+1,prev,slot,day);
