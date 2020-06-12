@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 
@@ -54,19 +55,51 @@ public class graphMain {
             
             // Used to run the contact tracer
             runTracer(find,depth,slot,startDay,endDay);
-            Collections.sort(addedPeople);
+//            Collections.sort(addedPeople);
 //        System.out.println("List contains \n"+addedPeople);
-        System.out.println("Family : "+family);
+//        System.out.println("Family : "+family);
             // Starts reading from slot 2 of day 1 for human id 1
 //            startLocation(1,slot,day);
 //            graph.showGraph();
 //            sameHouse();
 //        readLogOut("Activity.log.6");
-
+//        userData(5);
 
     }
     
+    public static void userData(int forgetness){
+        Random rand=new Random();
+        System.out.println("-------Basic Data-------\n");
+        System.out.println("Human ID : "+ID.get(find-1));
+        System.out.println("House : "+houseNum.get(find-1));
+        System.out.println("Age: "+age.get(find-1));
+        System.out.println("Role: "+role.get(find-1));
+        System.out.println("Occupation: "+occ.get(find-1));
+        System.out.println("Gender: "+gender.get(find-1));
+        
+        System.out.println("-------Places Visited Data-------\n");
+        int selectData=rand.nextInt(forgetness)+1;
+        System.out.println("Select data : "+selectData);
+//        System.out.println(Arrays.toString(dayStore.get(0)));
+        System.out.println("Size: "+dayStore.size());
+        for (int i = 0; i < dayStore.size(); i++) {
+            
+            String arr=Arrays.toString(dayStore.get(i));
+            System.out.println(arr);
+//            for (int j = 0; j < arr.length; j++) {
+//                Object object = arr[j];
+//                
+//            }
+            
+        }
+    }
     
+    
+    public static void userSlot(int forgetness){
+        
+    }
+    
+    static ArrayList<String[]> dayStore=new ArrayList<>();
     
     public static void runTracer(int find, int depth,int startSlot, int startDay, int endDay){
         System.out.println("\nRun Contact tracer...");
@@ -84,11 +117,26 @@ public class graphMain {
             readActivityLog(i);
 //            findLog(find);
             
+            
+//            findLog(find);
+            
             ArrayList<String> prev=new ArrayList<>();
             m.contactTracer(graph,find,depth-1,1,prev,startSlot,i);
             System.out.println("Day : "+ i);
-            
         }
+        
+        System.out.println("-------Information from the log file-------\n");
+        System.out.println("Human ID : "+ID.get(find-1));
+        System.out.println("House : "+houseNum.get(find-1));
+        System.out.println("Age: "+age.get(find-1));
+        System.out.println("Role: "+role.get(find-1));
+        System.out.println("Occupation: "+occ.get(find-1));
+        System.out.println("Gender: "+gender.get(find-1));
+        for (int i = startDay; i <= endDay; i++) {
+            System.out.println("\nLog Day : " + i);
+            findLog(find, 5, i);
+        }
+            
         System.out.println("The size of added people : "+addedPeople.size());
 //        addedPeople.sort(c);
         
@@ -169,7 +217,9 @@ public class graphMain {
         }
     }
     
+    
     public static void findLog(int id){
+        
         System.out.println("-------Information from the log file-------\n");
         System.out.println("Human ID : "+ID.get(id-1));
         System.out.println("House : "+houseNum.get(id-1));
@@ -188,6 +238,70 @@ public class graphMain {
         System.out.println("Slot 8 = "+slot8.get(id-1));
         System.out.println("Slot 9 = "+slot9.get(id-1));
         System.out.println("Slot 10 = "+slot10.get(id-1));
+        
+    }
+    
+    //the higher the forget level the lower the forgetness
+    public static void findLog(int id, int forget,int day){
+        
+        
+        System.out.println("\n-------The activities done along the day-------");
+        
+        readActivityLog(day);
+        Random rand=new Random();
+        System.out.println("Slot 1 = "+slot1.get(id-1));
+        System.out.println("Slot 2 = "+slot2.get(id-1));
+        System.out.println("Slot 3 = "+slot3.get(id-1));
+        System.out.println("Slot 4 = "+slot4.get(id-1));
+        System.out.println("Slot 5 = "+slot5.get(id-1));
+        System.out.println("Slot 6 = "+slot6.get(id-1));
+        System.out.println("Slot 7 = "+slot7.get(id-1));
+        System.out.println("Slot 8 = "+slot8.get(id-1));
+        System.out.println("Slot 9 = "+slot9.get(id-1));
+        System.out.println("Slot 10 = "+slot10.get(id-1));
+        
+        for (int i = 0; i < 10; i++) {            
+            int remember=rand.nextInt(forget)+1;
+            
+            if(remember==1){
+                
+                switch(i){
+                    case 1:
+                        slot1.set(i, "FORGET");
+                        break;
+                    case 2:
+                        slot2.set(i, "FORGET");
+                        break;
+                    case 3:
+                        slot3.set(i, "FORGET");
+                        break;
+                    case 4:
+                        slot4.set(i, "FORGET");
+                        break;
+                    case 5:
+                        slot5.set(i, "FORGET");
+                        break;
+                    case 6:
+                        slot6.set(i, "FORGET");
+                        break;
+                    case 7:
+                        slot7.set(i, "FORGET");
+                        break;
+                    case 8:
+                        slot8.set(i, "FORGET");
+                        break;
+                    case 9:
+                        slot9.set(i, "FORGET");
+                        break;
+                    case 0:
+                        slot10.set(i, "FORGET");
+                        break;
+                }
+                
+            }
+            
+        }
+        
     }
     
     public static void readActivityLog(int dayCount){
@@ -228,12 +342,17 @@ public class graphMain {
                    slot8.add(br.readLine().split("=")[1]);
                    slot9.add(br.readLine().split("=")[1]);
                    slot10.add(br.readLine().split("=")[1]);
-
+                    
+            
 
                     //reads the empty line 
                     strLine = br.readLine();        
                     lineCount++;
                }
+               
+               
+               
+
                 
 //            }
 //            System.out.println("Total human count: "+humanCount);
@@ -243,6 +362,23 @@ public class graphMain {
         } catch (Exception e) {
              System.err.println("Error: " + e.getMessage());
         }
+        
+//                   String arr[]=new String[10];
+//            arr[0]=slot1.get(find-1);
+//            arr[1]=slot2.get(find-1);
+//            arr[2]=slot3.get(find-1);
+//            arr[3]=slot4.get(find-1);
+//            arr[4]=slot5.get(find-1);
+//            arr[5]=slot6.get(find-1);
+//            arr[6]=slot7.get(find-1);
+//            arr[7]=slot8.get(find-1);
+//            arr[8]=slot9.get(find-1);
+//            arr[9]=slot10.get(find-1);
+//
+//            dayStore.add(arr);
+        
+        
+        
     }
     
     public static void readLogOut(String file){
@@ -262,7 +398,7 @@ public class graphMain {
         }
     }
     
-
+    
     
     
     static boolean firstRun=true;
