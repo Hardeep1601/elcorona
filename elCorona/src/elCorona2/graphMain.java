@@ -35,7 +35,25 @@ public class graphMain {
     
     static graphMain m=new graphMain();
     public static int find=0;
+
+    public graphMain() {
+    }
     
+    public static int slot;
+    public static int startDay;
+    public static int endDay;
+    public static int depth;
+    
+    graphMain(int find, int depth,int startSlot, int startDay, int endDay){
+        this.slot=startSlot;
+        this.startDay=startDay;
+        this.endDay=endDay;
+        this.find=find;
+        this.depth=depth;
+            
+            // Used to run the contact tracer
+            runTracer(find,depth,slot,startDay,endDay);
+    }
     
     public static void main(String[] args) {
 
@@ -49,8 +67,8 @@ public class graphMain {
 
             int slot=1;
             int startDay=1;
-            int endDay=5;
-            find=7;
+            int endDay=3;
+            find=1;
             int depth=8;
             
             // Used to run the contact tracer
@@ -94,12 +112,9 @@ public class graphMain {
         }
     }
     
-    
-    public static void userSlot(int forgetness){
-        
-    }
-    
+   
     static ArrayList<String[]> dayStore=new ArrayList<>();
+    
     
     public static void runTracer(int find, int depth,int startSlot, int startDay, int endDay){
         System.out.println("\nRun Contact tracer...");
@@ -118,32 +133,50 @@ public class graphMain {
 //            findLog(find);
             
             
-//            findLog(find);
-            
             ArrayList<String> prev=new ArrayList<>();
             m.contactTracer(graph,find,depth-1,1,prev,startSlot,i);
             System.out.println("Day : "+ i);
+            
+            clearSlots();
         }
+        System.out.println("The size of added people : "+addedPeople.size());
         
-        System.out.println("-------Information from the log file-------\n");
+        // User giving out their data of visited places 
+        
+        System.out.println("\n--------------Information given the human--------------\n");
         System.out.println("Human ID : "+ID.get(find-1));
         System.out.println("House : "+houseNum.get(find-1));
         System.out.println("Age: "+age.get(find-1));
         System.out.println("Role: "+role.get(find-1));
         System.out.println("Occupation: "+occ.get(find-1));
         System.out.println("Gender: "+gender.get(find-1));
+        
+        
         for (int i = startDay; i <= endDay; i++) {
             System.out.println("\nLog Day : " + i);
             findLog(find, 5, i);
+            clearSlots();
         }
+//        findLog(find);
             
-        System.out.println("The size of added people : "+addedPeople.size());
 //        addedPeople.sort(c);
         
-        
+//        System.out.println(slot10.size());
         
     }
     
+    public static void clearSlots(){
+            slot1.clear();
+            slot2.clear();
+            slot3.clear();
+            slot4.clear();
+            slot5.clear();
+            slot6.clear();
+            slot7.clear();
+            slot8.clear();
+            slot9.clear();
+            slot10.clear();
+    }
     
     public static void readLog(){
         try{
@@ -249,6 +282,61 @@ public class graphMain {
         
         readActivityLog(day);
         Random rand=new Random();
+        
+        
+        for (int i = 1; i <= 10; i++) {            
+            int remember=rand.nextInt(forget)+1;
+//            System.out.println("Forgetness : "+forget);
+            
+            if(remember==1){
+                
+                switch(i){
+                    case 1:
+                        slot1.remove(find-1);
+                        slot1.set(i, "FORGET");
+                        break;
+                    case 2:
+                        slot2.remove(find-1);
+                        slot2.set(i, "FORGET");
+                        break;
+                    case 3:
+                        slot3.remove(find-1);
+                        slot3.set(i, "FORGET");
+                        break;
+                    case 4:
+                        slot4.remove(find-1);
+                        slot4.set(i, "FORGET");
+                        break;
+                    case 5:
+                        slot5.remove(find-1);
+                        slot5.set(i, "FORGET");
+                        break;
+                    case 6:
+                        slot6.remove(find-1);
+                        slot6.set(i, "FORGET");
+                        break;
+                    case 7:
+                        slot7.remove(find-1);
+                        slot7.set(i, "FORGET");
+                        break;
+                    case 8:
+                        slot8.remove(find-1);
+                        slot8.set(i, "FORGET");
+                        break;
+                    case 9:
+                        slot9.remove(find-1);
+                        slot9.set(i, "FORGET");
+                        break;
+                    case 10:
+                        slot10.remove(find-1);
+                        slot10.set(i, "FORGET");
+                        break;
+                }
+                
+            }
+            
+        }
+        
         System.out.println("Slot 1 = "+slot1.get(id-1));
         System.out.println("Slot 2 = "+slot2.get(id-1));
         System.out.println("Slot 3 = "+slot3.get(id-1));
@@ -259,48 +347,6 @@ public class graphMain {
         System.out.println("Slot 8 = "+slot8.get(id-1));
         System.out.println("Slot 9 = "+slot9.get(id-1));
         System.out.println("Slot 10 = "+slot10.get(id-1));
-        
-        for (int i = 0; i < 10; i++) {            
-            int remember=rand.nextInt(forget)+1;
-            
-            if(remember==1){
-                
-                switch(i){
-                    case 1:
-                        slot1.set(i, "FORGET");
-                        break;
-                    case 2:
-                        slot2.set(i, "FORGET");
-                        break;
-                    case 3:
-                        slot3.set(i, "FORGET");
-                        break;
-                    case 4:
-                        slot4.set(i, "FORGET");
-                        break;
-                    case 5:
-                        slot5.set(i, "FORGET");
-                        break;
-                    case 6:
-                        slot6.set(i, "FORGET");
-                        break;
-                    case 7:
-                        slot7.set(i, "FORGET");
-                        break;
-                    case 8:
-                        slot8.set(i, "FORGET");
-                        break;
-                    case 9:
-                        slot9.set(i, "FORGET");
-                        break;
-                    case 0:
-                        slot10.set(i, "FORGET");
-                        break;
-                }
-                
-            }
-            
-        }
         
     }
     
@@ -324,7 +370,7 @@ public class graphMain {
                 
                while ((strLine = br.readLine()) != null)   {        //reads the first line
 
-                   // Reads the first 2 line
+               // Reads the first 2 line
     //               strLine = br.readLine();         // Reads the info of the log, datem timem etc
                    strLine = br.readLine();         // Reads the "INFO:" line
                    strLine = br.readLine();         // Reads the Human ID
@@ -353,7 +399,6 @@ public class graphMain {
                
                
 
-                
 //            }
 //            System.out.println("Total human count: "+humanCount);
 //            System.out.println("Line Count: "+lineCount);
@@ -592,6 +637,7 @@ public class graphMain {
         }
         return false;
     }
+    public static String storeOutput=""; 
     
     public boolean contactTracer(Graph graph,Integer humanID,Integer depth,Integer count, ArrayList prev,int slot, int day){
             if(count>depth){
@@ -623,7 +669,7 @@ public class graphMain {
             DecimalFormat df=new DecimalFormat("#.###");
             for (int i = 0; i < a.size(); i++) {
                  System.out.println(s+a.get(i) + "  "+df.format(Math.pow(0.9, count))+"  Day "+day);
-
+                 storeOutput+=s+a.get(i) + "  "+df.format(Math.pow(0.9, count))+"  Day "+day;
                  // Shows the risk of infecting another person THE FIRST TIME when they visited the same the same place
 //                 addedPeople.add(a.get(i));
                  contactTracer(graph, Integer.parseInt(a.get(i)),depth,count+1,prev,slot,day);
