@@ -5,8 +5,6 @@
  */
 package elCorona2;
 
-import static elCorona2.graphMain_2.ID;
-import static elCorona2.graphMain_2.find;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -19,10 +17,10 @@ import java.io.PrintStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
@@ -31,17 +29,52 @@ import javax.swing.text.BadLocationException;
 /**
  *
  * https://www.codejava.net/java-se/swing/redirect-standard-output-streams-to-jtextarea
+ * https://www.codejava.net/java-se/swing/redirect-standard-output-streams-to-jtextarea
  */
 public class TextAreaLogProgram extends JFrame{
     private JTextArea textArea;
      
     private JButton buttonStart = new JButton("Start");
-    private JButton buttonClear = new JButton("Clear");
+//    private JButton buttonClear = new JButton("Clear");
      
     private PrintStream standardOut;
      
     public TextAreaLogProgram() {
         super("Contact Tracer");
+        
+        final JFrame parent = new JFrame();
+//        JButton button = new JButton();
+
+//        button.setText("Click me to show dialog!");
+//        parent.add(button);
+        parent.pack();
+        parent.setVisible(true);
+
+//        button.addActionListener(new java.awt.event.ActionListener() {
+//            @Override
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                String name = JOptionPane.showInputDialog(parent,
+//                        "What is your name?", null);
+//            }
+//        });
+        
+        int slot = Integer.parseInt(JOptionPane.showInputDialog(parent,
+                        "What is starting slot ? (In numbers)", null));
+        int startDay = Integer.parseInt(JOptionPane.showInputDialog(parent,
+                        "What is start day ? (In numbers)", null));
+        int endDay = Integer.parseInt(JOptionPane.showInputDialog(parent,
+                        "What is end day ? (In numbers)", null));
+        int find = Integer.parseInt(JOptionPane.showInputDialog(parent,
+                        "What is human ID to be searched ? (In numbers)", null));
+        int depth = Integer.parseInt(JOptionPane.showInputDialog(parent,
+                        "What is depth of desired tree ? (In numbers)", null));
+        
+        
+        this.slot=slot;
+        this.startDay=startDay;
+         this.endDay=endDay;
+         this.find=find;
+         this.depth=depth;
          
         textArea = new JTextArea(50, 10);
         textArea.setEditable(false);
@@ -65,7 +98,7 @@ public class TextAreaLogProgram extends JFrame{
         add(buttonStart, constraints);
          
         constraints.gridx = 1;
-        add(buttonClear, constraints);
+//        add(buttonClear, constraints);
          
         constraints.gridx = 0;
         constraints.gridy = 1;
@@ -86,19 +119,19 @@ public class TextAreaLogProgram extends JFrame{
         });
          
         // adds event handler for button Clear
-        buttonClear.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                // clears the text area
-                try {
-                    textArea.getDocument().remove(0,
-                            textArea.getDocument().getLength());
-                    standardOut.println("Text area cleared");
-                } catch (BadLocationException ex) {
-                    ex.printStackTrace();
-                }
-            }
-        });
+//        buttonClear.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent evt) {
+//                // clears the text area
+//                try {
+//                    textArea.getDocument().remove(0,
+//                            textArea.getDocument().getLength());
+//                    standardOut.println("Text area cleared");
+//                } catch (BadLocationException ex) {
+//                    ex.printStackTrace();
+//                }
+//            }
+//        });
          
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //sets the Default window size 
@@ -106,23 +139,31 @@ public class TextAreaLogProgram extends JFrame{
         setSize(600, 800);
 //        setSize(480, 320);
         setLocationRelativeTo(null);    // centers on screen
+        this.setVisible(true);
     }
      
-    /**
-     * Prints contact tracer in the JavaTextArea
-     */
-    private void printLog() {
+    
+    
+    int slot;
+    int startDay;
+    int endDay;
+    int depth;
+    
+    public void printLog() {
         Thread thread = new Thread(new Runnable() {
             @Override
+            
             public void run() {
+                
 //                while (true) {
 //                    System.out.println("Time now is hello " + (new Date()));
                     
-                    int slot=1;
-            int startDay=1;
-            int endDay=3;
-            find=1;
-            int depth=8;
+//            int slot=1;
+//            int startDay=1;
+//            int endDay=3;
+//            //is a st
+//            find=1;
+//            int depth=8;
             
             // Used to run the contact tracer
             runTracer(find,depth,slot,startDay,endDay);
@@ -176,10 +217,10 @@ public class TextAreaLogProgram extends JFrame{
     
     public static int find=0;
     
-    public static int slot;
-    public static int startDay;
-    public static int endDay;
-    public static int depth;
+//    public static int slot;
+//    public static int startDay;
+//    public static int endDay;
+//    public static int depth;
     
     public static void userData(int forgetness){
         Random rand=new Random();
