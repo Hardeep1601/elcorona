@@ -41,7 +41,7 @@ public class TextAreaLogProgram extends JFrame{
     private PrintStream standardOut;
      
     public TextAreaLogProgram() {
-        super("Demo printing to JTextArea");
+        super("Contact Tracer");
          
         textArea = new JTextArea(50, 10);
         textArea.setEditable(false);
@@ -101,7 +101,10 @@ public class TextAreaLogProgram extends JFrame{
         });
          
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(480, 320);
+        //sets the Default window size 
+        
+        setSize(600, 800);
+//        setSize(480, 320);
         setLocationRelativeTo(null);    // centers on screen
     }
      
