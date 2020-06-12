@@ -1,15 +1,19 @@
 package elCorona2;
 
+import java.awt.FlowLayout;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Random;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
-public class graphMain {
+public class graphMain_2 extends JFrame{
     static Graph<String, Integer> graph = new Graph<>();
 
     static ArrayList<String> houseNum=new ArrayList<>();
@@ -33,10 +37,10 @@ public class graphMain {
     static ArrayList<String> addedPeople=new ArrayList<>();
     public static int humanCount=0;
     
-    static graphMain m=new graphMain();
+    static graphMain_2 m=new graphMain_2();
     public static int find=0;
 
-    public graphMain() {
+    public graphMain_2() {
     }
     
     public static int slot;
@@ -44,26 +48,9 @@ public class graphMain {
     public static int endDay;
     public static int depth;
     
-    graphMain(int find, int depth,int startSlot, int startDay, int endDay){
-        this.slot=startSlot;
-        this.startDay=startDay;
-        this.endDay=endDay;
-        this.find=find;
-        this.depth=depth;
-            
-            // Used to run the contact tracer
-            runTracer(find,depth,slot,startDay,endDay);
-    }
     
     public static void main(String[] args) {
 
-
-        // Reading log file based on human ID
-//            readLogOut();
-//            readLog();
-//            readActivityLog(2);
-//            findLog(1);
-            // Define the depth and human ID to be searched
 
             int slot=1;
             int startDay=1;
@@ -73,17 +60,42 @@ public class graphMain {
             
             // Used to run the contact tracer
             runTracer(find,depth,slot,startDay,endDay);
-//            Collections.sort(addedPeople);
-//        System.out.println("List contains \n"+addedPeople);
-//        System.out.println("Family : "+family);
-            // Starts reading from slot 2 of day 1 for human id 1
-//            startLocation(1,slot,day);
-//            graph.showGraph();
-//            sameHouse();
-//        readLogOut("Activity.log.6");
-//        userData(5);
+            
+            
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {  
+  
+            public void run() {  
+                createAndShowGUI();  
+            }  
+        });  
 
     }
+    private static final long serialVersionUID = 1L;  
+  
+    private static void createAndShowGUI() {  
+        graphMain g=new graphMain();
+        // Create and set up the window.  
+        final JFrame frame = new JFrame("Contact Tracer");  
+  
+        // Display the window.  
+        frame.setSize(600, 900);  
+        frame.setVisible(true);  
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+  
+        // set flow layout for the frame  
+        frame.getContentPane().setLayout(new FlowLayout());  
+  
+        JTextArea textArea = new JTextArea(50, 50);  
+        
+        
+        textArea.setText(g.storeOutput);
+        JScrollPane scrollableTextArea = new JScrollPane(textArea);  
+  
+        scrollableTextArea.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);  
+        scrollableTextArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);  
+  
+        frame.getContentPane().add(scrollableTextArea);  
+    } 
     
     public static void userData(int forgetness){
         Random rand=new Random();
@@ -165,6 +177,7 @@ public class graphMain {
         
     }
     
+    private PrintStream standardOut;
     public static void clearSlots(){
             slot1.clear();
             slot2.clear();
@@ -201,22 +214,11 @@ public class graphMain {
            int count=0;
            while ((strLine = br.readLine()) != null)   {        //reads the first line
              /* Read house number, ID, age, role, occupation, gender */
-//                temp=strLine.split(" ");
-//                if(!temp[0].equals("HOUSE")){
-//                    strLine = br.readLine();
-//                }
-//System.out.println("test");
+
                 house=strLine.split(" ");
                 houseNum.add(house[1]);
                 humanCount++;
-//                if(count+1==find){
-//                    setHouse=house[1];
-//                }
-//                if(house.equals(setHouse)){     // Adds the family
-//                    family.add(Integer.toString(count+1));
-////                    System.out.println("Family : "+family);
-//                }
-//                    
+                  
                     
                 strLine = br.readLine();
                 id=strLine.split(" ");
