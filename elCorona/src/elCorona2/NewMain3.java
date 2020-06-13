@@ -16,7 +16,7 @@ public class NewMain3 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        TextAreaLogProgram t=new TextAreaLogProgram();
+        ContactTracer t=new ContactTracer();
 //        t.printLog();
     }
     

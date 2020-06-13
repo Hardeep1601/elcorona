@@ -31,7 +31,7 @@ import javax.swing.text.BadLocationException;
  * https://www.codejava.net/java-se/swing/redirect-standard-output-streams-to-jtextarea
  * https://www.codejava.net/java-se/swing/redirect-standard-output-streams-to-jtextarea
  */
-public class TextAreaLogProgram extends JFrame{
+public class ContactTracer extends JFrame{
     private JTextArea textArea;
      
     private JButton buttonStart = new JButton("Start");
@@ -39,7 +39,7 @@ public class TextAreaLogProgram extends JFrame{
      
     private PrintStream standardOut;
      
-    public TextAreaLogProgram() {
+    public ContactTracer() {
         super("Contact Tracer");
         
         final JFrame parent = new JFrame();
@@ -186,7 +186,7 @@ public class TextAreaLogProgram extends JFrame{
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new TextAreaLogProgram().setVisible(true);
+                new ContactTracer().setVisible(true);
             }
         });
     }

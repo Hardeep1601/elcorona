@@ -43,6 +43,8 @@ public class graphMain {
     public static int startDay;
     public static int endDay;
     public static int depth;
+    public static int forget;
+    
     
     graphMain(int find, int depth,int startSlot, int startDay, int endDay){
         this.slot=startSlot;
@@ -115,15 +117,17 @@ public class graphMain {
    
     static ArrayList<String[]> dayStore=new ArrayList<>();
     
-    
+     
     public static void runTracer(int find, int depth,int startSlot, int startDay, int endDay){
         System.out.println("\nRun Contact tracer...");
         System.out.println("Trace the contact for HumanID "+find+" with depth of "+depth+": ");
         System.out.println(find + "  "+Math.pow(0.9, 0));  
         readLog();      //read the general human info - has an error(not yet identified)
         sameHome();     // adds the people from the same home to an ArrayList
-
         
+        
+        //forgetness level 1-5, 1-dont remember anything, 5-remember almost everyting 
+        forget=5;
         
         for (int i = startDay; i <= endDay; i++) {
             if(i!=startDay){
@@ -150,11 +154,12 @@ public class graphMain {
         System.out.println("Role: "+role.get(find-1));
         System.out.println("Occupation: "+occ.get(find-1));
         System.out.println("Gender: "+gender.get(find-1));
+        System.out.println("Forgetness : "+forget);
         
         
         for (int i = startDay; i <= endDay; i++) {
             System.out.println("\nLog Day : " + i);
-            findLog(find, 5, i);
+            findLog(find, forget, i);
             clearSlots();
         }
 //        findLog(find);
@@ -277,7 +282,7 @@ public class graphMain {
     //the higher the forget level the lower the forgetness
     public static void findLog(int id, int forget,int day){
         
-        
+//        graphMain.forget=5-forget;
         System.out.println("\n-------The activities done along the day-------");
         
         readActivityLog(day);
@@ -286,50 +291,40 @@ public class graphMain {
         
         for (int i = 1; i <= 10; i++) {            
             int remember=rand.nextInt(forget)+1;
-//            System.out.println("Forgetness : "+forget);
+//            System.out.println("Forgetness : "+remember);
             
             if(remember==1){
-                
+                String str="-";
                 switch(i){
                     case 1:
-                        slot1.remove(find-1);
-                        slot1.set(i, "FORGET");
+                        slot1.set(find-1, str);
                         break;
                     case 2:
-                        slot2.remove(find-1);
-                        slot2.set(i, "FORGET");
+                        slot2.set(find-1, str);
                         break;
                     case 3:
-                        slot3.remove(find-1);
-                        slot3.set(i, "FORGET");
+                        slot3.set(find-1, str);
                         break;
                     case 4:
-                        slot4.remove(find-1);
-                        slot4.set(i, "FORGET");
+                        slot4.set(find-1, str);
                         break;
                     case 5:
-                        slot5.remove(find-1);
-                        slot5.set(i, "FORGET");
+                        slot5.set(find-1, str);
                         break;
                     case 6:
-                        slot6.remove(find-1);
-                        slot6.set(i, "FORGET");
+                        slot6.set(find-1, str);
                         break;
                     case 7:
-                        slot7.remove(find-1);
-                        slot7.set(i, "FORGET");
+                        slot7.set(find-1, str);
                         break;
                     case 8:
-                        slot8.remove(find-1);
-                        slot8.set(i, "FORGET");
+                        slot8.set(find-1, str);
                         break;
                     case 9:
-                        slot9.remove(find-1);
-                        slot9.set(i, "FORGET");
+                        slot9.set(find-1, str);
                         break;
                     case 10:
-                        slot10.remove(find-1);
-                        slot10.set(i, "FORGET");
+                        slot10.set(find-1, str);
                         break;
                 }
                 
@@ -464,6 +459,7 @@ public class graphMain {
            strLine = br.readLine();
            strLine = br.readLine();
            boolean test=false;
+           
            while ((strLine = br.readLine()) != null)   {
              if(strLine.equals(search)){            //reads the places from the log file,ex petrol station
                  for (int i = 0; i < 10; i++) {
@@ -483,7 +479,7 @@ public class graphMain {
                          }
                      }
                  } 
-                 break;
+                 break ;
              }
 //             System.out.println (strLine);
            }
