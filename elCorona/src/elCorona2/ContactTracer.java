@@ -754,6 +754,7 @@ public class ContactTracer extends JFrame{
         places.add("Healthcare Centre");
         places.add("Bank");
         places.add("Market");
+        places.add("Factory");
 //        boolean test=false;
         for (int i = 0; i < places.size(); i++) {
             if(place.equals(places.get(i))){

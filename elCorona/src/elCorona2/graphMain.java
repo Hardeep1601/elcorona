@@ -127,7 +127,7 @@ public class graphMain {
         
         
         //forgetness level 1-5, 1-dont remember anything, 5-remember almost everyting 
-        forget=5;
+        forget=100;
         
         for (int i = startDay; i <= endDay; i++) {
             if(i!=startDay){
@@ -293,7 +293,7 @@ public class graphMain {
             int remember=rand.nextInt(forget)+1;
 //            System.out.println("Forgetness : "+remember);
             
-            if(remember==1){
+            if(remember>=25){
                 String str="-";
                 switch(i){
                     case 1:
@@ -623,6 +623,7 @@ public class graphMain {
         places.add("Healthcare Centre");
         places.add("Bank");
         places.add("Market");
+        places.add("Factory");
 //        boolean test=false;
         for (int i = 0; i < places.size(); i++) {
             if(place.equals(places.get(i))){
