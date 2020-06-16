@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package corona;
+package Editted;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -53,7 +53,7 @@ public class Household {
     }
     
     public int getTotalPopulation(){
-        return totalPopulation;
+        return totalPopulation-1;
     }
     
     //house id is initialized here & home also initialzed

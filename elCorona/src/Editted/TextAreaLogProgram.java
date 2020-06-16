@@ -1,15 +1,175 @@
-package elCorona2;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Editted;
 
+//import project.*;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Random;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
+import javax.swing.text.BadLocationException;
 
-public class graphMAIN {
+/**
+ *
+ * https://www.codejava.net/java-se/swing/redirect-standard-output-streams-to-jtextarea
+ * https://www.codejava.net/java-se/swing/redirect-standard-output-streams-to-jtextarea
+ */
+public class TextAreaLogProgram extends JFrame{
+    private JTextArea textArea;
+     
+    private JButton buttonStart = new JButton("Start");
+//    private JButton buttonClear = new JButton("Exit");
+     
+    private PrintStream standardOut;
+     
+    public TextAreaLogProgram() {
+        super("Contact Tracer");
+        
+        final JFrame parent = new JFrame();
+        JButton button = new JButton();
+
+        parent.pack();
+        parent.setLocationRelativeTo(null);    // centers on screen
+        parent.setVisible(true);
+
+
+        
+        int slot = Integer.parseInt(JOptionPane.showInputDialog(parent,
+                        "What is starting slot ? (In numbers)", null));
+        int startDay = Integer.parseInt(JOptionPane.showInputDialog(parent,
+                        "What is start day ? (In numbers)", null));
+        int endDay = Integer.parseInt(JOptionPane.showInputDialog(parent,
+                        "What is end day ? (In numbers)", null));
+        int find = Integer.parseInt(JOptionPane.showInputDialog(parent,
+                        "What is human ID to be searched ? (In numbers)", null));
+        int depth = Integer.parseInt(JOptionPane.showInputDialog(parent,
+                        "What is depth of desired tree ? (In numbers)", null));
+        
+        
+        this.slot=slot;
+        this.startDay=startDay;
+         this.endDay=endDay;
+         this.find=find;
+         this.depth=depth;
+         
+        textArea = new JTextArea(50, 10);
+        textArea.setEditable(false);
+        PrintStream printStream = new PrintStream(new CustomOutputStream(textArea));
+         
+        // keeps reference of standard output stream
+        standardOut = System.out;
+         
+        // re-assigns standard output stream and error output stream
+        System.setOut(printStream);
+        System.setErr(printStream);
+ 
+        // creates the GUI
+        setLayout(new GridBagLayout());
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.insets = new Insets(10, 10, 10, 10);
+        constraints.anchor = GridBagConstraints.WEST;
+         
+        add(buttonStart, constraints);
+         
+        constraints.gridx = 1;
+//        add(buttonClear, constraints);
+         
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        constraints.gridwidth = 2;
+        constraints.fill = GridBagConstraints.BOTH;
+        constraints.weightx = 1.0;
+        constraints.weighty = 1.0;
+         
+        
+        add(new JScrollPane(textArea), constraints);
+         
+        // adds event handler for button Start
+        buttonStart.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                printLog();
+            }
+        });
+
+        //sets the Default window size 
+        
+        setSize(600, 800);
+        setLocationRelativeTo(null);    // centers on screen
+//        setSize(480, 320);
+        this.setVisible(true);
+    }
+     
+    
+    
+    int slot;
+    int startDay;
+    int endDay;
+    int depth;
+    
+    public void printLog() {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            
+            public void run() {
+                
+//                while (true) {
+//                    System.out.println("Time now is hello " + (new Date()));
+                    
+//            int slot=1;
+//            int startDay=1;
+//            int endDay=3;
+//            //is a st
+//            find=1;
+//            int depth=8;
+            
+            // Used to run the contact tracer
+            runTracer(find,depth,slot,startDay,endDay);
+                    
+//                    try {
+//                        Thread.sleep(1000);
+//                    } catch (InterruptedException ex) {
+//                        ex.printStackTrace();
+//                    }
+//                }
+            }
+        });
+        thread.start();
+    }
+     
+    /**
+     * Runs the program
+     */
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new TextAreaLogProgram().setVisible(true);
+            }
+        });
+    }
+    
+    
     static Graph<String, Integer> graph = new Graph<>();
 
     static ArrayList<String> houseNum=new ArrayList<>();
@@ -33,59 +193,12 @@ public class graphMAIN {
     static ArrayList<String> addedPeople=new ArrayList<>();
     public static int humanCount=0;
     
-    static graphMAIN m=new graphMAIN();
     public static int find=0;
-
-    public graphMAIN() {
-    }
     
-    public static int slot;
-    public static int startDay;
-    public static int endDay;
-    public static int depth;
-    public static int forget;
-    
-    
-    graphMAIN(int find, int depth,int startSlot, int startDay, int endDay){
-        this.slot=startSlot;
-        this.startDay=startDay;
-        this.endDay=endDay;
-        this.find=find;
-        this.depth=depth;
-            
-            // Used to run the contact tracer
-            runTracer(find,depth,slot,startDay,endDay);
-    }
-    
-    public static void main(String[] args) {
-
-
-        // Reading log file based on human ID
-//            readLogOut();
-//            readLog();
-//            readActivityLog(2);
-//            findLog(1);
-            // Define the depth and human ID to be searched
-
-            int slot=1;
-            int startDay=1;
-            int endDay=3;
-            find=1;
-            int depth=8;
-            
-            // Used to run the contact tracer
-            runTracer(find,depth,slot,startDay,endDay);
-//            Collections.sort(addedPeople);
-//        System.out.println("List contains \n"+addedPeople);
-//        System.out.println("Family : "+family);
-            // Starts reading from slot 2 of day 1 for human id 1
-//            startLocation(1,slot,day);
-//            graph.showGraph();
-//            sameHouse();
-//        readLogOut("Activity.log.6");
-//        userData(5);
-
-    }
+//    public static int slot;
+//    public static int startDay;
+//    public static int endDay;
+//    public static int depth;
     
     public static void userData(int forgetness){
         Random rand=new Random();
@@ -117,17 +230,17 @@ public class graphMAIN {
    
     static ArrayList<String[]> dayStore=new ArrayList<>();
     
-     
+    
+    // change the forgetness value here
+    static int forget=50;
     public static void runTracer(int find, int depth,int startSlot, int startDay, int endDay){
         System.out.println("\nRun Contact tracer...");
         System.out.println("Trace the contact for HumanID "+find+" with depth of "+depth+": ");
         System.out.println(find + "  "+Math.pow(0.9, 0));  
         readLog();      //read the general human info - has an error(not yet identified)
         sameHome();     // adds the people from the same home to an ArrayList
+
         
-        
-        //forgetness level 1-5, 1-dont remember anything, 5-remember almost everyting 
-        forget=25;
         
         for (int i = startDay; i <= endDay; i++) {
             if(i!=startDay){
@@ -138,7 +251,7 @@ public class graphMAIN {
             
             
             ArrayList<String> prev=new ArrayList<>();
-            m.contactTracer(graph,find,depth-1,1,prev,startSlot,i);
+            contactTracer(graph,find,depth-1,1,prev,startSlot,i);
             System.out.println("Day : "+ i);
             
             clearSlots();
@@ -155,7 +268,7 @@ public class graphMAIN {
         System.out.println("Occupation: "+occ.get(find-1));
         System.out.println("Gender: "+gender.get(find-1));
         System.out.println("Forgetness : "+forget);
-         
+        
         
         for (int i = startDay; i <= endDay; i++) {
             System.out.println("\nLog Day : " + i);
@@ -170,6 +283,7 @@ public class graphMAIN {
         
     }
     
+//    private PrintStream standardOut;
     public static void clearSlots(){
             slot1.clear();
             slot2.clear();
@@ -206,22 +320,11 @@ public class graphMAIN {
            int count=0;
            while ((strLine = br.readLine()) != null)   {        //reads the first line
              /* Read house number, ID, age, role, occupation, gender */
-//                temp=strLine.split(" ");
-//                if(!temp[0].equals("HOUSE")){
-//                    strLine = br.readLine();
-//                }
-//System.out.println("test");
+
                 house=strLine.split(" ");
                 houseNum.add(house[1]);
                 humanCount++;
-//                if(count+1==find){
-//                    setHouse=house[1];
-//                }
-//                if(house.equals(setHouse)){     // Adds the family
-//                    family.add(Integer.toString(count+1));
-////                    System.out.println("Family : "+family);
-//                }
-//                    
+                  
                     
                 strLine = br.readLine();
                 id=strLine.split(" ");
@@ -344,6 +447,7 @@ public class graphMAIN {
         System.out.println("Slot 10 = "+slot10.get(id-1));
         
     }
+
     
     public static void readActivityLog(int dayCount){
         try{
@@ -459,7 +563,6 @@ public class graphMAIN {
            strLine = br.readLine();
            strLine = br.readLine();
            boolean test=false;
-           
            while ((strLine = br.readLine()) != null)   {
              if(strLine.equals(search)){            //reads the places from the log file,ex petrol station
                  for (int i = 0; i < 10; i++) {
@@ -479,7 +582,7 @@ public class graphMAIN {
                          }
                      }
                  } 
-                 break ;
+                 break;
              }
 //             System.out.println (strLine);
            }
@@ -623,7 +726,6 @@ public class graphMAIN {
         places.add("Healthcare Centre");
         places.add("Bank");
         places.add("Market");
-        places.add("Factory");
 //        boolean test=false;
         for (int i = 0; i < places.size(); i++) {
             if(place.equals(places.get(i))){
@@ -637,7 +739,7 @@ public class graphMAIN {
     public static String storeOutput=""; 
     
     
-    public boolean contactTracer(Graph graph,Integer humanID,Integer depth,Integer count, ArrayList prev,int slot, int day){
+    public static boolean contactTracer(Graph graph,Integer humanID,Integer depth,Integer count, ArrayList prev,int slot, int day){
             if(count>depth){
                 return false;
             } 
@@ -677,6 +779,4 @@ public class graphMAIN {
             return true;
         
     }
-    
-       
 }

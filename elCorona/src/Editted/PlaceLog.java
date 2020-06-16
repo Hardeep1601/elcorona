@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package corona;
+package Editted;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,6 +39,7 @@ public class PlaceLog {
     private String [] healthcareCentre = new String[10];
     private String [] bank = new String[10];
     private String [] market = new String[10];
+    private String [] factory = new String[10];
     
     private Logger log = Logger.getLogger("PLog");
     private FileHandler fh;
@@ -68,6 +69,7 @@ public class PlaceLog {
             healthcareCentre[i]="";
             bank[i]="";
             market[i]="";
+            factory[i]="";
         }
     }
     
@@ -105,6 +107,9 @@ public class PlaceLog {
                 break;
             case "Mall Worker":
                 mall[index]+=id+"|";
+                break;
+            case "Factory":
+                factory[index]+=id+"|";
                 break;
             case "School Janitor":
                 randnum = r.nextInt(2);
@@ -328,6 +333,8 @@ public class PlaceLog {
             info+=printInfo(bank);
             info+="Market\n";
             info+=printInfo(market);
+            info+="Factory\n";
+            info+=printInfo(factory);
             
             log.info(info);
         }catch(SecurityException | IOException e){

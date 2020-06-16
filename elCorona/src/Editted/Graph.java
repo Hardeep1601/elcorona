@@ -1,7 +1,6 @@
 
-package elcoronaGUI;
+package Editted;
 
-import elCorona2.*;
 import java.util.ArrayList;
 
 public class Graph<V extends Comparable<V>, E> {

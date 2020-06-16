@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package corona;
+package Editted;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -16,44 +16,25 @@ import java.util.Random;
  *
  * @author koghu
  */
-public class DPerson {
+public class DPerson extends Data {
 
     int x, y, cx, cy, p = 0;
     int vx = 0, vy = 0;
     int infection = 0;
     int time = 0;
-    String[] place = {"A", "B", "C", "D", "E", "F"};
-    String[] cP = new String[10];
-//    String[] cP = {"House C", "Bus Stop", "PlayGround", "Train Station"};
+    String[] cP;
     int[] nP = new int[2];
     Random rand = new Random();
     Places pl = new Places();
-    String[] list ;
-    private int humanId;
-    private ArrayList<String[]> actList;
-    
-    public void setActList(ArrayList<String[]> a){
-        cP = a.get(humanId-1);
-    }
-
-    public void genPlace() {
-        for (int i = 0; i < cP.length; i++) {
-            cP[i] = place[rand.nextInt(6)];
-             
-        }
-    }
-    
-    
+    String[] list;
+    private int humanID;
 
     public DPerson(int a) {
-        humanId = a;
         Random rand = new Random();
+
+        humanID = a;
+        cP = getAct(a);
 //        genPlace();
-
- Places p= new Places();
-        String q=p.getLocation();
-//        String[] = q.split("\\.");
-
 
         System.out.println("The current letter is:" + Arrays.toString(cP));
         String s = cP[0];
@@ -71,75 +52,89 @@ public class DPerson {
             y = rand.nextInt(110) + 400;
 
         }
-
-        if (a == 0) {
-            cx = x;
-            cy = y;
-        }
-
+        cx = x;
+        cy = y;
+        p = 0;
         nextP();
     }
 
-    public void paint(Graphics g) {
+    public void paint(Graphics g, int a) {
         time++;
-        
-        if (time % 300 == 0) {
-            p++;
 
-            if (p == 4) {
-                resetP();
-            }
+        if (infection == 0) {
+            g.setColor(Color.blue);
+        } else if (infection == 1) {
+            g.setColor(Color.red);
+        }
+        int set;
 
-//           
-            nextP();
-
+        if (a < 3) {
+            set = 500;
+        } else if (a < 6) {
+            set = 200;
+        } else {
+            set = 80;
         }
 
-        if (cx == nP[0] || cx == nP[0] + 2 || cx == nP[0] - 2) {
+        if (time % set == 0) {
+            p++;
+            nextP();
+        }
+
+        if (cx <= nP[0] + 10 && cx >= nP[0] - 10) {
+            cx = nP[0];
             vx = 0;
 
         } else if (cx > nP[0]) {
-            vx = -4;
+            vx = -(a);
         } else {
-            vx = 4;
+            vx = a;
         }
-        if (cy == nP[1] || cy == nP[1] + 2 || cy == nP[1] - 2) {
+        if (cy <= nP[1] + 10 && cy >= nP[1] - 10) {
+            cy = nP[1];
             vy = 0;
         } else if (cy > nP[1]) {
-            vy = -4;
+            vy = -a;
         } else {
-            vy = 4;
+            vy = a;
         }
         cx += vx;
         cy += vy;
+        g.fillOval(cx, cy, 5, 5);
+        if (p + 1 == cP.length && humanID == 1) {
 
-        g.setColor(Color.blue);
-        g.fillOval(cx, cy, 10, 10);
-       
+            nextSDay();
+            cP = getAct(humanID);
+            p = 0;
+        }
+
+        if (p + 1 == cP.length) {
+            cP = getAct(humanID);
+            p = 0;
+        }
+
     }
 
     public void nextP() {
+        Random rand = new Random();
 
-        if (p > 3) {
+        if (p > cP.length) {
             p = -1;
         }
 
-        if (p + 1 <= 3) {
+        if (p + 1 != cP.length) {
 
-pl.Location(cP[p+1]);
-nP[0]=pl.getX();
-nP[1]=pl.getY();
+            pl.Location(cP[p + 1]);
+            nP[0] = pl.getX();
+            nP[1] = pl.getY();
 
         }
+
     }
 
-    public void resetP() {
-        pl.Location(cP[0]);
-        nP[0]=pl.getX();
-        nP[1]=pl.getY();
-
-
-
+    public void infect() {
+        infection = 1;
+        setInfected(humanID);
     }
 
 }

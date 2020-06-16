@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package corona;
+package Editted;
 
 import java.util.Random;
 
@@ -22,16 +22,19 @@ public class Person {
     private int forgetfullness;
     private int imunity;
     private String gender;
+    private String occupationPlace;
     
     private Random r = new Random();
+    private int randnum;
     
     public void person(){
-        int randNum = r.nextInt(4);
-        switch(randNum){
+        randnum = r.nextInt(4);
+        switch(randnum){
             case 0:
                 age = r.nextInt(6)+1;
                 role = "Toddler";
                 occupation = null;
+                occupationPlace = "Kindergarten";
                 gender = gender();
                 trait();
                 break;
@@ -39,6 +42,11 @@ public class Person {
                 age = r.nextInt(11)+7;
                 role = "Student";
                 occupation = null;
+                if(age<=12){
+                    occupationPlace = "Primary School";
+                }else{
+                    occupationPlace = "Secondary School";
+                }
                 gender = gender();
                 trait();
                 break;
@@ -46,6 +54,7 @@ public class Person {
                 age = r.nextInt(23)+18;
                 role = "Adult";
                 occupation = theirWork();
+                occupationPlace = theirOccupationPlace();
                 gender = gender();
                 trait();
                 break;
@@ -53,6 +62,7 @@ public class Person {
                 age = r.nextInt(30)+41;
                 role = "Elderly";
                 occupation = theirWork();
+                occupationPlace = theirOccupationPlace();
                 gender = gender();
                 trait();
                 break;
@@ -65,7 +75,7 @@ public class Person {
     }
     
     public void initializeHome(){
-        int randnum = r.nextInt(4);
+        randnum = r.nextInt(4);
         switch(randnum){
             case 0:
                 home = "Flat";
@@ -106,13 +116,17 @@ public class Person {
         return occupation;
     }
     
+    public String getOccupationPlace(){
+        return occupationPlace;
+    }
+    
     public int getAge(){
         return age;
     }
     
     public String gender(){
-        int randNum = r.nextInt(2);
-        if(randNum==0){
+        randnum = r.nextInt(2);
+        if(randnum==0){
             return "Male";
         }else{
             return "Female";
@@ -130,7 +144,7 @@ public class Person {
     }
     
     public String theirWork(){
-        int randnum = r.nextInt(14);
+        randnum = r.nextInt(15);
         if(age>=60){
             return "Retired";
         }
@@ -163,8 +177,68 @@ public class Person {
                 return "Outside City";
             case 13:
                 return "Petrol Station Worker";
+            case 14:
+                return "Factory Worker";
         }
         return "";
+    }
+    
+    public String theirOccupationPlace(){
+        System.out.println(occupation);
+        switch (occupation) {
+            case "Police":
+                return "Police Station";
+            case "Bank Officer":
+                return "Bank";
+            case "Healthcare Centre Worker":
+                return "Heathcare Centre";
+            case "Bus Driver":
+                return "Bus Stop";
+            case "Railway Worker":
+                return "Train Station";
+            case "Mall Worker":
+                return "Mall";
+            case "School Janitor":
+                randnum = r.nextInt(2);
+                if (randnum == 0) {
+                    return "Primary School";
+                } else {
+                    return "Secondary School";
+                }
+            case "Teacher":
+                randnum = r.nextInt(2);
+                if (randnum == 0) {
+                    return "Primary School";
+                } else {
+                    return "Secondary School";
+                }
+            case "Taxi Driver":
+                return "Taxi Driver";
+            case "Priest":
+                return "Mosque";
+            case "Restaurant Worker":
+                randnum = r.nextInt(3);
+                if (randnum == 0) {
+                    return "Food Court";
+                } else if (randnum == 1) {
+                    return "Shop Lot";
+                } else {
+                    return "Mall";
+                }
+            case "Outside City":
+                randnum = r.nextInt(10);
+                if (randnum <= 7) {
+                    return "Train Station";
+                } else {
+                    return "Bus Stop";
+                }
+            case "Petrol Station Worker":
+                return "Petrol Station";
+            case "Factory Worker":
+                return "Factory";
+            default:
+                return occupation;
+            }
     }
     
     public String toString(){

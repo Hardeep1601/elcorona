@@ -1,6 +1,4 @@
-package elcoronaGUI;
-
-import elCorona2.*;
+package Editted;
 
 public class GraphNode<V , E> {
     private V vertice;

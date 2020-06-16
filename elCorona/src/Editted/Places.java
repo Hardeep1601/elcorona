@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package corona;
+package Editted;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -17,44 +17,43 @@ public class Places {
 
     int x, y;
     Random rand = new Random();
-        String s = "Flat."
-                + "House A."
-                + "House B."
-                + "House C."
-                + "Playground."
-                + "Bus Stop."
-                + "Train Station."
-                + "Petrol Station."
-                + "Primary School."
-                + "Secondary School."
-                + "Kindergarten."
-                + "Food Court."
-                + "Mall."
-                + "Shop Lot."
-                + "Field."
-                + "Police Station."
-                + "Mosque."
-                + "Healthcare Centre."
-                + "Bank."
-                + "Market";
-       
+    String s = "Flat."
+            + "House A."
+            + "House B."
+            + "House C."
+            + "Playground."
+            + "Bus Stop."
+            + "Train Station."
+            + "Petrol Station."
+            + "Primary School."
+            + "Secondary School."
+            + "Kindergarten."
+            + "Food Court."
+            + "Mall."
+            + "Shop Lot."
+            + "Field."
+            + "Police Station."
+            + "Mosque."
+            + "Healthcare Centre."
+            + "Bank."
+            + "Market";
 
     public Places() {
 
     }
 
     public Places(Graphics g) {
-       
+
 //        Graphics g= new Graphics();
 //        Graphics g = null;
 //        System.out.println("paint");
 //    Colour mycolour= (255,12,12);
-
         int alpha = 127; // 50% transparent
 //Color myColour = new Color(51, 153, 255);
-        g.setColor(Color.LIGHT_GRAY);
+        Color po = new Color(188, 143, 143);
+        g.setColor(po);
         //1
-        g.fillRect(10, 10, 230, 130);
+        g.fillRect(10, 10, 240, 130);
         //2
         g.fillRect(10, 250, 150, 180);
         //3
@@ -63,48 +62,93 @@ public class Places {
         g.fillRect(905, 400, 160, 110);
         //5
 //      g.fillRect(800, 600, 120, 80);
-        g.setColor(Color.ORANGE);
+
         //Field
+        Color ss = new Color(173, 255, 47);
+        g.setColor(ss);
         g.fillRect(950, 550, 150, 80);
+
         //FoodCourt
-        g.fillRect(580, 600, 250, 80);
+        Color food = new Color(210, 105, 30);
+        g.setColor(food);
+        g.fillRect(580, 600, 250, 110);
+
         //Shoplot
         g.fillRect(280, 600, 200, 180);
+
         //Tadika
-        g.fillRect(230, 320, 60, 80);
+        Color tadika = new Color(218, 165, 32);
+        g.setColor(tadika);
+        g.fillRect(230, 320, 60, 90);
+
         //Bus Stop
+        Color bus = new Color(244, 164, 96);
+        g.setColor(bus);
         g.fillRect(300, 10, 60, 40);
+
         //Market
+        Color market = new Color(210, 105, 30);
+        g.setColor(market);
         g.fillRect(770, 100, 80, 100);
+
         //Mosque
-        g.fillRect(550, 460, 110, 60);
+        Color mosq = new Color(144, 238, 144);
+        g.setColor(Color.yellow);
+        g.fillRect(550, 460, 120, 70);
+
         //Police Station
-        g.fillRect(630, 210, 70, 70);
+        Color police = new Color(65, 105, 225);
+        g.setColor(police);
+        g.fillRect(630, 210, 80, 80);
+
         //P.Kesihatan
-        g.fillRect(270, 210, 110, 80);
+        Color kesihatan = new Color(255, 69, 0);
+        g.setColor(kesihatan);
+        g.fillRect(270, 210, 130, 90);
+
         //PetrolStation
-//        g.setColor(Color.red);
+        Color petrol = new Color(255, 165, 0);
+        g.setColor(petrol);
         g.fillRect(300, 70, 40, 40);
+
         //Bank
+        Color bank = new Color(219, 112, 147);
+        g.setColor(bank);
         g.fillRect(490, 600, 40, 40);
+
         //Train
-        g.setColor(Color.cyan);
+        Color train = new Color(244, 164, 96);
+        g.setColor(train);
         g.fillRect(970, 270, 110, 100);
 
         //Mall
-        g.setColor(Color.MAGENTA);
+        Color so = new Color(218, 165, 32);
+        g.setColor(so);
         g.fillRect(900, 0, 300, 200);
+
         //PlayGround
-        g.setColor(Color.GREEN);
+        Color gi = new Color(173, 255, 47);
+        g.setColor(gi);
         g.fillOval(450, 300, 150, 100);
+
         //SK
+        Color sp = new Color(210, 143, 27);
         g.setColor(Color.pink);
-        g.fillRect(330, 440, 140, 80);
+        g.fillRect(330, 440, 140, 90);
+
         //padangSK
-        g.fillRect(700, 430, 100, 60);
+        Color padang = new Color(144, 238, 144);
+        g.setColor(padang);
+        g.fillRect(700, 420, 100, 60);
+
         //Smk
-        g.fillRect(700, 330, 110, 90);
+        Color smk = new Color(218, 165, 32);
+        g.setColor(smk);
+        g.fillRect(700, 330, 125, 95);
+
         //Factory
+        Color factory = new Color(189, 183, 107);
+        g.setColor(factory);
         g.fillRect(470, 0, 200, 110);
 
     }
@@ -112,42 +156,47 @@ public class Places {
     public void Location(String s) {
         if (s.equalsIgnoreCase("Flat")) {
             x = rand.nextInt(230) + 10;
-            y = rand.nextInt(130) + 10;
+            y = rand.nextInt(120) + 10;
 
         } else if (s.equalsIgnoreCase("House A")) {
-            x = rand.nextInt(150) + 10;
-            y = rand.nextInt(180) + 250;
+            x = rand.nextInt(145) + 10;
+            y = rand.nextInt(175) + 250;
         } else if (s.equalsIgnoreCase("House B")) {
-            x = rand.nextInt(180) + 10;
+            x = rand.nextInt(190) + 10;
             y = rand.nextInt(120) + 550;
         } else if (s.equalsIgnoreCase("House c")) {
             x = rand.nextInt(160) + 905;
-            y = rand.nextInt(110) + 400;
+            y = rand.nextInt(105) + 400;
 
         } else if (s.equalsIgnoreCase("Field")) {
-            x = rand.nextInt(145) + 950;
-            y = rand.nextInt(170) + 550;
+            x = rand.nextInt(150) + 950;
+            y = rand.nextInt(80) + 550;
 
         } else if (s.equalsIgnoreCase("Playground")) {
-            x = rand.nextInt(150) + 450;
-            y = rand.nextInt(100) + 300;
+            x = rand.nextInt(110) + 470;
+            y = rand.nextInt(60) + 320;
 
         } else if (s.equalsIgnoreCase("Bus Stop")) {
-            x = rand.nextInt(60) + 300;
-            y = rand.nextInt(40) + 10;
+            x = rand.nextInt(50) + 300;
+            y = rand.nextInt(30) + 10;
 
         } else if (s.equalsIgnoreCase("Train Station")) {
             x = rand.nextInt(90) + 970;
-            y = rand.nextInt(100) + 270;
+            y = rand.nextInt(95) + 270;
         } else if (s.equalsIgnoreCase("Petrol Station")) {
-            x = rand.nextInt(140) + 300;
-            y = rand.nextInt(40) + 70;
+            x = rand.nextInt(35) + 300;
+            y = rand.nextInt(35) + 70;
         } else if (s.equalsIgnoreCase("Primary School")) {
             x = rand.nextInt(140) + 330;
             y = rand.nextInt(80) + 440;
         } else if (s.equalsIgnoreCase("Secondary School")) {
-            x = rand.nextInt(810) + 700;
-            y = rand.nextInt(90) + 330;
+            if(rand.nextInt(2)==1){
+            x = rand.nextInt(110) + 700;
+            y = rand.nextInt(90) + 330;}
+            else {
+            x = rand.nextInt(95) + 700;
+            y = rand.nextInt(55) + 420;  
+            }
         } else if (s.equalsIgnoreCase("Mosque")) {
             x = rand.nextInt(110) + 550;
             y = rand.nextInt(60) + 460;
@@ -155,35 +204,36 @@ public class Places {
             x = rand.nextInt(250) + 580;
             y = rand.nextInt(80) + 600;
         } else if (s.equalsIgnoreCase("Mall")) {
-            x = rand.nextInt(300) + 900;
+            x = rand.nextInt(160) + 900;
             y = rand.nextInt(200) + 0;
         } else if (s.equalsIgnoreCase("Shop Lot")) {
-            x = rand.nextInt(200) + 280;
-            y = rand.nextInt(180) + 600;
+            x = rand.nextInt(190) + 280;
+            y = rand.nextInt(80) + 600;
         } else if (s.equalsIgnoreCase("Police Station")) {
             x = rand.nextInt(70) + 630;
-            y = rand.nextInt(280) + 210;
+            y = rand.nextInt(70) + 210;
         } else if (s.equalsIgnoreCase("Kindergarten")) {
-            x = rand.nextInt(60) + 230;
-            y = rand.nextInt(40) + 320;
-        } else if (s.equalsIgnoreCase("Food Court")) {
-            x = rand.nextInt(250) + 580;
-            y = rand.nextInt(80) + 600;
+            x = rand.nextInt(55) + 230;
+            y = rand.nextInt(80) + 320;
         } else if (s.equalsIgnoreCase("Healthcare Centre")) {
             x = rand.nextInt(110) + 270;
             y = rand.nextInt(80) + 210;
         } else if (s.equalsIgnoreCase("Market")) {
-            x = rand.nextInt(130) + 770;
+            x = rand.nextInt(80) + 770;
             y = rand.nextInt(100) + 100;
         } else if (s.equalsIgnoreCase("Bank")) {
             x = rand.nextInt(40) + 490;
-            y = rand.nextInt(40) + 600;
-
+            y = rand.nextInt(35) + 600;
+        }
+        else if (s.equalsIgnoreCase("Factory")){
+            x = rand.nextInt(200) + 470;
+            y = rand.nextInt(110) + 0;
+            
         }
 
     }
-    
-    public String getLocation(){
+
+    public String getLocation() {
         return s;
     }
 
