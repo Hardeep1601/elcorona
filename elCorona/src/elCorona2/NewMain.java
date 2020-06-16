@@ -25,7 +25,7 @@ public class NewMain extends JFrame implements ActionListener{
     private static final long serialVersionUID = 1L;  
   
     private static void createAndShowGUI() {  
-        graphMain g=new graphMain();
+        graphMAIN g=new graphMAIN();
         // Create and set up the window.  
         final JFrame frame = new JFrame("Contact Tracer");  
   

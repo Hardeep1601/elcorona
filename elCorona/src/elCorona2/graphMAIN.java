@@ -1,19 +1,15 @@
 package elCorona2;
 
-import java.awt.FlowLayout;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 
-public class graphMain_2 extends JFrame{
+public class graphMAIN {
     static Graph<String, Integer> graph = new Graph<>();
 
     static ArrayList<String> houseNum=new ArrayList<>();
@@ -37,20 +33,39 @@ public class graphMain_2 extends JFrame{
     static ArrayList<String> addedPeople=new ArrayList<>();
     public static int humanCount=0;
     
-    static graphMain_2 m=new graphMain_2();
+    static graphMAIN m=new graphMAIN();
     public static int find=0;
 
-    public graphMain_2() {
+    public graphMAIN() {
     }
     
     public static int slot;
     public static int startDay;
     public static int endDay;
     public static int depth;
+    public static int forget;
     
+    
+    graphMAIN(int find, int depth,int startSlot, int startDay, int endDay){
+        this.slot=startSlot;
+        this.startDay=startDay;
+        this.endDay=endDay;
+        this.find=find;
+        this.depth=depth;
+            
+            // Used to run the contact tracer
+            runTracer(find,depth,slot,startDay,endDay);
+    }
     
     public static void main(String[] args) {
 
+
+        // Reading log file based on human ID
+//            readLogOut();
+//            readLog();
+//            readActivityLog(2);
+//            findLog(1);
+            // Define the depth and human ID to be searched
 
             int slot=1;
             int startDay=1;
@@ -60,42 +75,17 @@ public class graphMain_2 extends JFrame{
             
             // Used to run the contact tracer
             runTracer(find,depth,slot,startDay,endDay);
-            
-            
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {  
-  
-            public void run() {  
-                createAndShowGUI();  
-            }  
-        });  
+//            Collections.sort(addedPeople);
+//        System.out.println("List contains \n"+addedPeople);
+//        System.out.println("Family : "+family);
+            // Starts reading from slot 2 of day 1 for human id 1
+//            startLocation(1,slot,day);
+//            graph.showGraph();
+//            sameHouse();
+//        readLogOut("Activity.log.6");
+//        userData(5);
 
     }
-    private static final long serialVersionUID = 1L;  
-  
-    private static void createAndShowGUI() {  
-        graphMAIN g=new graphMAIN();
-        // Create and set up the window.  
-        final JFrame frame = new JFrame("Contact Tracer");  
-  
-        // Display the window.  
-        frame.setSize(600, 900);  
-        frame.setVisible(true);  
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
-  
-        // set flow layout for the frame  
-        frame.getContentPane().setLayout(new FlowLayout());  
-  
-        JTextArea textArea = new JTextArea(50, 50);  
-        
-        
-        textArea.setText(g.storeOutput);
-        JScrollPane scrollableTextArea = new JScrollPane(textArea);  
-  
-        scrollableTextArea.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);  
-        scrollableTextArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);  
-  
-        frame.getContentPane().add(scrollableTextArea);  
-    } 
     
     public static void userData(int forgetness){
         Random rand=new Random();
@@ -127,15 +117,17 @@ public class graphMain_2 extends JFrame{
    
     static ArrayList<String[]> dayStore=new ArrayList<>();
     
-    
+     
     public static void runTracer(int find, int depth,int startSlot, int startDay, int endDay){
         System.out.println("\nRun Contact tracer...");
         System.out.println("Trace the contact for HumanID "+find+" with depth of "+depth+": ");
         System.out.println(find + "  "+Math.pow(0.9, 0));  
         readLog();      //read the general human info - has an error(not yet identified)
         sameHome();     // adds the people from the same home to an ArrayList
-
         
+        
+        //forgetness level 1-5, 1-dont remember anything, 5-remember almost everyting 
+        forget=25;
         
         for (int i = startDay; i <= endDay; i++) {
             if(i!=startDay){
@@ -162,11 +154,12 @@ public class graphMain_2 extends JFrame{
         System.out.println("Role: "+role.get(find-1));
         System.out.println("Occupation: "+occ.get(find-1));
         System.out.println("Gender: "+gender.get(find-1));
-        
+        System.out.println("Forgetness : "+forget);
+         
         
         for (int i = startDay; i <= endDay; i++) {
             System.out.println("\nLog Day : " + i);
-            findLog(find, 5, i);
+            findLog(find, forget, i);
             clearSlots();
         }
 //        findLog(find);
@@ -177,7 +170,6 @@ public class graphMain_2 extends JFrame{
         
     }
     
-    private PrintStream standardOut;
     public static void clearSlots(){
             slot1.clear();
             slot2.clear();
@@ -214,11 +206,22 @@ public class graphMain_2 extends JFrame{
            int count=0;
            while ((strLine = br.readLine()) != null)   {        //reads the first line
              /* Read house number, ID, age, role, occupation, gender */
-
+//                temp=strLine.split(" ");
+//                if(!temp[0].equals("HOUSE")){
+//                    strLine = br.readLine();
+//                }
+//System.out.println("test");
                 house=strLine.split(" ");
                 houseNum.add(house[1]);
                 humanCount++;
-                  
+//                if(count+1==find){
+//                    setHouse=house[1];
+//                }
+//                if(house.equals(setHouse)){     // Adds the family
+//                    family.add(Integer.toString(count+1));
+////                    System.out.println("Family : "+family);
+//                }
+//                    
                     
                 strLine = br.readLine();
                 id=strLine.split(" ");
@@ -279,7 +282,7 @@ public class graphMain_2 extends JFrame{
     //the higher the forget level the lower the forgetness
     public static void findLog(int id, int forget,int day){
         
-        
+//        graphMAIN.forget=5-forget;
         System.out.println("\n-------The activities done along the day-------");
         
         readActivityLog(day);
@@ -288,50 +291,40 @@ public class graphMain_2 extends JFrame{
         
         for (int i = 1; i <= 10; i++) {            
             int remember=rand.nextInt(forget)+1;
-//            System.out.println("Forgetness : "+forget);
+//            System.out.println("Forgetness : "+remember);
             
-            if(remember==1){
-                
+            if(remember>=25){
+                String str="-";
                 switch(i){
                     case 1:
-                        slot1.remove(find-1);
-                        slot1.set(i, "FORGET");
+                        slot1.set(find-1, str);
                         break;
                     case 2:
-                        slot2.remove(find-1);
-                        slot2.set(i, "FORGET");
+                        slot2.set(find-1, str);
                         break;
                     case 3:
-                        slot3.remove(find-1);
-                        slot3.set(i, "FORGET");
+                        slot3.set(find-1, str);
                         break;
                     case 4:
-                        slot4.remove(find-1);
-                        slot4.set(i, "FORGET");
+                        slot4.set(find-1, str);
                         break;
                     case 5:
-                        slot5.remove(find-1);
-                        slot5.set(i, "FORGET");
+                        slot5.set(find-1, str);
                         break;
                     case 6:
-                        slot6.remove(find-1);
-                        slot6.set(i, "FORGET");
+                        slot6.set(find-1, str);
                         break;
                     case 7:
-                        slot7.remove(find-1);
-                        slot7.set(i, "FORGET");
+                        slot7.set(find-1, str);
                         break;
                     case 8:
-                        slot8.remove(find-1);
-                        slot8.set(i, "FORGET");
+                        slot8.set(find-1, str);
                         break;
                     case 9:
-                        slot9.remove(find-1);
-                        slot9.set(i, "FORGET");
+                        slot9.set(find-1, str);
                         break;
                     case 10:
-                        slot10.remove(find-1);
-                        slot10.set(i, "FORGET");
+                        slot10.set(find-1, str);
                         break;
                 }
                 
@@ -466,6 +459,7 @@ public class graphMain_2 extends JFrame{
            strLine = br.readLine();
            strLine = br.readLine();
            boolean test=false;
+           
            while ((strLine = br.readLine()) != null)   {
              if(strLine.equals(search)){            //reads the places from the log file,ex petrol station
                  for (int i = 0; i < 10; i++) {
@@ -485,7 +479,7 @@ public class graphMain_2 extends JFrame{
                          }
                      }
                  } 
-                 break;
+                 break ;
              }
 //             System.out.println (strLine);
            }
@@ -629,6 +623,7 @@ public class graphMain_2 extends JFrame{
         places.add("Healthcare Centre");
         places.add("Bank");
         places.add("Market");
+        places.add("Factory");
 //        boolean test=false;
         for (int i = 0; i < places.size(); i++) {
             if(place.equals(places.get(i))){
