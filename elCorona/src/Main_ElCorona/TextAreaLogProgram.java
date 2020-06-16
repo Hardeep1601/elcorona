@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Editted;
+package Main_ElCorona;
 
 //import project.*;
 import java.awt.GridBagConstraints;
@@ -145,6 +145,7 @@ public class TextAreaLogProgram extends JFrame{
             
             // Used to run the contact tracer
             runTracer(find,depth,slot,startDay,endDay);
+            addedPeople.clear();
                     
 //                    try {
 //                        Thread.sleep(1000);

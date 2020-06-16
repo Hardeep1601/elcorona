@@ -1,4 +1,4 @@
-package Editted;
+package Main_ElCorona;
 
 public class Edge<E> {
     private GraphNode verticeLink;

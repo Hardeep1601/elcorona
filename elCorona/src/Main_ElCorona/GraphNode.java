@@ -1,4 +1,4 @@
-package Editted;
+package Main_ElCorona;
 
 public class GraphNode<V , E> {
     private V vertice;

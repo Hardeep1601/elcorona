@@ -73,7 +73,7 @@ public class graphMain_2 extends JFrame{
     private static final long serialVersionUID = 1L;  
   
     private static void createAndShowGUI() {  
-        graphMAIN g=new graphMAIN();
+//        graphMAIN g=new graphMAIN();
         // Create and set up the window.  
         final JFrame frame = new JFrame("Contact Tracer");  
   
@@ -88,7 +88,7 @@ public class graphMain_2 extends JFrame{
         JTextArea textArea = new JTextArea(50, 50);  
         
         
-        textArea.setText(g.storeOutput);
+//        textArea.setText(g.storeOutput);
         JScrollPane scrollableTextArea = new JScrollPane(textArea);  
   
         scrollableTextArea.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);  

@@ -25,7 +25,7 @@ public class NewMain extends JFrame implements ActionListener{
     private static final long serialVersionUID = 1L;  
   
     private static void createAndShowGUI() {  
-        graphMAIN g=new graphMAIN();
+//        graphMAIN g=new graphMAIN();
         // Create and set up the window.  
         final JFrame frame = new JFrame("Contact Tracer");  
   
@@ -40,7 +40,7 @@ public class NewMain extends JFrame implements ActionListener{
         JTextArea textArea = new JTextArea(50, 50);  
         String show="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\naaaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaa\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
         
-        textArea.setText(g.storeOutput);
+//        textArea.setText(g.storeOutput);
         JScrollPane scrollableTextArea = new JScrollPane(textArea);  
   
         scrollableTextArea.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);  

@@ -1,5 +1,6 @@
 package elCorona2;
 
+import elCorona2.Graph;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
