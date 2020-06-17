@@ -20,7 +20,7 @@ public class Person {
     private String role;
     private String occupation;
     private int forgetfullness;
-    private int imunity;
+    private int immunity;
     private String gender;
     private String occupationPlace;
     
@@ -136,10 +136,10 @@ public class Person {
     public void trait(){
         if(role=="Elderly" || role=="Toddler"){
             forgetfullness = r.nextInt(51)+50;
-            imunity = r.nextInt(51)+10;
+            immunity = r.nextInt(51)+10;
         }else{
             forgetfullness = r.nextInt(100)+1;
-            imunity = r.nextInt(71)+20;
+            immunity = r.nextInt(71)+20;
         }
     }
     
@@ -242,6 +242,7 @@ public class Person {
     }
     
     public String toString(){
-        return "House: "+house+"\nID: "+id+"\nAge: "+age+"\nRole: "+role+"\nOccupation: "+occupation+"\nGender: "+gender;
+        return "House: "+house+"\nID: "+id+"\nAge: "+age+"\nRole: "+role+"\nOccupation: "+occupation+
+                "\nGender: "+gender+"\nImmunity: "+immunity+"\nForgetfullness: "+forgetfullness;
     }
 }

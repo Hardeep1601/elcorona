@@ -171,7 +171,7 @@ m.setVisible(true);
         frame.add(this);
         frame.setVisible(true);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < population; i++) {
             people.add(new DPerson(i + 1));
 
         }

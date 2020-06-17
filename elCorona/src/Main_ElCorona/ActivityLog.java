@@ -500,6 +500,7 @@ public class ActivityLog {
                                 break;
                             case "Taxi Driver":
                                 act[k] = place.randomPlace();
+                                slot[k] = act[k];
                                 break;
                             case "Priest":
                                 act[k] = "Mosque";

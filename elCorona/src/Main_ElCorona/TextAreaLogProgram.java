@@ -52,8 +52,8 @@ public class TextAreaLogProgram extends JFrame{
 
 
         
-        int slot = Integer.parseInt(JOptionPane.showInputDialog(parent,
-                        "What is starting slot ? (In numbers, 1 - 10)", null));
+//        int slot = Integer.parseInt(JOptionPane.showInputDialog(parent,
+//                        "What is starting slot ? (In numbers, 1 - 10)", null));;
         int startDay = Integer.parseInt(JOptionPane.showInputDialog(parent,
                         "What is start day ? (In numbers)", null));
         int endDay = Integer.parseInt(JOptionPane.showInputDialog(parent,
@@ -64,7 +64,7 @@ public class TextAreaLogProgram extends JFrame{
                         "What is depth of desired tree ? (In numbers, starts from 0)", null));
         
         
-        this.slot=slot;
+        this.slot=1;
         this.startDay=startDay;
          this.endDay=endDay;
          this.find=find;
@@ -171,6 +171,20 @@ public class TextAreaLogProgram extends JFrame{
     }
     
     
+    
+    /*
+   
+        CONTACT 
+               TRACER 
+                        CODE 
+                               STARTS 
+                                         HERE 
+    
+    */
+    
+    
+    
+    
 //    static Graph<String, Integer> graph = new Graph<>();
 
     static ArrayList<String> houseNum=new ArrayList<>();
@@ -180,6 +194,8 @@ public class TextAreaLogProgram extends JFrame{
     static ArrayList<String> occ=new ArrayList<>();
     static ArrayList<String> gender=new ArrayList<>();
     static ArrayList<String> family=new ArrayList<>();
+    static ArrayList<String> forgetfullness=new ArrayList<>();
+    static ArrayList<String> immunity=new ArrayList<>();
     static ArrayList<String> slot1=new ArrayList<>();
     static ArrayList<String> slot2=new ArrayList<>();
     static ArrayList<String> slot3=new ArrayList<>();
@@ -195,11 +211,7 @@ public class TextAreaLogProgram extends JFrame{
     public static int humanCount=0;
     
     public static int find=0;
-    
-//    public static int slot;
-//    public static int startDay;
-//    public static int endDay;
-//    public static int depth;
+
     
     
     
@@ -208,7 +220,7 @@ public class TextAreaLogProgram extends JFrame{
     
     
     // change the forgetness value here
-    static int forget=50;
+    static int forget;
     public static int humanAdded=0;
     
     public static void runTracer(int find, int depth,int startSlot, int startDay, int endDay){
@@ -225,7 +237,6 @@ public class TextAreaLogProgram extends JFrame{
                 startSlot=1;
             }
             readActivityLog(i);
-//            findLog(find);
             
             
             ArrayList<String> prev=new ArrayList<>();
@@ -234,6 +245,7 @@ public class TextAreaLogProgram extends JFrame{
             
             clearSlots();
         }
+        
         System.out.println("\nThe number of POSSIBLY INFECTED people : "+addedPeople.size());
         addedPeople.clear();
         // User giving out their data of visited places 
@@ -245,24 +257,19 @@ public class TextAreaLogProgram extends JFrame{
         System.out.println("Role: "+role.get(find-1));
         System.out.println("Occupation: "+occ.get(find-1));
         System.out.println("Gender: "+gender.get(find-1));
-        System.out.println("Forgetness : "+forget);
+        System.out.println("Forgetness : "+forgetfullness.get(find-1));
         System.out.println("Family Members: "+family);
         
-        
+        forget=Integer.parseInt(forgetfullness.get(find-1));
         for (int i = startDay; i <= endDay; i++) {
             System.out.println("\nLog Day : " + i);
             findLog(find, forget, i);
             clearSlots();
         }
-//        findLog(find);
-            
-//        addedPeople.sort(c);
-        
-//        System.out.println(slot10.size());
+
         
     }
     
-//    private PrintStream standardOut;
     public static void clearSlots(){
             slot1.clear();
             slot2.clear();
@@ -280,7 +287,6 @@ public class TextAreaLogProgram extends JFrame{
         try{
            FileInputStream fstream = new FileInputStream("Household.log");
            BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
-           
            //Initialise arrays to temporary hold the values
            String strLine;
            String house[];
@@ -289,7 +295,8 @@ public class TextAreaLogProgram extends JFrame{
            String Role[];
            String Occ[];
            String Gender[];
-           String temp[];
+           String imm[];
+           String forg[];
            /* read log line by line */
            
            // Reads the first 2 line
@@ -326,6 +333,14 @@ public class TextAreaLogProgram extends JFrame{
                 Gender=strLine.split(" ");
                 gender.add(Gender[1]);
                 
+                strLine = br.readLine();
+                imm=strLine.split(" ");
+                immunity.add(imm[1]);
+                
+                strLine = br.readLine();
+                forg=strLine.split(" ");
+                forgetfullness.add(forg[1]);
+                
                 //reads the line -----------
                 count++;
                 strLine = br.readLine();        
@@ -333,7 +348,7 @@ public class TextAreaLogProgram extends JFrame{
            }
            fstream.close();
         } catch (Exception e) {
-             System.err.println("Error: " + e.getMessage());
+//             System.out.println("Error: " + e.getMessage());
         }
     }
     
@@ -364,7 +379,6 @@ public class TextAreaLogProgram extends JFrame{
     //the higher the forget level the lower the forgetness
     public static void findLog(int id, int forget,int day){
         
-//        graphMAIN.forget=5-forget;
         readActivityLog(day);
         Random rand=new Random();
         
@@ -427,6 +441,10 @@ public class TextAreaLogProgram extends JFrame{
             }
             
         }
+        
+        
+        // Code to check the FORGETNESS PERCENTAGE
+        
         int countRemember=0;
         for (int i = 1; i <=10 ; i++) {
             boolean hold=false;
@@ -649,9 +667,9 @@ public class TextAreaLogProgram extends JFrame{
         
     
     
-  //insert the person according to the slot, ex 10 and day, ex day 2  
-    //starts the recursive metod which will add the other people to the similar place a person went
     public static ArrayList<String> startLocation(int id, int slot, int day,ArrayList<String> holdPerson){
+      //insert the person according to the slot, ex 10 and day, ex day 2  
+        //starts the recursive metod which will add the other people to the similar place a person went
         //add from the day the person is infected to the last day of simulation
         if(!addedPeople.contains(Integer.toString(id))){
             addedPeople.add(Integer.toString(id));
@@ -666,14 +684,11 @@ public class TextAreaLogProgram extends JFrame{
         int defDay=day;
         if(slot==11){
             day=day+1;
-//            System.out.println("Next day");
         }
         if(defDay!=day){
             return holdPerson;
-//            return false;
         } 
       //Get the places the person goes to during the slot and check if its listed in the placesLog, if yes, get all the human id for places log for 7 days
-//        System.out.println("test");
         switch(setSlot){
             case 1:
                 temp=slot1.get(id-1);
@@ -704,7 +719,6 @@ public class TextAreaLogProgram extends JFrame{
                 break;
             case 0:
                 temp=slot10.get(id-1);
-//                day++;
                 break;
             
         }
@@ -716,11 +730,10 @@ public class TextAreaLogProgram extends JFrame{
                 firstRun=false;
             }
             if(checkPlace(temp)){
-//                System.out.println("Temp: "+temp);
                 hold=readPlace(temp,slot,day);
             }
+            
             //Adds their family members 
-//            sameHome();
             for (int i = 0; i < hold.size() && checkPlace(temp); i++) {
                 if(!hold.get(i).equals("")&&!holdPerson.contains(hold.get(i))){
                     holdPerson.add(hold.get(i));
@@ -741,14 +754,10 @@ public class TextAreaLogProgram extends JFrame{
     
     public static ArrayList sameHome(){
         String sameHouse=houseNum.get(find-1);
-//        System.out.println("same house "+sameHouse);
         int index=sameHouse.indexOf(sameHouse);
-//        System.out.println("Index : "+index);
         for (int i = 0; i < houseNum.size(); i++) {
             if(sameHouse.equals(houseNum.get(i)) ){
-//                System.out.println("Same house : "+(i+1));
                 family.add(Integer.toString(i+1));
-//                holdPerson.add(Integer.toString(i+1));
                 addedPeople.add(Integer.toString(i+1));
             }
 
@@ -779,10 +788,8 @@ public class TextAreaLogProgram extends JFrame{
         places.add("Bank");
         places.add("Market");
         places.add("Factory");
-//        boolean test=false;
         for (int i = 0; i < places.size(); i++) {
             if(place.equals(places.get(i))){
-//                System.out.println("True");
                 return true;
             }
             
@@ -797,14 +804,11 @@ public class TextAreaLogProgram extends JFrame{
                 return false;
             } 
             prev.add(Integer.toString(humanID));
-//            ArrayList<String> a=graph.getAdjacent(Integer.toString(humanID));
             ArrayList<String> a=new ArrayList<>();
             ArrayList<String> holdPerson=new ArrayList<>();
-//            System.out.println("Size : "+a.size());
             a=startLocation(humanID, slot, day,holdPerson);
-//            System.out.println("Size : "+a.size());
-//             System.out.println("HOLDPERSON"+holdPerson);
             a.remove(humanID);
+            
             //remove the find node from the get adjcent list 
             for (int i = 0; i < prev.size(); i++) {
                 for (int j = 0; j < a.size(); j++) {
@@ -822,9 +826,9 @@ public class TextAreaLogProgram extends JFrame{
             DecimalFormat df=new DecimalFormat("#.###");
             for (int i = 0; i < a.size(); i++) {
                  System.out.println(s+a.get(i) + "  "+df.format(Math.pow(0.9, count))+"  Day "+day);
-//                 storeOutput+=s+a.get(i) + "  "+df.format(Math.pow(0.9, count))+"  Day "+day;
+
                  // Shows the risk of infecting another person THE FIRST TIME when they visited the same the same place
-//                 addedPeople.add(a.get(i));
+
                  contactTracer(Integer.parseInt(a.get(i)),depth,count+1,prev,slot,day);
                
             }
