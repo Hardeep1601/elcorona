@@ -44,7 +44,7 @@ public class TextAreaLogProgram extends JFrame{
         super("Contact Tracer");
         
         final JFrame parent = new JFrame();
-        JButton button = new JButton();
+//        JButton button = new JButton();
 
         parent.pack();
         parent.setLocationRelativeTo(null);    // centers on screen
@@ -53,7 +53,7 @@ public class TextAreaLogProgram extends JFrame{
 
         
         int slot = Integer.parseInt(JOptionPane.showInputDialog(parent,
-                        "What is starting slot ? (In numbers)", null));
+                        "What is starting slot ? (In numbers, 1 - 10)", null));
         int startDay = Integer.parseInt(JOptionPane.showInputDialog(parent,
                         "What is start day ? (In numbers)", null));
         int endDay = Integer.parseInt(JOptionPane.showInputDialog(parent,
@@ -61,7 +61,7 @@ public class TextAreaLogProgram extends JFrame{
         int find = Integer.parseInt(JOptionPane.showInputDialog(parent,
                         "What is human ID to be searched ? (In numbers)", null));
         int depth = Integer.parseInt(JOptionPane.showInputDialog(parent,
-                        "What is depth of desired tree ? (In numbers)", null));
+                        "What is depth of desired tree ? (In numbers, starts from 0)", null));
         
         
         this.slot=slot;
@@ -145,7 +145,7 @@ public class TextAreaLogProgram extends JFrame{
             
             // Used to run the contact tracer
             runTracer(find,depth,slot,startDay,endDay);
-            addedPeople.clear();
+            
                     
 //                    try {
 //                        Thread.sleep(1000);
@@ -171,7 +171,7 @@ public class TextAreaLogProgram extends JFrame{
     }
     
     
-    static Graph<String, Integer> graph = new Graph<>();
+//    static Graph<String, Integer> graph = new Graph<>();
 
     static ArrayList<String> houseNum=new ArrayList<>();
     static ArrayList<String> ID=new ArrayList<>();
@@ -201,32 +201,7 @@ public class TextAreaLogProgram extends JFrame{
 //    public static int endDay;
 //    public static int depth;
     
-    public static void userData(int forgetness){
-        Random rand=new Random();
-        System.out.println("-------Basic Data-------\n");
-        System.out.println("Human ID : "+ID.get(find-1));
-        System.out.println("House : "+houseNum.get(find-1));
-        System.out.println("Age: "+age.get(find-1));
-        System.out.println("Role: "+role.get(find-1));
-        System.out.println("Occupation: "+occ.get(find-1));
-        System.out.println("Gender: "+gender.get(find-1));
-        
-        System.out.println("-------Places Visited Data-------\n");
-        int selectData=rand.nextInt(forgetness)+1;
-        System.out.println("Select data : "+selectData);
-//        System.out.println(Arrays.toString(dayStore.get(0)));
-        System.out.println("Size: "+dayStore.size());
-        for (int i = 0; i < dayStore.size(); i++) {
-            
-            String arr=Arrays.toString(dayStore.get(i));
-            System.out.println(arr);
-//            for (int j = 0; j < arr.length; j++) {
-//                Object object = arr[j];
-//                
-//            }
-            
-        }
-    }
+    
     
    
     static ArrayList<String[]> dayStore=new ArrayList<>();
@@ -234,9 +209,11 @@ public class TextAreaLogProgram extends JFrame{
     
     // change the forgetness value here
     static int forget=50;
+    public static int humanAdded=0;
+    
     public static void runTracer(int find, int depth,int startSlot, int startDay, int endDay){
-        System.out.println("\nRun Contact tracer...");
-        System.out.println("Trace the contact for HumanID "+find+" with depth of "+depth+": ");
+        System.out.println("Run Contact tracer...");
+        System.out.println("Tracing contact for HumanID "+find+" with DEPTH of "+depth+" from SLOT "+startSlot+" of DAY "+startDay+" to DAY "+endDay+" : ");
         System.out.println(find + "  "+Math.pow(0.9, 0));  
         readLog();      //read the general human info - has an error(not yet identified)
         sameHome();     // adds the people from the same home to an ArrayList
@@ -252,13 +229,13 @@ public class TextAreaLogProgram extends JFrame{
             
             
             ArrayList<String> prev=new ArrayList<>();
-            contactTracer(graph,find,depth-1,1,prev,startSlot,i);
             System.out.println("Day : "+ i);
+            contactTracer(find,depth,1,prev,startSlot,i);
             
             clearSlots();
         }
-        System.out.println("The size of added people : "+addedPeople.size());
-        
+        System.out.println("\nThe number of POSSIBLY INFECTED people : "+addedPeople.size());
+        addedPeople.clear();
         // User giving out their data of visited places 
         
         System.out.println("\n--------------Information given the human--------------\n");
@@ -269,6 +246,7 @@ public class TextAreaLogProgram extends JFrame{
         System.out.println("Occupation: "+occ.get(find-1));
         System.out.println("Gender: "+gender.get(find-1));
         System.out.println("Forgetness : "+forget);
+        System.out.println("Family Members: "+family);
         
         
         for (int i = startDay; i <= endDay; i++) {
@@ -330,7 +308,7 @@ public class TextAreaLogProgram extends JFrame{
                 strLine = br.readLine();
                 id=strLine.split(" ");
                 ID.add(id[1]);
-                graph.addVertice(id[1]);
+//                graph.addVertice(id[1]);
                 
                 strLine = br.readLine();
                 Age=strLine.split(" ");
@@ -387,10 +365,24 @@ public class TextAreaLogProgram extends JFrame{
     public static void findLog(int id, int forget,int day){
         
 //        graphMAIN.forget=5-forget;
-        System.out.println("\n-------The activities done along the day-------");
-        
         readActivityLog(day);
         Random rand=new Random();
+        
+        System.out.println("\n-------The activities done along the day (ACTUAL DATA)-------");
+        System.out.println("Slot 1 = "+slot1.get(id-1));
+        System.out.println("Slot 2 = "+slot2.get(id-1));
+        System.out.println("Slot 3 = "+slot3.get(id-1));
+        System.out.println("Slot 4 = "+slot4.get(id-1));
+        System.out.println("Slot 5 = "+slot5.get(id-1));
+        System.out.println("Slot 6 = "+slot6.get(id-1));
+        System.out.println("Slot 7 = "+slot7.get(id-1));
+        System.out.println("Slot 8 = "+slot8.get(id-1));
+        System.out.println("Slot 9 = "+slot9.get(id-1));
+        System.out.println("Slot 10 = "+slot10.get(id-1));
+        
+        System.out.println("\n-------The activities done along the day (USER DATA)-------");
+        
+        
         
         
         for (int i = 1; i <= 10; i++) {            
@@ -435,6 +427,77 @@ public class TextAreaLogProgram extends JFrame{
             }
             
         }
+        int countRemember=0;
+        for (int i = 1; i <=10 ; i++) {
+            boolean hold=false;
+            switch(i){
+                    case 1:
+                        hold=checkPlace(slot1.get(id-1));
+                        if(slot1.get(id-1).equals("Home")){
+                            hold=true;
+                        }
+                        break;
+                    case 2:
+                        hold=checkPlace(slot2.get(id-1));
+                        if(slot2.get(id-1).equals("Home")){
+                            hold=true;
+                        }
+                        break;
+                    case 3:
+                        hold=checkPlace(slot3.get(id-1));
+                        if(slot3.get(id-1).equals("Home")){
+                            hold=true;
+                        }
+                        break;
+                    case 4:
+                        hold=checkPlace(slot4.get(id-1));
+                        if(slot4.get(id-1).equals("Home")){
+                            hold=true;
+                        }
+                        break;
+                    case 5:
+                        hold=checkPlace(slot5.get(id-1));
+                        if(slot5.get(id-1).equals("Home")){
+                            hold=true;
+                        }
+                        break;
+                    case 6:
+                        hold=checkPlace(slot6.get(id-1));
+                        if(slot6.get(id-1).equals("Home")){
+                            hold=true;
+                        }
+                        break;
+                    case 7:
+                        hold=checkPlace(slot7.get(id-1));
+                        if(slot7.get(id-1).equals("Home")){
+                            hold=true;
+                        }
+                        break;
+                    case 8:
+                        hold=checkPlace(slot8.get(id-1));
+                        if(slot8.get(id-1).equals("Home")){
+                            hold=true;
+                        }
+                        break;
+                    case 9:
+                        hold=checkPlace(slot9.get(id-1));
+                        if(slot9.get(id-1).equals("Home")){
+                            hold=true;
+                        }
+                        break;
+                    case 10:
+                        hold=checkPlace(slot10.get(id-1));
+                        if(slot10.get(id-1).equals("Home")){
+                            hold=true;
+                        }
+                        break;
+                }
+            if(hold==true){
+                countRemember=countRemember+1;
+            }
+        }
+        
+        double calcForgot=100 - countRemember/10.0*100;
         
         System.out.println("Slot 1 = "+slot1.get(id-1));
         System.out.println("Slot 2 = "+slot2.get(id-1));
@@ -446,7 +509,8 @@ public class TextAreaLogProgram extends JFrame{
         System.out.println("Slot 8 = "+slot8.get(id-1));
         System.out.println("Slot 9 = "+slot9.get(id-1));
         System.out.println("Slot 10 = "+slot10.get(id-1));
-        
+        System.out.println();
+        System.out.println(calcForgot+" % information FORGOTTEN in DAY "+day);
     }
 
     
@@ -508,19 +572,7 @@ public class TextAreaLogProgram extends JFrame{
              System.err.println("Error: " + e.getMessage());
         }
         
-//                   String arr[]=new String[10];
-//            arr[0]=slot1.get(find-1);
-//            arr[1]=slot2.get(find-1);
-//            arr[2]=slot3.get(find-1);
-//            arr[3]=slot4.get(find-1);
-//            arr[4]=slot5.get(find-1);
-//            arr[5]=slot6.get(find-1);
-//            arr[6]=slot7.get(find-1);
-//            arr[7]=slot8.get(find-1);
-//            arr[8]=slot9.get(find-1);
-//            arr[9]=slot10.get(find-1);
-//
-//            dayStore.add(arr);
+
         
         
         
@@ -612,7 +664,7 @@ public class TextAreaLogProgram extends JFrame{
         //ex, day 2 slot 3 is 13%10=slot 3
         //run the reading at the max of 1 daysif
         int defDay=day;
-        if(slot==10){
+        if(slot==11){
             day=day+1;
 //            System.out.println("Next day");
         }
@@ -660,7 +712,6 @@ public class TextAreaLogProgram extends JFrame{
             if(temp.equals("Home")&& firstRun){
                 for (int i = 0; i < family.size() ; i++) {
                     holdPerson.add(family.get(i));
-                    
                 }
                 firstRun=false;
             }
@@ -727,6 +778,7 @@ public class TextAreaLogProgram extends JFrame{
         places.add("Healthcare Centre");
         places.add("Bank");
         places.add("Market");
+        places.add("Factory");
 //        boolean test=false;
         for (int i = 0; i < places.size(); i++) {
             if(place.equals(places.get(i))){
@@ -740,7 +792,7 @@ public class TextAreaLogProgram extends JFrame{
     public static String storeOutput=""; 
     
     
-    public static boolean contactTracer(Graph graph,Integer humanID,Integer depth,Integer count, ArrayList prev,int slot, int day){
+    public static boolean contactTracer(Integer humanID,Integer depth,Integer count, ArrayList prev,int slot, int day){
             if(count>depth){
                 return false;
             } 
@@ -770,10 +822,11 @@ public class TextAreaLogProgram extends JFrame{
             DecimalFormat df=new DecimalFormat("#.###");
             for (int i = 0; i < a.size(); i++) {
                  System.out.println(s+a.get(i) + "  "+df.format(Math.pow(0.9, count))+"  Day "+day);
-                 storeOutput+=s+a.get(i) + "  "+df.format(Math.pow(0.9, count))+"  Day "+day;
+//                 storeOutput+=s+a.get(i) + "  "+df.format(Math.pow(0.9, count))+"  Day "+day;
                  // Shows the risk of infecting another person THE FIRST TIME when they visited the same the same place
 //                 addedPeople.add(a.get(i));
-                 contactTracer(graph, Integer.parseInt(a.get(i)),depth,count+1,prev,slot,day);
+                 contactTracer(Integer.parseInt(a.get(i)),depth,count+1,prev,slot,day);
+               
             }
             
             
