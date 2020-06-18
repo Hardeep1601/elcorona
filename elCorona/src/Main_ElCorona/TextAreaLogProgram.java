@@ -275,8 +275,8 @@ public class TextAreaLogProgram extends JFrame{
         int housePrev=0;
         int count=0;
         
-        System.out.println("\n-------The Tree for all the human family connection-------");
-        System.out.println("The tree is sorted out from the oldest to the youngest person in the family");
+        System.out.println("\n--------------The Tree for all the human family connection--------------");
+        System.out.println("The tree is sorted out from the oldest to the youngest person in the family\n");
         
         for (int i = 0; i < ID.size()  ; i++) {
             ArrayList<Integer> getFam=sameHome(i);
