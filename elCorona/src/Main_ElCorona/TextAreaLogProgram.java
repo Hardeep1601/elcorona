@@ -17,7 +17,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -25,13 +25,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
-import javax.swing.text.BadLocationException;
 
-/**
- *
- * https://www.codejava.net/java-se/swing/redirect-standard-output-streams-to-jtextarea
- * https://www.codejava.net/java-se/swing/redirect-standard-output-streams-to-jtextarea
- */
+
+
 public class TextAreaLogProgram extends JFrame{
     private JTextArea textArea;
      
@@ -206,23 +202,19 @@ public class TextAreaLogProgram extends JFrame{
     static ArrayList<String> slot8=new ArrayList<>();
     static ArrayList<String> slot9=new ArrayList<>();
     static ArrayList<String> slot10=new ArrayList<>();
+    static ArrayList<String[]> dayStore=new ArrayList<>();
+   
     //used to add people who has visited the same place, ex flat
     static ArrayList<String> addedPeople=new ArrayList<>();
-    public static int humanCount=0;
-    
-    public static int find=0;
-
-    
-    
-    
-   
-    static ArrayList<String[]> dayStore=new ArrayList<>();
-    
     
     // change the forgetness value here
     static int forget;
     public static int humanAdded=0;
+    public static int find=0;
+
     
+    
+    // Contact tracing method
     public static void runTracer(int find, int depth,int startSlot, int startDay, int endDay){
         System.out.println("Run Contact tracer...");
         System.out.println("Tracing contact for HumanID "+find+" with DEPTH of "+depth+" from SLOT "+startSlot+" of DAY "+startDay+" to DAY "+endDay+" : ");
@@ -258,6 +250,7 @@ public class TextAreaLogProgram extends JFrame{
         System.out.println("Occupation: "+occ.get(find-1));
         System.out.println("Gender: "+gender.get(find-1));
         System.out.println("Forgetness : "+forgetfullness.get(find-1));
+        System.out.println("Immunity : "+immunity.get(find-1));
         System.out.println("Family Members: "+family);
         
         forget=Integer.parseInt(forgetfullness.get(find-1));
@@ -266,9 +259,107 @@ public class TextAreaLogProgram extends JFrame{
             findLog(find, forget, i);
             clearSlots();
         }
-
+        
+        
+        // REMINDER ; TO USE THIS METHOD, USE THE clearHouseHold() METHOD, ELSE THE DATA WILL CLASH WITH THE COLLECTED DATA FROM THE CONTACT TRACER
+        // ELSE, DO NOT READ THE DATA AGAIN FROM THE HOUSEHOLD AGAIN AND RUN IT WITH THE CONTACT TRACER
+        peopleTree();        
         
     }
+    
+    //Show all people in a tree based on household
+    public static void peopleTree(){
+        //Reads the houseHold information
+//        readLog();
+        int houseAdd=1;
+        int housePrev=0;
+        int count=0;
+        
+        System.out.println("\n-------The Tree for all the human family connection-------");
+        System.out.println("The tree is sorted out from the oldest to the youngest person in the family");
+        
+        for (int i = 0; i < ID.size()  ; i++) {
+            ArrayList<Integer> getFam=sameHome(i);
+            houseAdd=Integer.parseInt(houseNum.get(i));
+            if(i!=0){
+                housePrev=Integer.parseInt(houseNum.get(i-1));
+            }
+            
+            
+            //Print tree here 
+            if(houseAdd!=housePrev){
+                count++;
+                for (int k = 0; k < getFam.size(); k++) {
+                    for (int j = 1; j < getFam.size(); j++) {
+                        int temp1=getFam.get(j-1);
+                        int temp2=getFam.get(j);
+                        int age1=Integer.parseInt(age.get(temp1-1));
+                        int age2=Integer.parseInt(age.get(temp2-1));
+
+                        if(age2>age1){
+                            Collections.swap(getFam, j, j-1);
+                        }
+                    }
+                    
+                }
+                
+                // Print out the tree
+                System.out.println("Household : "+count);
+                for (int j = 0; j < getFam.size(); j++) {
+                    System.out.print(getFam.get(j)+" <-- ");
+                }
+                System.out.println("");
+            }
+            
+            //Breaks if the largest house is done printing
+            if(houseAdd==getLargestHouse()){
+                break;
+            }
+        }
+        
+    }
+    
+    public static ArrayList<Integer> sameHome(int get){
+        ArrayList<Integer> holdFam=new ArrayList<>();
+        String sameHouse=houseNum.get(get);
+        
+        
+        for (int i = 0; i < houseNum.size(); i++) {
+            if(sameHouse.equals(houseNum.get(i)) ){
+                holdFam.add((i+1));
+//                addedPeople.add(Integer.toString(i+1));
+            }
+
+        }
+            return holdFam;
+    }
+    
+    public static int getLargestHouse(){
+        int lastHouse=-1;
+        int tempHouse;
+        
+        for (int i = 0; i < houseNum.size(); i++) {
+            tempHouse=Integer.parseInt(houseNum.get(i));
+            if(tempHouse>lastHouse){
+                lastHouse=tempHouse;
+            }
+        }
+        
+        return lastHouse;
+    }
+    
+    
+    public static void clearHouseHold(){
+        ID.clear();
+        houseNum.clear();
+        age.clear();
+        role.clear();
+        occ.clear();
+        gender.clear();
+        immunity.clear();
+        forgetfullness.clear();
+    }
+    
     
     public static void clearSlots(){
             slot1.clear();
@@ -309,7 +400,6 @@ public class TextAreaLogProgram extends JFrame{
 
                 house=strLine.split(" ");
                 houseNum.add(house[1]);
-                humanCount++;
                   
                     
                 strLine = br.readLine();
@@ -765,6 +855,8 @@ public class TextAreaLogProgram extends JFrame{
             return family;
     }
     
+    
+    
     public static boolean checkPlace(String place){
         ArrayList<String> places=new ArrayList<>();
         places.add("Flat");
@@ -823,9 +915,14 @@ public class TextAreaLogProgram extends JFrame{
             for (int j = 0; j < count; j++) {
                 s+="\t";
             }
-            DecimalFormat df=new DecimalFormat("#.###");
+            DecimalFormat df=new DecimalFormat("#.##");
             for (int i = 0; i < a.size(); i++) {
-                 System.out.println(s+a.get(i) + "  "+df.format(Math.pow(0.9, count))+"  Day "+day);
+                 double hold=Math.pow(0.9, count)*(100- Integer.parseInt(immunity.get(Integer.parseInt(a.get(i))-1)))/100;
+                 int person=Integer.parseInt(immunity.get(Integer.parseInt(a.get(i))-1));
+                 
+                 System.out.println(s+a.get(i) + "  "+df.format(hold)+"  Day "+day);
+                 
+//                 System.out.println(s+a.get(i) + "  "+df.format(Math.pow(0.9, count))+"  Day "+day);
 
                  // Shows the risk of infecting another person THE FIRST TIME when they visited the same the same place
 
@@ -837,4 +934,8 @@ public class TextAreaLogProgram extends JFrame{
             return true;
         
     }
+    
+    
+    
+    
 }
