@@ -263,7 +263,10 @@ public class TextAreaLogProgram extends JFrame{
         
         // REMINDER ; TO USE THIS METHOD, USE THE clearHouseHold() METHOD, ELSE THE DATA WILL CLASH WITH THE COLLECTED DATA FROM THE CONTACT TRACER
         // ELSE, DO NOT READ THE DATA AGAIN FROM THE HOUSEHOLD AGAIN AND RUN IT WITH THE CONTACT TRACER
-        peopleTree();        
+        peopleTree();    
+        
+        
+        clearHouseHold();
         
     }
     
@@ -310,11 +313,7 @@ public class TextAreaLogProgram extends JFrame{
                 }
                 System.out.println("");
             }
-            
-            //Breaks if the largest house is done printing
-            if(houseAdd==getLargestHouse()){
-                break;
-            }
+
         }
         
     }
@@ -327,7 +326,6 @@ public class TextAreaLogProgram extends JFrame{
         for (int i = 0; i < houseNum.size(); i++) {
             if(sameHouse.equals(houseNum.get(i)) ){
                 holdFam.add((i+1));
-//                addedPeople.add(Integer.toString(i+1));
             }
 
         }
@@ -438,7 +436,6 @@ public class TextAreaLogProgram extends JFrame{
            }
            fstream.close();
         } catch (Exception e) {
-//             System.out.println("Error: " + e.getMessage());
         }
     }
     
